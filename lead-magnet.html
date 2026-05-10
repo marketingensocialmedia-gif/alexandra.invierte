@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>7 errores con el dinero — alexandra.invierte</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --cream: #F4EFDF;
+    --paper: #FBF7EE;
+    --olive: #5C6E3C;
+    --olive-deep: #3F4D26;
+    --olive-soft: #A6B07F;
+    --wine: #6E2A36;
+    --wine-deep: #4A1A23;
+    --mauve: #C99B91;
+    --ink: #261E1B;
+    --muted: #6E6055;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #d8d2bd; color: var(--ink); font-family: "Outfit", sans-serif; }
+
+  .display { font-family: "Bricolage Grotesque", system-ui, sans-serif; font-weight: 800; letter-spacing: -0.025em; text-transform: uppercase; line-height: 0.92; }
+  .display-it { font-family: "Bricolage Grotesque", system-ui, sans-serif; font-weight: 500; font-style: italic; letter-spacing: -0.02em; text-transform: lowercase; }
+  .mono { font-family: "Space Mono", monospace; }
+
+  /* Toolbar (screen only) */
+  .toolbar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--olive-deep); color: var(--cream);
+    padding: 14px 24px; display: flex; justify-content: space-between; align-items: center;
+    font-family: "Outfit", sans-serif; font-size: 13px;
+  }
+  .toolbar a { color: var(--mauve); text-decoration: underline; }
+  .toolbar button {
+    background: var(--cream); color: var(--olive-deep);
+    border: none; padding: 8px 14px; border-radius: 4px; cursor: pointer;
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 800; font-size: 12px; text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* A4 portrait pages */
+  .pages { padding: 24px 12px 80px; max-width: 820px; margin: 0 auto; }
+  .page {
+    width: 100%; aspect-ratio: 210 / 297;
+    background: var(--cream); margin: 0 auto 24px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+    padding: 60px 56px; position: relative; overflow: hidden;
+    page-break-after: always; break-after: page;
+  }
+  .page.dark { background: var(--olive-deep); color: var(--cream); }
+  .page.wine { background: var(--wine); color: var(--cream); }
+
+  /* Page chrome */
+  .pagenum {
+    position: absolute; bottom: 28px; left: 56px;
+    font-family: "Space Mono", monospace; font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .page.dark .pagenum, .page.wine .pagenum { color: rgba(244,239,223,0.55); }
+  .pagebrand {
+    position: absolute; bottom: 28px; right: 56px;
+    font-family: "DM Serif Display", serif; font-style: italic; font-size: 14px;
+    color: var(--muted);
+  }
+  .page.dark .pagebrand, .page.wine .pagebrand { color: rgba(244,239,223,0.6); }
+
+  /* COVER */
+  .cover { display: flex; flex-direction: column; justify-content: space-between; }
+  .cover .top {
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: "Space Mono", monospace; font-size: 11px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(244,239,223,0.7);
+  }
+  .cover .top .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--mauve); color: var(--wine-deep);
+    padding: 5px 10px; border-radius: 100px; font-weight: 700;
+  }
+  .cover h1 {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 800; font-size: 96px; line-height: 0.88;
+    letter-spacing: -0.035em; text-transform: uppercase; margin: 0;
+  }
+  .cover h1 .it { font-weight: 500; font-style: italic; color: var(--mauve); text-transform: lowercase; letter-spacing: -0.02em; }
+  .cover .lede {
+    font-size: 18px; line-height: 1.45; max-width: 460px;
+    color: rgba(244,239,223,0.85);
+  }
+  .cover .by {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    gap: 24px; padding-top: 28px; border-top: 1px solid rgba(244,239,223,0.3);
+  }
+  .cover .by .who {
+    font-family: "DM Serif Display", serif; font-style: italic; font-size: 24px;
+    color: var(--cream);
+  }
+  .cover .by .who small { display: block; font-family: "Space Mono", monospace; font-style: normal; font-size: 10px; letter-spacing: 0.16em; color: rgba(244,239,223,0.6); margin-top: 6px; }
+  .cover .by .pages-info { font-family: "Space Mono", monospace; font-size: 10px; letter-spacing: 0.16em; color: rgba(244,239,223,0.6); text-align: right; }
+
+  /* Welcome / intro */
+  .welcome h2 {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 800; font-size: 52px; line-height: 0.95;
+    letter-spacing: -0.025em; text-transform: uppercase;
+    margin: 0 0 22px; color: var(--olive-deep);
+  }
+  .welcome h2 .it { color: var(--wine); font-weight: 500; font-style: italic; text-transform: lowercase; }
+  .welcome p { font-size: 16px; line-height: 1.6; margin: 0 0 16px; max-width: 520px; }
+  .welcome .signature {
+    margin-top: 32px; font-family: "DM Serif Display", serif;
+    font-style: italic; font-size: 22px; color: var(--olive-deep);
+  }
+  .welcome .signature small {
+    display: block; font-family: "Space Mono", monospace; font-style: normal;
+    font-size: 10px; letter-spacing: 0.14em; color: var(--muted);
+    text-transform: uppercase; margin-top: 6px;
+  }
+  .welcome .top {
+    font-family: "Space Mono", monospace; font-size: 11px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--wine); margin-bottom: 18px;
+  }
+
+  /* Index / TOC */
+  .toc h2 {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 800; font-size: 52px; line-height: 0.95;
+    letter-spacing: -0.025em; text-transform: uppercase;
+    margin: 0 0 28px; color: var(--olive-deep);
+  }
+  .toc ol { list-style: none; padding: 0; margin: 0; counter-reset: toc; }
+  .toc li {
+    counter-increment: toc;
+    display: flex; gap: 18px; align-items: baseline;
+    padding: 14px 0; border-top: 1px solid rgba(63,77,38,0.2);
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 700; font-size: 22px; letter-spacing: -0.01em;
+    text-transform: uppercase; color: var(--olive-deep);
+  }
+  .toc li:last-child { border-bottom: 1px solid rgba(63,77,38,0.2); }
+  .toc li::before {
+    content: "0" counter(toc);
+    color: var(--wine);
+    font-family: "Space Mono", monospace; font-size: 13px;
+    letter-spacing: 0.1em; flex: 0 0 36px;
+  }
+  .toc li .dots { flex: 1; border-bottom: 1.5px dotted rgba(63,77,38,0.3); margin-bottom: 6px; }
+  .toc li .pg { font-family: "Space Mono", monospace; font-size: 13px; color: var(--muted); flex: 0 0 auto; }
+
+  /* Mistake page */
+  .mistake { display: flex; flex-direction: column; }
+  .mistake .head {
+    display: flex; gap: 18px; align-items: flex-start; margin-bottom: 24px;
+  }
+  .mistake .num {
+    flex: 0 0 auto; width: 80px; height: 80px;
+    background: var(--wine); color: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 800; font-size: 38px;
+    border-radius: 8px; letter-spacing: -0.04em;
+  }
+  .mistake.olive .num { background: var(--olive-deep); }
+  .mistake.mauve .num { background: var(--mauve); color: var(--wine-deep); }
+  .mistake .head .meta {
+    font-family: "Space Mono", monospace; font-size: 11px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--wine); margin-bottom: 8px;
+  }
+  .mistake h2 {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 800; font-size: 40px; line-height: 0.95;
+    letter-spacing: -0.025em; text-transform: uppercase;
+    margin: 0; color: var(--olive-deep);
+  }
+  .mistake h2 .it { color: var(--wine); font-weight: 500; font-style: italic; text-transform: lowercase; }
+  .mistake .body { font-size: 15.5px; line-height: 1.6; margin-top: 12px; }
+  .mistake .body p { margin: 0 0 12px; }
+  .mistake .pull {
+    margin: 22px 0;
+    background: var(--paper); padding: 22px 22px;
+    border-left: 4px solid var(--wine);
+    font-family: "DM Serif Display", serif; font-style: italic;
+    font-size: 22px; line-height: 1.3; color: var(--olive-deep);
+  }
+  .mistake .pull .credit {
+    display: block; font-family: "Space Mono", monospace;
+    font-style: normal; font-size: 10px; letter-spacing: 0.14em;
+    color: var(--muted); text-transform: uppercase; margin-top: 12px;
+  }
+  .mistake .qatip {
+    background: var(--olive-deep); color: var(--cream);
+    padding: 18px 20px; border-radius: 6px; margin-top: 14px;
+  }
+  .mistake .qatip .lbl {
+    font-family: "Space Mono", monospace; font-size: 10px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--mauve); margin-bottom: 6px;
+  }
+  .mistake .qatip .txt { font-size: 14.5px; line-height: 1.5; }
+  .mistake .qatip strong { color: var(--cream); }
+
+  .mistake .twocol {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px;
+  }
+  .mistake .twocol .col {
+    padding: 16px; border-radius: 6px;
+    font-size: 13.5px; line-height: 1.5;
+  }
+  .mistake .twocol .bad { background: rgba(110,42,54,0.08); border: 1px solid rgba(110,42,54,0.25); }
+  .mistake .twocol .good { background: rgba(63,77,38,0.08); border: 1px solid rgba(63,77,38,0.25); }
+  .mistake .twocol .lbl {
+    font-family: "Space Mono", monospace; font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 8px;
+  }
+  .mistake .twocol .bad .lbl { color: var(--wine); }
+  .mistake .twocol .good .lbl { color: var(--olive-deep); }
+
+  /* Final CTA page */
+  .final { display: flex; flex-direction: column; justify-content: space-between; }
+  .final .top {
+    font-family: "Space Mono", monospace; font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--mauve);
+  }
+  .final h2 {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 800; font-size: 80px; line-height: 0.88;
+    letter-spacing: -0.03em; text-transform: uppercase;
+    margin: 18px 0 22px;
+  }
+  .final h2 .it { color: var(--mauve); font-weight: 500; font-style: italic; text-transform: lowercase; letter-spacing: -0.02em; }
+  .final p { font-size: 16px; line-height: 1.55; max-width: 480px; opacity: 0.9; margin: 0 0 16px; }
+  .final .grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    margin-top: 28px;
+  }
+  .final .card {
+    background: rgba(244,239,223,0.08); border: 1.5px solid rgba(244,239,223,0.3);
+    padding: 22px 20px; border-radius: 8px;
+  }
+  .final .card .lbl {
+    font-family: "Space Mono", monospace; font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--mauve); margin-bottom: 10px;
+  }
+  .final .card .ttl {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 800; font-size: 22px; letter-spacing: -0.02em;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+  .final .card .price {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 800; font-size: 32px; letter-spacing: -0.02em;
+    color: var(--mauve);
+  }
+  .final .card .desc { font-size: 13px; line-height: 1.45; opacity: 0.8; margin-top: 4px; }
+  .final .button {
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--mauve); color: var(--wine-deep);
+    padding: 18px 22px; margin-top: 30px;
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 800; font-size: 18px; letter-spacing: 0.01em;
+    text-transform: uppercase; border-radius: 8px; text-decoration: none;
+  }
+  .final .legal {
+    font-size: 11px; line-height: 1.5; opacity: 0.6; margin-top: 26px;
+  }
+
+  @media print {
+    body { background: white; }
+    .toolbar { display: none; }
+    .pages { padding: 0; max-width: none; }
+    .page { box-shadow: none; margin: 0; padding: 60px 56px; aspect-ratio: auto; height: 297mm; width: 210mm; }
+    @page { size: A4 portrait; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <span><a href="index.html">← Volver a alexandra.invierte</a></span>
+  <button onclick="window.print()">↓ Descargar PDF</button>
+</div>
+
+<div class="pages">
+
+  <!-- Page 1 — Cover -->
+  <div class="page wine cover">
+    <div>
+      <div class="top">
+        <span>Guía gratuita · 14 páginas</span>
+        <span class="badge">@alexandra.invierte</span>
+      </div>
+    </div>
+
+    <div>
+      <h1>
+        7 errores<br/>
+        <span class="it">con el dinero</span>
+      </h1>
+      <p class="lede" style="margin-top: 28px;">
+        Lo que aprendí los primeros años invirtiendo, para que tú no lo
+        aprendas con tu dinero. Una guía honesta para latinas en Europa y
+        América.
+      </p>
+    </div>
+
+    <div class="by">
+      <div class="who">
+        Alexandra G.
+        <small>FUNDADORA · CERTIFICADA MIFID II</small>
+      </div>
+      <div class="pages-info">
+        EDICIÓN 2026<br/>
+        EU · LATAM
+      </div>
+    </div>
+  </div>
+
+  <!-- Page 2 — Welcome -->
+  <div class="page welcome">
+    <div class="top">// Antes de empezar</div>
+    <h2>
+      Hola,<br/>
+      <span class="it">soy alexandra.</span>
+    </h2>
+    <p>
+      Si llegaste hasta aquí es porque algo dentro de ti ya sabe que el dinero
+      tiene que dejar de ser un tema incómodo. Yo lo viví igual: crecí
+      escuchando que <em>"invertir era de hombres"</em>, que <em>"la bolsa
+      era un casino"</em>, y que <em>"primero hay que ahorrar mucho para
+      empezar"</em>.
+    </p>
+    <p>
+      Spoiler: las tres cosas son mentira. Y los siete errores que vienen en
+      esta guía son los que más me han costado a mí — y los que veo cometer
+      una y otra vez a las latinas que llegan a mis sesiones.
+    </p>
+    <p>
+      Mi único objetivo aquí es que te vayas con menos miedo y más claridad.
+      No te voy a vender humo, no te voy a prometer rentabilidades, y no te
+      voy a hacer sentir tonta. Léela con calma, subraya lo que te resuene, y
+      si quieres después seguimos.
+    </p>
+    <div class="signature">
+      Alexandra G.
+      <small>@alexandra.invierte</small>
+    </div>
+    <span class="pagenum">02 / 11</span>
+    <span class="pagebrand">alexandra.invierte</span>
+  </div>
+
+  <!-- Page 3 — TOC -->
+  <div class="page toc">
+    <div class="welcome top" style="margin-bottom: 18px;">// Índice</div>
+    <h2>Los 7 errores.</h2>
+    <ol>
+      <li><span>Esperar al "momento perfecto"</span><span class="dots"></span><span class="pg">04</span></li>
+      <li><span>Confundir ahorro con inversión</span><span class="dots"></span><span class="pg">05</span></li>
+      <li><span>Invertir sin fondo de emergencia</span><span class="dots"></span><span class="pg">06</span></li>
+      <li><span>Copiar a los gurús de internet</span><span class="dots"></span><span class="pg">07</span></li>
+      <li><span>Ignorar las comisiones</span><span class="dots"></span><span class="pg">08</span></li>
+      <li><span>No diversificar (ni de país)</span><span class="dots"></span><span class="pg">09</span></li>
+      <li><span>Vender al primer susto</span><span class="dots"></span><span class="pg">10</span></li>
+    </ol>
+    <span class="pagenum">03 / 11</span>
+    <span class="pagebrand">alexandra.invierte</span>
+  </div>
+
+  <!-- Page 4 — Error 1 -->
+  <div class="page mistake">
+    <div class="head">
+      <div class="num">01</div>
+      <div>
+        <div class="meta">// Error nº 01</div>
+        <h2>Esperar al<br/><span class="it">momento perfecto.</span></h2>
+      </div>
+    </div>
+    <div class="body">
+      <p>El "voy a empezar cuando ahorre más", "cuando termine la mudanza",
+      "cuando baje el mercado". Spoiler: ese momento no llega — y mientras tanto
+      tu dinero pierde valor por la inflación, callado.</p>
+      <p>El mejor momento para empezar a invertir fue hace 10 años. El
+      segundo mejor momento es hoy. Empezar con poco es muchísimo mejor que
+      esperar el día perfecto con todo.</p>
+
+      <div class="pull">
+        “El interés compuesto es la octava maravilla del mundo. Quien lo
+        entiende, lo gana; quien no, lo paga.”
+        <span class="credit">— atribuido a Albert Einstein</span>
+      </div>
+
+      <div class="qatip">
+        <div class="lbl">Tip práctico</div>
+        <div class="txt">Empieza con <strong>50€ al mes</strong> en un fondo
+        indexado global. No por la cantidad — por construir el hábito. Lo
+        difícil no es invertir mucho; es invertir <strong>siempre</strong>.</div>
+      </div>
+    </div>
+    <span class="pagenum">04 / 11</span>
+    <span class="pagebrand">alexandra.invierte</span>
+  </div>
+
+  <!-- Page 5 — Error 2 -->
+  <div class="page mistake olive">
+    <div class="head">
+      <div class="num">02</div>
+      <div>
+        <div class="meta">// Error nº 02</div>
+        <h2>Confundir ahorro<br/><span class="it">con inversión.</span></h2>
+      </div>
+    </div>
+    <div class="body">
+      <p>Tener tu dinero en una cuenta de ahorro al 0,1% no es ahorrar — es
+      perder. Si la inflación europea está en torno al 3% y tu cuenta paga
+      menos, cada año tu dinero compra menos cosas, aunque la cifra sea la
+      misma.</p>
+      <p>Ahorrar e invertir son dos cosas distintas, con dos objetivos
+      distintos. La una <em>te protege</em>; la otra <em>te hace crecer</em>.</p>
+
+      <div class="twocol">
+        <div class="col bad">
+          <div class="lbl">Ahorrar</div>
+          Para emergencias y metas a corto plazo (1–2 años). Líquido, accesible,
+          sin riesgo.
+        </div>
+        <div class="col good">
+          <div class="lbl">Invertir</div>
+          Para metas a 5+ años. Acepta volatilidad a cambio de crecer por
+          encima de la inflación.
+        </div>
+      </div>
+
+      <div class="qatip">
+        <div class="lbl">Tip práctico</div>
+        <div class="txt">Regla simple: si lo necesitas en menos de 2 años,
+        <strong>ahorra</strong>. Si no, <strong>invierte</strong>.</div>
+      </div>
+    </div>
+    <span class="pagenum">05 / 11</span>
+    <span class="pagebrand">alexandra.invierte</span>
+  </div>
+
+  <!-- Page 6 — Error 3 -->
+  <div class="page mistake">
+    <div class="head">
+      <div class="num">03</div>
+      <div>
+        <div class="meta">// Error nº 03</div>
+        <h2>Invertir sin<br/><span class="it">fondo de emergencia.</span></h2>
+      </div>
+    </div>
+    <div class="body">
+      <p>Este error me dolió en lo personal. Empezar a invertir sin un colchón
+      de seguridad significa que la primera vez que se rompe el coche, llega
+      una factura médica o pierdes el trabajo, te toca <em>vender en pérdidas</em>
+      justo cuando no debes.</p>
+      <p>El fondo de emergencia no es opcional. Es la base que sostiene todo
+      lo demás.</p>
+
+      <div class="pull">
+        Antes de invertir un solo euro, asegúrate de poder dormir tranquila
+        durante 3–6 meses sin ingresos.
+      </div>
+
+      <div class="qatip">
+        <div class="lbl">Tip práctico</div>
+        <div class="txt"><strong>3 meses</strong> de gastos fijos si tienes
+        empleo estable; <strong>6 meses</strong> si eres freelance o tienes
+        ingresos variables. Guárdalo en una cuenta separada — no en la del día
+        a día.</div>
+      </div>
+    </div>
+    <span class="pagenum">06 / 11</span>
+    <span class="pagebrand">alexandra.invierte</span>
+  </div>
+
+  <!-- Page 7 — Error 4 -->
+  <div class="page mistake mauve">
+    <div class="head">
+      <div class="num">04</div>
+      <div>
+        <div class="meta">// Error nº 04</div>
+        <h2>Copiar a los<br/><span class="it">gurús de internet.</span></h2>
+      </div>
+    </div>
+    <div class="body">
+      <p>El chico de TikTok que dice "esta acción se va a 10x", el grupo de
+      Telegram de pago, los hilos de X con flechitas verdes. Ninguno conoce tu
+      situación, tu horizonte, tu tolerancia al riesgo, ni tus números. Y
+      ninguno responde si pierdes.</p>
+      <p>Lo que funciona para alguien con 50.000€ y 25 años no funciona igual
+      para alguien con 3.000€ ahorrados y dos hijos. La inversión es
+      <em>personal</em>.</p>
+
+      <div class="qatip">
+        <div class="lbl">Tip práctico</div>
+        <div class="txt">Antes de seguir a alguien, pregúntate: ¿conoce
+        <strong>mi</strong> situación? ¿está regulado? ¿gana dinero por dar
+        consejos o por aplicarlos? Si no responde a las tres, sigue scrolleando.</div>
+      </div>
+    </div>
+    <span class="pagenum">07 / 11</span>
+    <span class="pagebrand">alexandra.invierte</span>
+  </div>
+
+  <!-- Page 8 — Error 5 -->
+  <div class="page mistake">
+    <div class="head">
+      <div class="num">05</div>
+      <div>
+        <div class="meta">// Error nº 05</div>
+        <h2>Ignorar<br/><span class="it">las comisiones.</span></h2>
+      </div>
+    </div>
+    <div class="body">
+      <p>Una comisión del 2% anual parece pequeña. En 30 años puede comerse
+      <strong>la mitad de tus ganancias</strong>. No exagero — es matemática
+      pura del interés compuesto, en su versión oscura.</p>
+      <p>Los bancos tradicionales en LATAM y Europa son maestros del arte de
+      esconder comisiones: gestión, custodia, depósito, traspaso, conversión
+      de divisa…</p>
+
+      <div class="twocol">
+        <div class="col bad">
+          <div class="lbl">Caro · evitar</div>
+          Fondos del banco al 1,8–2,5% TER, gestoras "premium", planes de
+          pensiones tradicionales.
+        </div>
+        <div class="col good">
+          <div class="lbl">Eficiente</div>
+          Fondos indexados / ETFs (0,1–0,3% TER), brokers low-cost regulados
+          en la UE.
+        </div>
+      </div>
+
+      <div class="qatip">
+        <div class="lbl">Tip práctico</div>
+        <div class="txt">Pide siempre el <strong>TER</strong> (Total Expense
+        Ratio). Si pasa del 1%, levanta una ceja. Si pasa del 1,5%, hay
+        alternativa mejor — siempre.</div>
+      </div>
+    </div>
+    <span class="pagenum">08 / 11</span>
+    <span class="pagebrand">alexandra.invierte</span>
+  </div>
+
+  <!-- Page 9 — Error 6 -->
+  <div class="page mistake olive">
+    <div class="head">
+      <div class="num">06</div>
+      <div>
+        <div class="meta">// Error nº 06</div>
+        <h2>No diversificar<br/><span class="it">(ni de país).</span></h2>
+      </div>
+    </div>
+    <div class="body">
+      <p>"Solo invierto en mi país porque lo conozco." Lo escucho mucho — y
+      es una de las trampas más caras. Si vives en LATAM y todo tu patrimonio
+      está en moneda local, una sola devaluación te puede borrar años de
+      esfuerzo. Si vives en Europa y solo tienes acciones europeas, te pierdes
+      el resto del mundo.</p>
+      <p>Diversificar no es solo entre empresas. Es también entre <em>países,
+      monedas y tipos de activo</em>.</p>
+
+      <div class="pull">
+        No pongas todos los huevos en la misma canasta. Y, sobre todo, no en
+        la misma <em>moneda</em>.
+      </div>
+
+      <div class="qatip">
+        <div class="lbl">Tip práctico</div>
+        <div class="txt">Para empezar, un <strong>fondo indexado mundial
+        (MSCI World o FTSE All-World)</strong> ya te da exposición a 1.500+
+        empresas en 23+ países, en una sola compra. Es el camino más simple
+        para diversificar sin volverte loca.</div>
+      </div>
+    </div>
+    <span class="pagenum">09 / 11</span>
+    <span class="pagebrand">alexandra.invierte</span>
+  </div>
+
+  <!-- Page 10 — Error 7 -->
+  <div class="page mistake">
+    <div class="head">
+      <div class="num">07</div>
+      <div>
+        <div class="meta">// Error nº 07</div>
+        <h2>Vender al<br/><span class="it">primer susto.</span></h2>
+      </div>
+    </div>
+    <div class="body">
+      <p>El mercado cae un 15% en una semana. Las noticias son catastróficas.
+      Tu cuñado dice "yo te lo dije". Y tú, con el corazón en la mano, vendes
+      todo. Tres meses después el mercado recupera — y tú te quedaste fuera.</p>
+      <p>Las caídas son parte del juego. Sin ellas no habría rentabilidad. La
+      mayoría de inversoras pierden dinero <em>no por elegir mal</em>, sino
+      por <em>vender mal</em>.</p>
+
+      <div class="pull">
+        El mercado lleva subiendo más del 90% del tiempo en los últimos 100
+        años. La paciencia se cobra el resto.
+      </div>
+
+      <div class="qatip">
+        <div class="lbl">Tip práctico</div>
+        <div class="txt">Antes de comprar, escribe en una nota tu
+        <strong>plan</strong>: en qué inviertes, durante cuánto tiempo, y qué
+        harás si cae un 30%. Cuando llegue el susto, la nota decide — no tus
+        emociones.</div>
+      </div>
+    </div>
+    <span class="pagenum">10 / 11</span>
+    <span class="pagebrand">alexandra.invierte</span>
+  </div>
+
+  <!-- Page 11 — Final / CTA -->
+  <div class="page wine final">
+    <div>
+      <div class="top">// Y ahora qué</div>
+      <h2>
+        Si quieres,<br/>
+        <span class="it">seguimos juntas.</span>
+      </h2>
+      <p>
+        Esta guía es el principio. Si después de leerla sientes que necesitas
+        un plan a medida — uno que conozca tus números, tu país y tu
+        situación — esto es lo que ofrezco:
+      </p>
+    </div>
+
+    <div>
+      <div class="grid">
+        <div class="card">
+          <div class="lbl">01 · Asesoría 1:1</div>
+          <div class="ttl">Tu plan financiero</div>
+          <div class="price">€397</div>
+          <div class="desc">4 sesiones · Plan a medida · WhatsApp 30 días.</div>
+        </div>
+        <div class="card">
+          <div class="lbl">02 · Coaching</div>
+          <div class="ttl">Swing trading</div>
+          <div class="price">€597</div>
+          <div class="desc">5 sesiones · Sistema completo · WhatsApp 60 días.</div>
+        </div>
+      </div>
+
+      <a class="button" href="index.html">Reservar mi sesión <span>→</span></a>
+
+      <div class="legal">
+        Esta guía tiene finalidad educativa. No constituye recomendación de
+        inversión personalizada bajo MiFID II ni regulación local aplicable.
+        Toda inversión conlleva riesgo de pérdida. © 2026 Alexandra Invierte.
+      </div>
+    </div>
+
+    <span class="pagenum" style="color: rgba(244,239,223,0.55);">11 / 11</span>
+    <span class="pagebrand" style="color: rgba(244,239,223,0.6);">alexandra.invierte</span>
+  </div>
+
+</div>
+
+</body>
+</html>
