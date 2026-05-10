@@ -1,0 +1,1002 @@
+<!DOCTYPE html><html lang="es"><head>
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>@alexandra.invierte — Tu dinero, en tu idioma</title>
+<meta name="description" content="Asesoría financiera y coaching de bolsa, en español, para latinas en Europa y América. Sesiones 1:1 con NDA confidencial.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&amp;family=Outfit:wght@300;400;500;600;700&amp;family=Space+Mono:wght@400;700&amp;family=DM+Serif+Display:ital@0;1&amp;display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --cream: #F4EFDF;
+    --paper: #FBF7EE;
+    --olive: #5C6E3C;
+    --olive-deep: #3F4D26;
+    --olive-soft: #A6B07F;
+    --wine: #6E2A36;
+    --wine-deep: #4A1A23;
+    --mauve: #C99B91;
+    --ink: #261E1B;
+    --muted: #6E6055;
+    --hairline: rgba(63, 77, 38, 0.18);
+    --max: 440px;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: "Outfit", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  img { display: block; max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+
+  .page { max-width: var(--max); margin: 0 auto; background: var(--cream); }
+  .section { padding: 48px 24px; }
+
+  /* === Type === */
+  .display { font-family: "Bricolage Grotesque", system-ui, sans-serif; font-weight: 800; letter-spacing: -0.025em; text-transform: uppercase; line-height: 0.92; }
+  .display-it { font-family: "Bricolage Grotesque", system-ui, sans-serif; font-weight: 500; font-style: italic; letter-spacing: -0.02em; text-transform: lowercase; }
+  .mono { font-family: "Space Mono", monospace; }
+  .eyebrow { font-family: "Space Mono", monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--wine); margin-bottom: 14px; }
+  .eyebrow.light { color: var(--olive-soft); }
+  .eyebrow.cream { color: var(--cream); }
+
+  /* === Top nav === */
+  .topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 24px 0;
+    font-size: 12px;
+  }
+  .chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--olive-deep); color: var(--cream);
+    padding: 6px 12px; font-weight: 600; border-radius: 100px;
+  }
+  .chip .dot { width: 7px; height: 7px; border-radius: 7px; background: var(--wine); }
+  .topbar .region { color: var(--muted); font-size: 11px; }
+
+  /* === Hero === */
+  .hero { padding: 28px 24px 40px; }
+  .hero h1 { font-size: 70px; margin: 0 0 18px; color: var(--olive-deep); }
+  .hero h1 .it { color: var(--wine); }
+  .hero p { font-size: 16px; line-height: 1.5; color: var(--ink); margin: 0 0 22px; max-width: 360px; }
+  .stickers { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
+  .sticker {
+    display: inline-block; padding: 6px 12px;
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 800; font-size: 13px; text-transform: uppercase;
+    letter-spacing: 0.02em; border-radius: 4px;
+  }
+  .sticker.wine { background: var(--wine); color: var(--cream); transform: rotate(-3deg); }
+  .sticker.olive { background: var(--olive-deep); color: var(--cream); transform: rotate(2deg); }
+  .sticker.mauve { background: var(--mauve); color: var(--wine-deep); transform: rotate(-1deg); }
+
+  .hero-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 22px; }
+  .photo {
+    height: 140px; width: 70%; max-width: 360px;
+    border-radius: 6px; overflow: hidden;
+    background: var(--olive-soft); position: relative;
+  }
+  .photo img { width: 100% !important; height: 100% !important; object-fit: cover; object-position: center 30%; display: block; }
+  .photo .tag {
+    position: absolute; bottom: 10px; left: 10px;
+    font-family: "Space Mono", monospace; font-size: 9px;
+    color: var(--cream); background: rgba(0,0,0,0.35);
+    padding: 3px 6px; letter-spacing: 0.06em;
+  }
+  .chartbox {
+    height: 140px; width: 70%; max-width: 360px;
+    border-radius: 6px; background: var(--olive-soft);
+    position: relative; overflow: hidden;
+    margin: 4px 0 0;
+  }
+  .chartbox svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .chartbox .lbl {
+    position: absolute; top: 12px; left: 12px;
+    font-family: "Space Mono", monospace; font-size: 9px;
+    color: var(--olive-deep); letter-spacing: 0.06em;
+  }
+  .chartbox .val {
+    position: absolute; bottom: 12px; right: 12px;
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 800; font-size: 22px; color: var(--olive-deep);
+  }
+
+  /* === Buttons === */
+  .btn {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 20px 22px; border-radius: 6px; cursor: pointer;
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 800; font-size: 18px; letter-spacing: 0.01em;
+    text-transform: uppercase; border: none; width: 100%;
+  }
+  .btn-primary { background: var(--olive-deep); color: var(--cream); }
+  .btn-secondary { background: var(--wine); color: var(--cream); }
+  .btn-light { background: var(--cream); color: var(--olive-deep); }
+  .btn:hover { filter: brightness(0.95); }
+
+  .micro {
+    text-align: center; margin-top: 12px;
+    font-family: "Space Mono", monospace; font-size: 11px;
+    color: var(--muted); letter-spacing: 0.06em;
+  }
+
+  /* === Marquee === */
+  .marquee {
+    background: var(--olive-deep); color: var(--cream);
+    padding: 12px 0; overflow: hidden; white-space: nowrap;
+    font-family: "Space Mono", monospace; font-size: 11px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    border-top: 2px solid var(--olive); border-bottom: 2px solid var(--olive);
+  }
+  .marquee-track { display: inline-flex; gap: 28px; padding-left: 28px;
+    animation: scroll 28s linear infinite; }
+  .marquee-track span { display: inline-flex; gap: 28px; align-items: center; }
+  .marquee .star { color: var(--mauve); }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* === About me === */
+  .about { background: var(--paper); padding: 48px 24px; }
+  .about h2 { font-size: 44px; margin: 0 0 18px; color: var(--olive-deep); }
+  .about h2 .it { color: var(--wine); }
+  .about p { font-size: 15.5px; line-height: 1.6; margin: 0 0 16px; }
+
+  .stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 24px; }
+  .stat { padding: 18px 14px; border-radius: 6px; }
+  .stat .n { font-family: "Bricolage Grotesque", system-ui, sans-serif; font-weight: 800; font-size: 24px; line-height: 0.95; letter-spacing: -0.02em; }
+  .stat .l { font-family: "Space Mono", monospace; font-size: 9px; margin-top: 6px; letter-spacing: 0.1em; opacity: 0.85; }
+  .stat.olive { background: var(--olive-deep); color: var(--cream); }
+  .stat.wine { background: var(--wine); color: var(--cream); }
+  .stat.mauve { background: var(--mauve); color: var(--wine-deep); }
+
+  /* === Cert badge === */
+  .cert {
+    display: flex; gap: 14px; align-items: center;
+    background: var(--cream); border: 1.5px solid var(--olive-deep);
+    padding: 14px 16px; border-radius: 8px; margin-top: 24px;
+  }
+  .cert .seal {
+    width: 52px; height: 52px; border-radius: 52px; flex: 0 0 auto;
+    background: var(--olive-deep); color: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    font-family: "DM Serif Display", serif; font-style: italic;
+    font-size: 22px;
+  }
+  .cert .who {
+    font-family: "Space Mono", monospace; font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--wine); margin-bottom: 4px;
+  }
+  .cert .what {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 700; font-size: 16px;
+    color: var(--olive-deep); letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  .cert .desc {
+    font-size: 12px; color: var(--muted); line-height: 1.4; margin-top: 4px;
+  }
+
+  /* === Para quien es === */
+  .audience {
+    background: var(--cream); padding: 48px 24px;
+    border-top: 2px solid var(--olive-deep);
+    border-bottom: 2px solid var(--olive-deep);
+  }
+  .audience h2 { font-size: 38px; margin: 0 0 22px; color: var(--olive-deep); }
+  .audience ul { list-style: none; padding: 0; margin: 0; }
+  .audience li {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 14px 0;
+    border-top: 1px dashed rgba(63,77,38,0.4);
+    font-size: 15px; line-height: 1.4;
+  }
+  .audience li:last-child { border-bottom: 1px dashed rgba(63,77,38,0.4); }
+  .check {
+    flex: 0 0 auto; width: 26px; height: 26px;
+    background: var(--wine); color: var(--cream);
+    border-radius: 26px; display: flex;
+    align-items: center; justify-content: center;
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 800; font-size: 13px;
+  }
+  .audience li span:last-child { padding-top: 3px; }
+
+  /* === Offers === */
+  .offers { background: var(--cream); padding: 48px 22px; }
+  .offers > h2 { font-family: "Bricolage Grotesque", system-ui, sans-serif; font-weight: 800; font-size: 44px; line-height: 0.9; color: var(--olive-deep); margin: 0 0 26px; letter-spacing: -0.03em; text-transform: uppercase; }
+  .offers > h2 .it { color: var(--wine); }
+
+  .offer {
+    padding: 28px 22px; border-radius: 12px; margin-bottom: 18px;
+    position: relative; overflow: hidden; color: var(--cream);
+  }
+  .offer.olive { background: var(--olive-deep); }
+  .offer.wine { background: var(--wine); }
+  .offer .bignum {
+    position: absolute; top: -28px; right: -10px;
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 800; font-size: 240px;
+    color: rgba(255,255,255,0.06); line-height: 0.8;
+    pointer-events: none;
+  }
+  .offer .tag {
+    display: inline-block; padding: 5px 10px;
+    background: var(--cream); color: var(--olive-deep);
+    font-family: "Space Mono", monospace; font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    border-radius: 4px; margin-bottom: 18px; font-weight: 700;
+  }
+  .offer h3 {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 800; font-size: 32px; line-height: 0.95;
+    margin: 0 0 8px; letter-spacing: -0.02em;
+    text-transform: uppercase; position: relative; z-index: 1;
+  }
+  .offer .sub { font-size: 14px; line-height: 1.5; margin: 0 0 16px; opacity: 0.9; position: relative; z-index: 1; }
+  .offer .sessions {
+    display: flex; align-items: center; gap: 10px;
+    font-family: "Space Mono", monospace; font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    opacity: 0.85; margin-bottom: 18px; position: relative; z-index: 1;
+  }
+  .offer .sessions .line { width: 18px; height: 1px; background: currentColor; }
+  .offer ul {
+    list-style: none; padding: 0; margin: 0 0 22px;
+    position: relative; z-index: 1;
+  }
+  .offer ul li {
+    display: flex; gap: 10px; padding: 8px 0;
+    font-size: 14px; line-height: 1.4;
+  }
+  .offer ul li .plus { flex: 0 0 auto; color: var(--mauve); font-weight: 800; }
+  .offer.olive ul li .plus { color: var(--olive-soft); }
+  .offer .price-row {
+    display: flex; align-items: baseline; gap: 8px;
+    margin-bottom: 16px; padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    position: relative; z-index: 1;
+  }
+  .offer .price {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 800; font-size: 50px; line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .offer .price-note { font-size: 12px; opacity: 0.7; }
+  .offer .pay {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--cream); color: var(--olive-deep);
+    padding: 15px 18px;
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 800; font-size: 15px;
+    text-transform: uppercase; border-radius: 6px;
+    position: relative; z-index: 1;
+  }
+
+  .single-session {
+    background: var(--paper); padding: 20px 18px; border-radius: 8px;
+    border: 1px dashed rgba(63,77,38,0.5);
+  }
+  .single-session h4 {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 800; font-size: 22px; color: var(--olive-deep);
+    margin: 0 0 8px; line-height: 1; letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+  .single-session p { font-size: 14px; color: var(--ink); margin: 0 0 12px; line-height: 1.4; }
+  .single-session .row {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .single-session .row .price {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 800; font-size: 28px; color: var(--olive-deep);
+    letter-spacing: -0.02em;
+  }
+  .single-session .row a {
+    background: var(--wine); color: var(--cream);
+    padding: 10px 14px;
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 800; font-size: 13px;
+    text-transform: uppercase; border-radius: 4px;
+  }
+
+  /* === Lead magnet === */
+  .lead {
+    background: var(--wine); color: var(--cream);
+    padding: 52px 24px; position: relative; overflow: hidden;
+  }
+  .lead::before {
+    content: ""; position: absolute;
+    top: -40px; right: -30px; width: 180px; height: 180px;
+    border-radius: 200px; background: var(--olive-deep); opacity: 0.25;
+  }
+  .lead .eyebrow { color: var(--mauve); position: relative; z-index: 1; }
+  .lead h2 {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 800; font-size: 46px; line-height: 0.9;
+    margin: 0 0 14px; letter-spacing: -0.03em; text-transform: uppercase;
+    position: relative; z-index: 1;
+  }
+  .lead p {
+    font-size: 15px; line-height: 1.5; max-width: 340px;
+    margin: 0 0 22px; opacity: 0.92; position: relative; z-index: 1;
+  }
+  .lead form {
+    display: flex; gap: 0; background: var(--cream); padding: 4px;
+    border-radius: 6px; border: 2px solid var(--olive-deep);
+    margin-bottom: 14px; position: relative; z-index: 1;
+  }
+  .lead input {
+    flex: 1; padding: 10px 12px; border: none; outline: none;
+    background: transparent; color: var(--olive-deep); font-size: 14px;
+    font-family: "Outfit", sans-serif;
+  }
+  .lead button {
+    padding: 10px 16px; background: var(--olive-deep); color: var(--cream);
+    border: none; border-radius: 4px; cursor: pointer;
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 800; font-size: 13px;
+    text-transform: uppercase; white-space: nowrap;
+  }
+  .lead .pdf-link {
+    display: inline-block; margin-top: 4px;
+    font-family: "Space Mono", monospace; font-size: 11px;
+    color: var(--mauve); text-decoration: underline;
+    position: relative; z-index: 1;
+  }
+
+  /* === FAQ === */
+  .faq { background: var(--cream); padding: 48px 24px; }
+  .faq h2 { font-family: "Bricolage Grotesque", system-ui, sans-serif; font-weight: 800; font-size: 38px; line-height: 0.95; margin: 0 0 22px; letter-spacing: -0.025em; text-transform: uppercase; color: var(--olive-deep); }
+  .faq details {
+    padding: 16px 0; border-top: 2px solid var(--olive-deep); cursor: pointer;
+  }
+  .faq details:last-of-type { border-bottom: 2px solid var(--olive-deep); }
+  .faq summary {
+    display: flex; justify-content: space-between; gap: 12px;
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 700; font-size: 16px;
+    text-transform: uppercase; color: var(--olive-deep);
+    list-style: none;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary .icon { color: var(--wine); font-weight: 800; font-size: 18px; }
+  .faq details[open] .icon { transform: rotate(45deg); }
+  .faq details p { font-size: 14px; line-height: 1.5; margin: 8px 0 0; color: var(--ink); }
+
+  /* === Final CTA === */
+  .cta {
+    background: var(--olive-deep); color: var(--cream);
+    padding: 56px 24px; position: relative; overflow: hidden;
+  }
+  .cta::before {
+    content: "€"; position: absolute; top: -40px; right: -40px;
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 800; font-size: 280px;
+    color: rgba(255,255,255,0.08); line-height: 0.8;
+    pointer-events: none;
+  }
+  .cta .eyebrow { color: var(--mauve); position: relative; z-index: 1; }
+  .cta h2 {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 800; font-size: 58px; line-height: 0.88;
+    margin: 0 0 18px; letter-spacing: -0.03em;
+    text-transform: uppercase; position: relative; z-index: 1;
+  }
+  .cta h2 .it { color: var(--mauve); }
+  .cta p { font-size: 15px; line-height: 1.5; margin: 0 0 28px; opacity: 0.95; position: relative; z-index: 1; }
+  .cta .btn { background: var(--cream); color: var(--olive-deep); justify-content: space-between; position: relative; z-index: 1; }
+
+  /* === Footer === */
+  footer {
+    background: var(--wine-deep); color: var(--cream);
+    padding: 36px 28px 32px;
+  }
+  footer .brand {
+    font-family: "DM Serif Display", serif; font-style: italic;
+    font-size: 26px; margin-bottom: 14px; color: var(--cream);
+  }
+  footer .brand .dot { color: var(--mauve); }
+  footer .legal {
+    font-size: 11.5px; line-height: 1.6; color: rgba(244,239,223,0.78);
+    margin: 0 0 18px;
+  }
+  footer .legal strong { color: var(--cream); }
+  footer .meta {
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    font-size: 11px; color: rgba(244,239,223,0.7);
+    border-top: 1px solid rgba(244,239,223,0.18); padding-top: 14px;
+  }
+
+  /* ============================================ */
+  /* === DESKTOP (≥ 768px) === */
+  /* ============================================ */
+  @media (min-width: 768px) {
+    :root { --max: 1180px; }
+
+    .topbar { padding: 22px 56px 0; font-size: 13px; }
+    .topbar .region { font-size: 12px; }
+
+    /* Hero — 2 columns */
+    .hero {
+      padding: 56px 56px 80px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .hero-text { display: contents; }
+    .hero h1 { font-size: clamp(56px, 7.2vw, 104px); grid-column: 1; grid-row: 1; margin-bottom: 28px; }
+    .hero p { font-size: 19px; max-width: 480px; grid-column: 1; grid-row: 2; margin-bottom: 28px; }
+    .stickers { grid-column: 1; grid-row: 3; margin-bottom: 32px; }
+    .sticker { font-size: 15px; padding: 8px 14px; }
+    .hero-grid {
+      grid-column: 2; grid-row: 1 / span 5;
+      grid-template-columns: 1fr;
+      grid-template-rows: 2.4fr 1fr;
+      gap: 16px;
+      margin-bottom: 0;
+      height: 620px;
+    }
+    .hero-grid .photo { height: 100%; width: 65%; max-width: none; }
+    .hero-grid .chartbox { height: 100%; width: 65%; max-width: none; }
+    .chartbox .val { font-size: 30px; }
+    .chartbox .lbl { font-size: 11px; }
+    .hero-cta { grid-column: 1; grid-row: 4; max-width: 380px; }
+    .hero-cta .btn { font-size: 19px; padding: 22px 24px; }
+
+    /* Marquee */
+    .marquee { padding: 16px 0; font-size: 13px; }
+
+    /* About — 2 columns */
+    .about {
+      padding: 96px 56px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+    .about > .eyebrow { grid-column: 1 / -1; margin-bottom: 0; }
+    .about h2 { font-size: 72px; margin-bottom: 0; }
+    .about-text { display: flex; flex-direction: column; gap: 14px; }
+    .about-text p { font-size: 17px; margin: 0; }
+    .cert { grid-column: 1 / -1; max-width: 560px; padding: 18px 22px; }
+    .cert .seal { width: 64px; height: 64px; font-size: 28px; }
+    .cert .what { font-size: 18px; }
+    .cert .desc { font-size: 13px; }
+    .stats {
+      grid-column: 1 / -1; gap: 14px;
+      grid-template-columns: 1fr 1fr 1fr;
+      margin-top: 0;
+    }
+    .stat { padding: 28px 22px; }
+    .stat .n { font-size: 38px; }
+    .stat .l { font-size: 11px; margin-top: 10px; }
+
+    /* Audience — 2 column list */
+    .audience { padding: 96px 56px; }
+    .audience h2 { font-size: 64px; margin-bottom: 36px; }
+    .audience ul {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0 48px;
+    }
+    .audience li { font-size: 17px; padding: 18px 0; }
+    .audience li:nth-last-child(2) { border-bottom: 1px dashed rgba(63,77,38,0.4); }
+
+    /* Offers — 2 column grid */
+    .offers { padding: 96px 56px; }
+    .offers > h2 { font-size: 80px; margin-bottom: 44px; }
+    .offers-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 24px; margin-bottom: 24px;
+    }
+    .offer { margin-bottom: 0; padding: 40px 32px; }
+    .offer h3 { font-size: 42px; }
+    .offer .sub { font-size: 16px; }
+    .offer ul li { font-size: 15px; padding: 9px 0; }
+    .offer .price { font-size: 64px; }
+    .offer .pay { font-size: 16px; padding: 17px 20px; }
+    .single-session {
+      display: grid;
+      grid-template-columns: auto 1fr auto auto;
+      align-items: center;
+      gap: 24px;
+      padding: 24px 28px;
+    }
+    .single-session h4 { font-size: 26px; margin: 0; }
+    .single-session p { margin: 0; font-size: 15px; }
+    .single-session .row { display: contents; }
+    .single-session .row .price { font-size: 32px; }
+    .single-session .row a { padding: 14px 18px; font-size: 14px; }
+
+    /* Lead magnet — 2 column */
+    .lead {
+      padding: 96px 56px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 56px; align-items: center;
+    }
+    .lead > .eyebrow { grid-column: 1; }
+    .lead h2 { font-size: 88px; grid-column: 1; }
+    .lead-right { grid-column: 2; }
+    .lead p { font-size: 17px; max-width: none; }
+    .lead form { padding: 6px; }
+    .lead input { font-size: 16px; padding: 14px 16px; }
+    .lead button { font-size: 14px; padding: 14px 22px; }
+
+    /* FAQ — 2 column */
+    .faq { padding: 96px 56px; }
+    .faq h2 { font-size: 64px; margin-bottom: 32px; }
+    .faq-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0 48px;
+    }
+    .faq summary { font-size: 18px; }
+    .faq details p { font-size: 15px; }
+
+    /* Final CTA */
+    .cta { padding: 120px 56px; }
+    .cta h2 { font-size: 120px; }
+    .cta p { font-size: 18px; max-width: 560px; }
+    .cta .btn { max-width: 420px; font-size: 22px; padding: 26px 28px; }
+    .cta::before { font-size: 460px; top: -80px; right: -60px; }
+
+    /* Footer */
+    footer { padding: 56px 56px 40px; }
+    footer .brand { font-size: 32px; }
+    footer .legal { font-size: 13px; max-width: 760px; }
+    footer .meta { font-size: 12px; }
+  }
+
+  /* ============================================ */
+  /* === LARGE DESKTOP (≥ 1100px) === */
+  /* ============================================ */
+  @media (min-width: 1100px) {
+    .hero { padding: 72px 80px 100px; gap: 64px; }
+    .hero h1 { font-size: clamp(96px, 8.5vw, 132px); }
+    .hero-grid { height: 620px; }
+    .about, .audience, .offers, .lead, .faq { padding-left: 80px; padding-right: 80px; }
+    .cta { padding: 140px 80px; }
+    footer { padding: 64px 80px 44px; }
+  }
+</style>
+</head>
+<body style="font-size: 20px;">
+
+<div class="page">
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <span class="chip"><span class="dot"></span>@alexandra.invierte</span>
+    <span class="region">EU · LATAM</span>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1 class="display">
+      Tu dinero,<br>
+      <span class="display-it it">en tu idioma.</span>
+    </h1>
+    <p>Hola, soy Alexandra. Te enseño finanzas e inversión en español, sin
+    rollos, sin venderte humo. Para latinas que quieren dejar de tenerle miedo
+    al dinero.</p>
+
+    <div class="stickers">
+      <span class="sticker wine">1:1 SIEMPRE</span>
+      <span class="sticker olive">EN ESPAÑOL</span>
+      <span class="sticker mauve">NDA INCLUIDO</span>
+    </div>
+
+    <div class="hero-grid">
+      <div class="photo">
+        <img src="alexandra.jpg" alt="Alexandra — fundadora de @alexandra.invierte">
+      </div>
+      <div class="chartbox">
+        <svg viewBox="0 0 100 200" preserveAspectRatio="none">
+          <polyline points="5,170 18,150 30,160 42,120 55,135 68,90 82,100 95,50" fill="none" stroke="#3F4D26" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></polyline>
+          <circle cx="95" cy="50" r="5" fill="#6E2A36" stroke="#3F4D26" stroke-width="2"></circle>
+        </svg>
+        <span class="lbl">$AAPL · 30D</span>
+        <span class="val">+18%</span>
+      </div>
+    </div>
+
+    <div class="hero-cta">
+      <a href="#reservar" class="btn btn-primary">QUIERO MI SESIÓN <span>→</span></a>
+      <div class="micro">STRIPE · 24H REAGENDA · NDA SIEMPRE</div>
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>
+        Finanzas para latinas <span class="star">★</span>
+        1:1 en español <span class="star">★</span>
+        MiFID II <span class="star">★</span>
+        Stripe <span class="star">★</span>
+        NDA siempre <span class="star">★</span>
+      </span>
+      <span>
+        Finanzas para latinas <span class="star">★</span>
+        1:1 en español <span class="star">★</span>
+        MiFID II <span class="star">★</span>
+        Stripe <span class="star">★</span>
+        NDA siempre <span class="star">★</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- About me -->
+  <section class="about">
+    <div class="eyebrow">// SOBRE MÍ</div>
+    <h2 class="display">
+      Soy alexandra.<br>
+      <span class="display-it it">latina, igual que tú.</span>
+    </h2>
+    <div class="about-text">
+    <p>Llevo seis años en bolsa, primero por necesidad y después por oficio.
+    Hoy estoy certificada en <strong>MiFID II</strong> y mi misión es acompañar
+    a latinas en Europa y América a tomarse el dinero en serio.</p>
+    <p>Sin tecnicismos, sin venderte humo, sin hacerte sentir tonta. Crecí
+    escuchando que el dinero no era para nosotras — hoy mi trabajo es
+    demostrar lo contrario.</p>
+    </div>
+
+    <div class="cert">
+      <div class="seal">M</div>
+      <div>
+        <div class="who">Certificación</div>
+        <div class="what">MiFID II — UE</div>
+        <div class="desc">Habilitada para informar sobre productos financieros bajo regulación europea.</div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat olive">
+        <div class="n">38K</div>
+        <div class="l">COMUNIDAD</div>
+      </div>
+      <div class="stat wine">
+        <div class="n">6 AÑOS</div>
+        <div class="l">INVIRTIENDO</div>
+      </div>
+      <div class="stat mauve">
+        <div class="n">MiFID II</div>
+        <div class="l">EN CURSO</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Para quien es -->
+  <section class="audience">
+    <div class="eyebrow">// PARA QUIÉN ES</div>
+    <h2 class="display">Esto es para ti si...</h2>
+    <ul>
+      <li><span class="check">✓</span><span>Eres latina en Europa y quieres empezar a invertir donde vives.</span></li>
+      <li><span class="check">✓</span><span>Eres latina en LATAM y quieres proteger tu dinero de la inflación.</span></li>
+      <li><span class="check">✓</span><span>Sientes que las finanzas <em>“no son para ti”</em> — y quieres cambiar eso.</span></li>
+      <li><span class="check">✓</span><span>Ya inviertes y buscas compañía profesional, en español.</span></li>
+    </ul>
+  </section>
+
+  <!-- Offers -->
+  <section class="offers" id="reservar">
+    <div class="eyebrow">// LAS OFERTAS</div>
+    <h2>
+      Dos caminos.<br>
+      <span class="it">Tú eliges.</span>
+    </h2>
+
+    <div class="offers-grid">
+    <div class="offer olive">
+      <span class="bignum">01</span>
+      <span class="tag">Asesoría 1:1</span>
+      <h3>Tu plan financiero</h3>
+      <p class="sub">Para ordenar tu vida financiera, ahorrar bien y empezar a invertir.</p>
+      <div class="sessions"><span class="line"></span>4 sesiones · 60 min · zoom</div>
+      <ul>
+        <li><span class="plus">+</span>Diagnóstico patrimonial completo</li>
+        <li><span class="plus">+</span>Plan de ahorro e inversión a medida</li>
+        <li><span class="plus">+</span>Carpeta personalizada (PDF)</li>
+        <li><span class="plus">+</span>WhatsApp directo · 30 días</li>
+      </ul>
+      <div class="price-row">
+        <span class="price">€397</span>
+        <span class="price-note">paquete · sin recurrencia</span>
+      </div>
+      <a href="#" class="pay">Pagar con Stripe →</a>
+    </div>
+
+    <div class="offer wine">
+      <span class="bignum">02</span>
+      <span class="tag">Coaching trading</span>
+      <h3>Swing trading desde cero</h3>
+      <p class="sub">Aprende a operar acciones con sistema, no con suerte.</p>
+      <div class="sessions"><span class="line"></span>5 sesiones · 75 min · zoom</div>
+      <ul>
+        <li><span class="plus">+</span>Análisis técnico desde cero</li>
+        <li><span class="plus">+</span>Cómo elegir acciones para swing</li>
+        <li><span class="plus">+</span>Gestión de riesgo y posición</li>
+        <li><span class="plus">+</span>Plan de trading personalizado</li>
+        <li><span class="plus">+</span>WhatsApp directo · 60 días</li>
+      </ul>
+      <div class="price-row">
+        <span class="price">€597</span>
+        <span class="price-note">paquete · sin recurrencia</span>
+      </div>
+      <a href="#" class="pay">Pagar con Stripe →</a>
+    </div>
+    </div>
+
+    <div class="single-session">
+      <h4>¿Solo una sesión?</h4>
+      <p>Sesión diagnóstico de 30 min — perfecta para conocernos antes de
+      comprometerte con un paquete.</p>
+      <div class="row">
+        <span class="price">€120</span>
+        <a href="#">Reservar →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lead magnet -->
+  <section class="lead">
+    <div class="eyebrow">// REGALO GRATIS</div>
+    <h2>7 errores<br>con el dinero</h2>
+    <div class="lead-right">
+    <p>Lo que aprendí los primeros años invirtiendo, para que tú no lo aprendas
+    con tu dinero. PDF de 14 páginas. Cero spam.</p>
+    <form onsubmit="event.preventDefault(); window.location.href='lead-magnet.html';">
+      <input type="email" placeholder="tu@email.com" required="">
+      <button type="submit">Enviar PDF</button>
+    </form>
+    <a class="pdf-link" href="lead-magnet.html" target="_blank">Ver el PDF →</a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="eyebrow">// PREGUNTAS</div>
+    <h2>preguntas frecuentes</h2>
+
+    <div class="faq-grid">
+    <details>
+      <summary><span>¿Necesito experiencia previa?</span><span class="icon">+</span></summary>
+      <p>No. La mayoría empezamos desde cero. Avanzamos a tu ritmo.</p>
+    </details>
+    <details>
+      <summary><span>¿En qué moneda pago?</span><span class="icon">+</span></summary>
+      <p>Stripe te cobra en EUR; también puedo facturar en USD o MXN.</p>
+    </details>
+    <details>
+      <summary><span>¿Y si no puedo asistir un día?</span><span class="icon">+</span></summary>
+      <p>Reagendamos sin coste hasta 24 h antes de la sesión.</p>
+    </details>
+    <details>
+      <summary><span>¿Asesoría = coaching?</span><span class="icon">+</span></summary>
+      <p>No. Asesoría es para tu vida financiera; coaching es para aprender a operar acciones.</p>
+    </details>
+    <details>
+      <summary><span>¿Hay confidencialidad?</span><span class="icon">+</span></summary>
+      <p>Sí. Antes de empezar firmamos un NDA mutuo.</p>
+    </details>
+    <details>
+      <summary><span>¿Qué es MiFID II?</span><span class="icon">+</span></summary>
+      <p>Es la directiva europea que regula los servicios de inversión. Mi
+      certificación me habilita para informar sobre productos financieros
+      dentro de la UE.</p>
+    </details>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="cta">
+    <div class="eyebrow">// ES TU MOMENTO</div>
+    <h2>
+      Empecemos<br>
+      <span class="it">esta semana.</span>
+    </h2>
+    <p>Reservas con Stripe, te llega el calendario y el NDA al email. Listo.</p>
+    <a href="#reservar" class="btn">Reservar mi sesión <span>→</span></a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="brand">alexandra<span class="dot">.</span>invierte</div>
+    <p class="legal">
+      <strong>Aviso legal.</strong> Las sesiones tienen finalidad educativa y
+      de acompañamiento. No constituyen recomendación de inversión
+      personalizada bajo MiFID II ni regulación local aplicable. Toda
+      inversión conlleva riesgo de pérdida. Antes de la primera sesión
+      firmamos un NDA mutuo.
+    </p>
+    <div class="meta">
+      <span>© 2026 · Alexandra Invierte</span>
+      <span>hola@alexandra.invierte</span>
+    </div>
+  </footer>
+
+</div>
+
+
+
+<!-- ============ TWEAKS PANEL ============ -->
+<div id="tweaks" hidden>
+  <style>
+    #tweaks {
+      position: fixed; bottom: 20px; right: 20px; z-index: 9999;
+      width: 280px; background: #FBF7EE; color: #261E1B;
+      border: 1.5px solid #3F4D26; border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+      font-family: "Outfit", system-ui, sans-serif; font-size: 13px;
+      overflow: hidden;
+    }
+    #tweaks header {
+      background: #3F4D26; color: #F4EFDF;
+      padding: 10px 14px; display: flex; justify-content: space-between; align-items: center;
+      font-family: "Bricolage Grotesque", sans-serif; font-weight: 800;
+      letter-spacing: 0.04em; text-transform: uppercase; font-size: 12px;
+    }
+    #tweaks header button {
+      background: transparent; border: 1px solid rgba(244,239,223,0.4);
+      color: #F4EFDF; width: 22px; height: 22px; border-radius: 4px;
+      cursor: pointer; font-size: 14px; line-height: 1; padding: 0;
+    }
+    #tweaks .body { padding: 14px; display: flex; flex-direction: column; gap: 14px; }
+    #tweaks .row .lbl {
+      font-family: "Space Mono", monospace; font-size: 10px;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: #6E2A36; margin-bottom: 6px;
+    }
+    #tweaks .seg {
+      display: flex; gap: 4px; background: #F4EFDF;
+      border: 1px solid rgba(63,77,38,0.3); border-radius: 6px; padding: 3px;
+    }
+    #tweaks .seg button {
+      flex: 1; padding: 7px 8px; border: none; background: transparent;
+      cursor: pointer; border-radius: 4px; font-size: 12px;
+      font-family: "Outfit", sans-serif; color: #6E6055;
+    }
+    #tweaks .seg button.active { background: #3F4D26; color: #F4EFDF; font-weight: 600; }
+    #tweaks .swatches { display: flex; gap: 6px; }
+    #tweaks .swatches button {
+      width: 36px; height: 36px; border-radius: 6px; border: 2px solid transparent;
+      cursor: pointer; padding: 0;
+    }
+    #tweaks .swatches button.active { border-color: #3F4D26; box-shadow: 0 0 0 2px #FBF7EE inset; }
+  </style>
+  <header>
+    <span>Tweaks</span>
+    <button id="tw-close" title="Cerrar">×</button>
+  </header>
+  <div class="body">
+    <div class="row">
+      <div class="lbl">Hero · Imagen + gráfico</div>
+      <div class="seg" data-tweak="heroLayout">
+        <button data-val="stacked">Apiladas</button>
+        <button data-val="side">Lado a lado</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="lbl">Acento de color</div>
+      <div class="swatches" data-tweak="accent">
+        <button data-val="wine" style="background:#6E2A36" title="Vino"></button>
+        <button data-val="teal" style="background:#1F5F66" title="Petróleo"></button>
+        <button data-val="rust" style="background:#B8541E" title="Óxido"></button>
+        <button data-val="ink" style="background:#2A2D5C" title="Tinta"></button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="lbl">Stickers inclinados</div>
+      <div class="seg" data-tweak="tilt">
+        <button data-val="on">Sí</button>
+        <button data-val="off">Rectos</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="lbl">Marquesina</div>
+      <div class="seg" data-tweak="marquee">
+        <button data-val="on">Visible</button>
+        <button data-val="off">Oculta</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var DEFAULTS = /*EDITMODE-BEGIN*/{
+    "heroLayout": "stacked",
+    "accent": "wine",
+    "tilt": "on",
+    "marquee": "on"
+  }/*EDITMODE-END*/;
+  var state = Object.assign({}, DEFAULTS);
+  var panel = document.getElementById('tweaks');
+  var root = document.documentElement;
+
+  var ACCENTS = {
+    wine: { wine:'#6E2A36', wineDeep:'#4A1A23', mauve:'#C99B91' },
+    teal: { wine:'#1F5F66', wineDeep:'#143F44', mauve:'#8DBDB8' },
+    rust: { wine:'#B8541E', wineDeep:'#7A3611', mauve:'#E5B591' },
+    ink:  { wine:'#2A2D5C', wineDeep:'#1A1C3D', mauve:'#A6A8C9' }
+  };
+
+  function apply(){
+    var a = ACCENTS[state.accent] || ACCENTS.wine;
+    root.style.setProperty('--wine', a.wine);
+    root.style.setProperty('--wine-deep', a.wineDeep);
+    root.style.setProperty('--mauve', a.mauve);
+
+    var grid = document.querySelector('.hero-grid');
+    if (grid){
+      if (state.heroLayout === 'side'){
+        grid.style.gridTemplateColumns = '1.3fr 1fr';
+        grid.style.gridTemplateRows = '';
+      } else {
+        grid.style.gridTemplateColumns = '1fr';
+        grid.style.gridTemplateRows = window.matchMedia('(min-width:768px)').matches ? '1.7fr 1fr' : '';
+      }
+    }
+
+    document.querySelectorAll('.sticker').forEach(function(s){
+      s.style.transform = state.tilt === 'off' ? 'none' : '';
+    });
+
+    var m = document.querySelector('.marquee');
+    if (m) m.style.display = state.marquee === 'off' ? 'none' : '';
+
+    panel.querySelectorAll('[data-tweak]').forEach(function(grp){
+      var key = grp.getAttribute('data-tweak');
+      grp.querySelectorAll('button').forEach(function(b){
+        b.classList.toggle('active', b.getAttribute('data-val') === state[key]);
+      });
+    });
+  }
+
+  function set(key, val){
+    state[key] = val;
+    apply();
+    try {
+      var edit = {}; edit[key] = val;
+      window.parent.postMessage({type:'__edit_mode_set_keys', edits: edit}, '*');
+    } catch(e){}
+  }
+
+  panel.addEventListener('click', function(e){
+    var btn = e.target.closest('button[data-val]');
+    if (btn){
+      var key = btn.parentElement.getAttribute('data-tweak');
+      set(key, btn.getAttribute('data-val'));
+      return;
+    }
+    if (e.target.id === 'tw-close'){
+      panel.hidden = true;
+      try { window.parent.postMessage({type:'__edit_mode_dismissed'}, '*'); } catch(e){}
+    }
+  });
+
+  window.addEventListener('message', function(ev){
+    var d = ev && ev.data;
+    if (!d || !d.type) return;
+    if (d.type === '__activate_edit_mode'){ panel.hidden = false; }
+    if (d.type === '__deactivate_edit_mode'){ panel.hidden = true; }
+  });
+
+  apply();
+  try { window.parent.postMessage({type:'__edit_mode_available'}, '*'); } catch(e){}
+})();
+</script>
+
+</body></html>
