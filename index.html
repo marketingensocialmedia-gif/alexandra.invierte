@@ -251,16 +251,44 @@
     opacity: 0.85; margin-bottom: 18px; position: relative; z-index: 1;
   }
   .offer .sessions .line { width: 18px; height: 1px; background: currentColor; }
+
+  /* === Bullet accordion === */
   .offer ul {
     list-style: none; padding: 0; margin: 0 0 22px;
     position: relative; z-index: 1;
   }
   .offer ul li {
-    display: flex; gap: 10px; padding: 8px 0;
-    font-size: 14px; line-height: 1.4;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    font-size: 14px;
   }
-  .offer ul li .plus { flex: 0 0 auto; color: var(--mauve); font-weight: 800; }
-  .offer.olive ul li .plus { color: var(--olive-soft); }
+  .offer ul li:last-child { border-bottom: 1px solid rgba(255,255,255,0.12); }
+
+  .bullet-detail { width: 100%; }
+  .bullet-detail summary {
+    display: flex; gap: 10px; align-items: center;
+    padding: 11px 0; cursor: pointer; list-style: none;
+    font-size: 14px; line-height: 1.4; font-weight: 500;
+  }
+  .bullet-detail summary::-webkit-details-marker { display: none; }
+  .bullet-detail summary .plus {
+    flex: 0 0 auto;
+    color: var(--mauve); font-weight: 800; font-size: 16px;
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+  .offer.olive .bullet-detail summary .plus { color: var(--olive-soft); }
+  .bullet-detail[open] summary .plus { transform: rotate(45deg); }
+
+  .bullet-detail .benefit {
+    font-style: italic;
+    opacity: 0.75;
+    font-size: 0.87em;
+    margin: 0 0 12px;
+    padding-left: 1.6rem;
+    line-height: 1.55;
+  }
+
+  /* === Price & CTA === */
   .offer .price-row {
     display: flex; align-items: baseline; gap: 8px;
     margin-bottom: 16px; padding-top: 14px;
@@ -273,23 +301,14 @@
     letter-spacing: -0.03em;
   }
   .offer .price-note { font-size: 12px; opacity: 0.7; }
+  .offer .scarcity {
+    font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    opacity: 0.75; margin: 0 0 16px;
+    position: relative; z-index: 1;
+  }
   .offer .pay {
     display: flex; align-items: center; justify-content: center; gap: 8px;
-      .offer .price-note { font-size: 12px; opacity: 0.7; }   ← esta ya existe, no la toques
-  .offer .scarcity {
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    opacity: 0.75;
-    margin: 0.5rem 0 0;
-  }
-  .offer .guarantee {
-    font-size: 0.78rem;
-    opacity: 0.65;
-    margin-top: 0.75rem;
-    font-style: italic;
-  }
     background: var(--cream); color: var(--olive-deep);
     padding: 15px 18px;
     font-family: "Bricolage Grotesque", system-ui, sans-serif;
@@ -297,7 +316,13 @@
     text-transform: uppercase; border-radius: 6px;
     position: relative; z-index: 1;
   }
+  .offer .guarantee {
+    font-size: 0.78rem; opacity: 0.65;
+    margin-top: 0.75rem; font-style: italic;
+    position: relative; z-index: 1;
+  }
 
+  /* === Single session === */
   .single-session {
     background: var(--paper); padding: 20px 18px; border-radius: 8px;
     border: 1px dashed rgba(63,77,38,0.5);
@@ -309,9 +334,7 @@
     text-transform: uppercase;
   }
   .single-session p { font-size: 14px; color: var(--ink); margin: 0 0 12px; line-height: 1.4; }
-  .single-session .row {
-    display: flex; align-items: center; justify-content: space-between;
-  }
+  .single-session .row { display: flex; align-items: center; justify-content: space-between; }
   .single-session .row .price {
     font-family: "Bricolage Grotesque", system-ui, sans-serif;
     font-weight: 800; font-size: 28px; color: var(--olive-deep);
@@ -373,9 +396,7 @@
   /* === FAQ === */
   .faq { background: var(--cream); padding: 48px 24px; }
   .faq h2 { font-family: "Bricolage Grotesque", system-ui, sans-serif; font-weight: 800; font-size: 38px; line-height: 0.95; margin: 0 0 22px; letter-spacing: -0.025em; text-transform: uppercase; color: var(--olive-deep); }
-  .faq details {
-    padding: 16px 0; border-top: 2px solid var(--olive-deep); cursor: pointer;
-  }
+  .faq details { padding: 16px 0; border-top: 2px solid var(--olive-deep); cursor: pointer; }
   .faq details:last-of-type { border-bottom: 2px solid var(--olive-deep); }
   .faq summary {
     display: flex; justify-content: space-between; gap: 12px;
@@ -413,19 +434,10 @@
   .cta .btn { background: var(--cream); color: var(--olive-deep); justify-content: space-between; position: relative; z-index: 1; }
 
   /* === Footer === */
-  footer {
-    background: var(--wine-deep); color: var(--cream);
-    padding: 36px 28px 32px;
-  }
-  footer .brand {
-    font-family: "DM Serif Display", serif; font-style: italic;
-    font-size: 26px; margin-bottom: 14px; color: var(--cream);
-  }
+  footer { background: var(--wine-deep); color: var(--cream); padding: 36px 28px 32px; }
+  footer .brand { font-family: "DM Serif Display", serif; font-style: italic; font-size: 26px; margin-bottom: 14px; color: var(--cream); }
   footer .brand .dot { color: var(--mauve); }
-  footer .legal {
-    font-size: 11.5px; line-height: 1.6; color: rgba(244,239,223,0.78);
-    margin: 0 0 18px;
-  }
+  footer .legal { font-size: 11.5px; line-height: 1.6; color: rgba(244,239,223,0.78); margin: 0 0 18px; }
   footer .legal strong { color: var(--cream); }
   footer .meta {
     display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
@@ -442,13 +454,10 @@
     .topbar { padding: 22px 56px 0; font-size: 13px; }
     .topbar .region { font-size: 12px; }
 
-    /* Hero — 2 columns */
     .hero {
       padding: 56px 56px 80px;
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 48px;
-      align-items: center;
+      display: grid; grid-template-columns: 1.15fr 0.85fr;
+      gap: 48px; align-items: center;
     }
     .hero-text { display: contents; }
     .hero > * { min-width: 0; }
@@ -458,11 +467,8 @@
     .sticker { font-size: 15px; padding: 8px 14px; }
     .hero-grid {
       grid-column: 2; grid-row: 1 / span 5;
-      grid-template-columns: 1fr;
-      grid-template-rows: 2.4fr 1fr;
-      gap: 16px;
-      margin-bottom: 0;
-      height: 620px;
+      grid-template-columns: 1fr; grid-template-rows: 2.4fr 1fr;
+      gap: 16px; margin-bottom: 0; height: 620px;
     }
     .hero-grid .photo { height: 100%; width: 65%; max-width: none; }
     .hero-grid .chartbox { height: 100%; width: 65%; max-width: none; }
@@ -471,16 +477,12 @@
     .hero-cta { grid-column: 1; grid-row: 4; max-width: 380px; }
     .hero-cta .btn { font-size: 19px; padding: 22px 24px; }
 
-    /* Marquee */
     .marquee { padding: 16px 0; font-size: 13px; }
 
-    /* About — 2 columns */
     .about {
       padding: 96px 56px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 56px;
-      align-items: start;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 56px; align-items: start;
     }
     .about > .eyebrow { grid-column: 1 / -1; margin-bottom: 0; }
     .about h2 { font-size: 72px; margin-bottom: 0; }
@@ -490,44 +492,31 @@
     .cert .seal { width: 64px; height: 64px; font-size: 28px; }
     .cert .what { font-size: 18px; }
     .cert .desc { font-size: 13px; }
-    .stats {
-      grid-column: 1 / -1; gap: 14px;
-      grid-template-columns: 1fr 1fr 1fr;
-      margin-top: 0;
-    }
+    .stats { grid-column: 1 / -1; gap: 14px; grid-template-columns: 1fr 1fr 1fr; margin-top: 0; }
     .stat { padding: 28px 22px; }
     .stat .n { font-size: 38px; }
     .stat .l { font-size: 11px; margin-top: 10px; }
 
-    /* Audience — 2 column list */
     .audience { padding: 96px 56px; }
     .audience h2 { font-size: 64px; margin-bottom: 36px; }
-    .audience ul {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 0 48px;
-    }
+    .audience ul { display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; }
     .audience li { font-size: 17px; padding: 18px 0; }
     .audience li:nth-last-child(2) { border-bottom: 1px dashed rgba(63,77,38,0.4); }
 
-    /* Offers — 2 column grid */
     .offers { padding: 96px 56px; }
     .offers > h2 { font-size: 80px; margin-bottom: 44px; }
-    .offers-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 24px; margin-bottom: 24px;
-    }
+    .offers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
     .offer { margin-bottom: 0; padding: 40px 32px; }
     .offer h3 { font-size: 42px; }
     .offer .sub { font-size: 16px; }
-    .offer ul li { font-size: 15px; padding: 9px 0; }
+    .bullet-detail summary { font-size: 15px; padding: 12px 0; }
+    .bullet-detail .benefit { font-size: 0.9em; }
     .offer .price { font-size: 64px; }
     .offer .pay { font-size: 16px; padding: 17px 20px; }
+
     .single-session {
-      display: grid;
-      grid-template-columns: auto 1fr auto auto;
-      align-items: center;
-      gap: 24px;
-      padding: 24px 28px;
+      display: grid; grid-template-columns: auto 1fr auto auto;
+      align-items: center; gap: 24px; padding: 24px 28px;
     }
     .single-session h4 { font-size: 26px; margin: 0; }
     .single-session p { margin: 0; font-size: 15px; }
@@ -535,7 +524,6 @@
     .single-session .row .price { font-size: 32px; }
     .single-session .row a { padding: 14px 18px; font-size: 14px; }
 
-    /* Lead magnet — 2 column */
     .lead {
       padding: 96px 56px;
       display: grid; grid-template-columns: 1fr 1fr;
@@ -549,24 +537,18 @@
     .lead input { font-size: 16px; padding: 14px 16px; }
     .lead button { font-size: 14px; padding: 14px 22px; }
 
-    /* FAQ — 2 column */
     .faq { padding: 96px 56px; }
     .faq h2 { font-size: 64px; margin-bottom: 32px; }
-    .faq-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 0 48px;
-    }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; }
     .faq summary { font-size: 18px; }
     .faq details p { font-size: 15px; }
 
-    /* Final CTA */
     .cta { padding: 120px 56px; }
     .cta h2 { font-size: 120px; }
     .cta p { font-size: 18px; max-width: 560px; }
     .cta .btn { max-width: 420px; font-size: 22px; padding: 26px 28px; }
     .cta::before { font-size: 460px; top: -80px; right: -60px; }
 
-    /* Footer */
     footer { padding: 56px 56px 40px; }
     footer .brand { font-size: 32px; }
     footer .legal { font-size: 13px; max-width: 760px; }
@@ -660,12 +642,12 @@
       <span class="display-it it">latina, igual que tú.</span>
     </h2>
     <div class="about-text">
-    <p>Llevo tres años en bolsa, primero por necesidad y después por oficio.
-    y mi <strong>misión</strong> es acompañar
-    a latinas en Europa y América a tomarse el dinero en serio.</p>
-    <p>Sin tecnicismos, sin promesas de retorno, sin hacerte sentir tonta. Crecí
-    escuchando que el dinero no era para nosotras — hoy mi trabajo es
-    demostrar lo contrario.</p>
+      <p>Llevo tres años en bolsa, primero por necesidad y después por oficio.
+      y mi <strong>misión</strong> es acompañar
+      a latinas en Europa y América a tomarse el dinero en serio.</p>
+      <p>Sin tecnicismos, sin promesas de retorno, sin hacerte sentir tonta. Crecí
+      escuchando que el dinero no era para nosotras — hoy mi trabajo es
+      demostrar lo contrario.</p>
     </div>
 
     <div class="cert">
@@ -700,7 +682,7 @@
     <ul>
       <li><span class="check">✓</span><span>Eres latina en Europa y quieres empezar a invertir donde vives.</span></li>
       <li><span class="check">✓</span><span>Eres latina en LATAM y quieres proteger tu dinero de la inflación.</span></li>
-      <li><span class="check">✓</span><span>Sientes que las finanzas <em>“no son para ti”</em> — y quieres cambiar eso.</span></li>
+      <li><span class="check">✓</span><span>Sientes que las finanzas <em>"no son para ti"</em> — y quieres cambiar eso.</span></li>
       <li><span class="check">✓</span><span>Ya inviertes y buscas compañía profesional, en español.</span></li>
     </ul>
   </section>
@@ -713,56 +695,121 @@
       <span class="it">Tú eliges.</span>
     </h2>
 
-   <div class="offers-grid">
-    <div class="offer wine">
-      <span class="bignum">01</span>
-      <span class="tag">Coaching Trading</span>
-      <h3>Swing Trading Desde Cero</h3>
-      <p class="sub">Aprende a operar acciones con sistema, no con suerte. En 5 sesiones, pasas de no saber nada a tener una metodología real y repetible.</p>
-      <div class="sessions"><span class="line"></span>5 sesiones · 75 min · zoom</div>
-      <ul>
-        <li><span class="plus">+</span>Análisis técnico aplicado → <em>lees un gráfico y sabes qué está pasando, sin adivinar</em></li>
-        <li><span class="plus">+</span>Cómo seleccionar acciones para swing → <em>nunca más entras "porque lo vi en redes"</em></li>
-        <li><span class="plus">+</span>Gestión de riesgo y tamaño de posición → <em>proteges tu capital antes de buscar ganancias</em></li>
-        <li><span class="plus">+</span>Fundamentos financieros que sí importan → <em>entiendes la empresa detrás del ticker</em></li>
-        <li><span class="plus">+</span>Cómo calcular rentabilidad real → <em>sabes si tu operación vale la pena antes de entrar</em></li>
-        <li><span class="plus">+</span>Los 7 errores más comunes del swing trader principiante → <em>y cómo evitarlos desde el primer día</em></li>
-        <li><span class="plus">+</span>WhatsApp directo 60 días → <em>acompañamiento mientras procesas lo aprendido en el mercado real</em></li>
-      </ul>
-      <div class="price-row">
-        <span class="price">€597</span>
-        <span class="price-note">paquete único · sin permanencia</span>
-      </div>
-      <p class="scarcity">Solo 3 plazas disponibles este mes.</p>
-      <a href="TU_STRIPE_LINK_AQUÍ" class="pay">→ QUIERO APRENDER A OPERAR</a>
-    </div>
+    <div class="offers-grid">
 
-    <div class="offer olive">
-      <span class="bignum">02</span>
-      <span class="tag">Asesoría 1:1</span>
-      <h3>Tu Primer Plan de Inversión — Hecho a Tu Medida</h3>
-      <p class="sub">Deja de aplazar lo que siempre quisiste hacer con tu dinero. En 4 sesiones, saldrás con un plan claro, personalizado y listo para ejecutar.</p>
-      <div class="sessions"><span class="line"></span>4 sesiones · 60 min · zoom</div>
-      <ul>
-        <li><span class="plus">+</span>Analizamos tu situación y perfil de riesgo → <em>sabes exactamente con qué puedes operar sin perder el sueño</em></li>
-        <li><span class="plus">+</span>Definimos retornos realistas → <em>no más expectativas que te decepcionan ni promesas vacías</em></li>
-        <li><span class="plus">+</span>Diseñamos tu estrategia de diversificación → <em>tu dinero trabajando en varios frentes, no todo en un solo lugar</em></li>
-        <li><span class="plus">+</span>Exploramos los productos que realmente te convienen → <em>sin productos que solo benefician al banco</em></li>
-        <li><span class="plus">+</span>Entiendes el mercado y el contexto macro → <em>tomas decisiones con criterio, no con miedo</em></li>
-        <li><span class="plus">+</span>WhatsApp directo 30 días → <em>no estás sola cuando tengas dudas después</em></li>
-      </ul>
-      <div class="price-row">
-        <span class="price">€397</span>
-        <span class="price-note">paquete único · sin permanencia</span>
+      <!-- OFERTA 01 — Swing Trading €597 -->
+      <div class="offer wine">
+        <span class="bignum">01</span>
+        <span class="tag">Coaching Trading</span>
+        <h3>Swing Trading Desde Cero</h3>
+        <p class="sub">Aprende a operar acciones con sistema, no con suerte. En 5 sesiones, pasas de no saber nada a tener una metodología real y repetible.</p>
+        <div class="sessions"><span class="line"></span>5 sesiones · 75 min · zoom</div>
+        <ul>
+          <li>
+            <details class="bullet-detail">
+              <summary><span class="plus">+</span>Análisis técnico aplicado</summary>
+              <p class="benefit">Lees un gráfico y sabes qué está pasando, sin adivinar.</p>
+            </details>
+          </li>
+          <li>
+            <details class="bullet-detail">
+              <summary><span class="plus">+</span>Cómo seleccionar acciones para swing</summary>
+              <p class="benefit">Nunca más entras "porque lo vi en redes".</p>
+            </details>
+          </li>
+          <li>
+            <details class="bullet-detail">
+              <summary><span class="plus">+</span>Gestión de riesgo y tamaño de posición</summary>
+              <p class="benefit">Proteges tu capital antes de buscar ganancias.</p>
+            </details>
+          </li>
+          <li>
+            <details class="bullet-detail">
+              <summary><span class="plus">+</span>Fundamentos financieros que sí importan</summary>
+              <p class="benefit">Entiendes la empresa detrás del ticker.</p>
+            </details>
+          </li>
+          <li>
+            <details class="bullet-detail">
+              <summary><span class="plus">+</span>Cómo calcular rentabilidad real</summary>
+              <p class="benefit">Sabes si tu operación vale la pena antes de entrar.</p>
+            </details>
+          </li>
+          <li>
+            <details class="bullet-detail">
+              <summary><span class="plus">+</span>Los 7 errores más comunes del swing trader principiante</summary>
+              <p class="benefit">Y cómo evitarlos desde el primer día.</p>
+            </details>
+          </li>
+          <li>
+            <details class="bullet-detail">
+              <summary><span class="plus">+</span>WhatsApp directo 60 días</summary>
+              <p class="benefit">Acompañamiento mientras procesas lo aprendido en el mercado real.</p>
+            </details>
+          </li>
+        </ul>
+        <div class="price-row">
+          <span class="price">€597</span>
+          <span class="price-note">paquete único · sin permanencia</span>
+        </div>
+        <p class="scarcity">Solo 3 plazas disponibles este mes.</p>
+        <a href="https://buy.stripe.com/9B6cN66KTfGx4S9fnG2880c" class="pay">→ QUIERO APRENDER A OPERAR</a>
       </div>
-      <p class="scarcity">Solo 3 plazas disponibles este mes.</p>
-      <a href="https://buy.stripe.com/3cIdRa6KT0LD5Wd4J22880d" class="pay">→ EMPIEZO MI PLAN AHORA</a>
-      <p class="guarantee">Si en la primera sesión sientes que no es para ti, te devuelvo el dinero.</p>
-    </div>
-    </div>
+
+      <!-- OFERTA 02 — Plan de Inversión €397 -->
+      <div class="offer olive">
+        <span class="bignum">02</span>
+        <span class="tag">Asesoría 1:1</span>
+        <h3>Tu Primer Plan de Inversión — Hecho a Tu Medida</h3>
+        <p class="sub">Deja de aplazar lo que siempre quisiste hacer con tu dinero. En 4 sesiones, saldrás con un plan claro, personalizado y listo para ejecutar.</p>
+        <div class="sessions"><span class="line"></span>4 sesiones · 60 min · zoom</div>
+        <ul>
+          <li>
+            <details class="bullet-detail">
+              <summary><span class="plus">+</span>Analizamos tu situación y perfil de riesgo</summary>
+              <p class="benefit">Sabes exactamente con qué puedes operar sin perder el sueño.</p>
+            </details>
+          </li>
+          <li>
+            <details class="bullet-detail">
+              <summary><span class="plus">+</span>Definimos retornos realistas</summary>
+              <p class="benefit">No más expectativas que te decepcionan ni promesas vacías.</p>
+            </details>
+          </li>
+          <li>
+            <details class="bullet-detail">
+              <summary><span class="plus">+</span>Diseñamos tu estrategia de diversificación</summary>
+              <p class="benefit">Tu dinero trabajando en varios frentes, no todo en un solo lugar.</p>
+            </details>
+          </li>
+          <li>
+            <details class="bullet-detail">
+              <summary><span class="plus">+</span>Exploramos los productos que realmente te convienen</summary>
+              <p class="benefit">Sin productos que solo benefician al banco.</p>
+            </details>
+          </li>
+          <li>
+            <details class="bullet-detail">
+              <summary><span class="plus">+</span>Entiendes el mercado y el contexto macro</summary>
+              <p class="benefit">Tomas decisiones con criterio, no con miedo.</p>
+            </details>
+          </li>
+          <li>
+            <details class="bullet-detail">
+              <summary><span class="plus">+</span>WhatsApp directo 30 días</summary>
+              <p class="benefit">No estás sola cuando tengas dudas después de las sesiones.</p>
+            </details>
+          </li>
+        </ul>
+        <div class="price-row">
+          <span class="price">€397</span>
+          <span class="price-note">paquete único · sin permanencia</span>
+        </div>
+        <p class="scarcity">Solo 3 plazas disponibles este mes.</p>
+        <a href="https://buy.stripe.com/3cIdRa6KT0LD5Wd4J22880d" class="pay">→ EMPIEZO MI PLAN AHORA</a>
+        <p class="guarantee">Si en la primera sesión sientes que no es para ti, te devuelvo el dinero.</p>
       </div>
-      <a href="https://buy.stripe.com/9B6cN66KTfGx4S9fnG2880c" class="pay">Pagar con Stripe →</a>
-    </div>
+
     </div>
 
     <div class="single-session">
@@ -781,15 +828,15 @@
     <div class="eyebrow">// REGALO GRATIS</div>
     <h2>7 errores<br>con el dinero</h2>
     <div class="lead-right">
-    <p>Lo que aprendí los primeros años invirtiendo, para que tú no lo aprendas
-    con tu dinero. PDF de 14 páginas. Cero spam.</p>
-    <form action="https://formspree.io/f/xgodppyo" method="POST">
-      <input type="email" name="email" placeholder="tu@email.com" required="">
-      <input type="hidden" name="_subject" value="Nuevo lead — Guía gratis">
-      <input type="hidden" name="_next" value="lead-magnet.html">
-      <button type="submit">Enviar PDF</button>
-    </form>
-    <a class="pdf-link" href="lead-magnet.html" target="_blank">Ver el PDF →</a>
+      <p>Lo que aprendí los primeros años invirtiendo, para que tú no lo aprendas
+      con tu dinero. PDF de 14 páginas. Cero spam.</p>
+      <form action="https://formspree.io/f/xgodppyo" method="POST">
+        <input type="email" name="email" placeholder="tu@email.com" required="">
+        <input type="hidden" name="_subject" value="Nuevo lead — Guía gratis">
+        <input type="hidden" name="_next" value="lead-magnet.html">
+        <button type="submit">Enviar PDF</button>
+      </form>
+      <a class="pdf-link" href="lead-magnet.html" target="_blank">Ver el PDF →</a>
     </div>
   </section>
 
@@ -799,31 +846,31 @@
     <h2>preguntas frecuentes</h2>
 
     <div class="faq-grid">
-    <details>
-      <summary><span>¿Necesito experiencia previa?</span><span class="icon">+</span></summary>
-      <p>No. La mayoría empezamos desde cero. Avanzamos a tu ritmo.</p>
-    </details>
-    <details>
-      <summary><span>¿En qué moneda pago?</span><span class="icon">+</span></summary>
-      <p>Stripe te cobra en EUR; también puedo facturar en USD o MXN.</p>
-    </details>
-    <details>
-      <summary><span>¿Y si no puedo asistir un día?</span><span class="icon">+</span></summary>
-      <p>Reagendamos sin coste hasta 24 h antes de la sesión.</p>
-    </details>
-    <details>
-      <summary><span>¿Asesoría = coaching?</span><span class="icon">+</span></summary>
-      <p>No. Asesoría es para recomendar productos financieros; coaching es para aprender a operar los mercados financieros.</p>
-    </details>
-    <details>
-      <summary><span>¿Hay confidencialidad?</span><span class="icon">+</span></summary>
-      <p>Sí. Antes de empezar firmamos un NDA mutuo.</p>
-    </details>
-    <details>
-      <summary><span>¿Qué es MiFID II?</span><span class="icon">+</span></summary>
-      <p>Es la directiva europea que regula los servicios de inversión. Mi
-      certificación me permite enseñarte mejor a entender el mercado financiero y los diferentes productos financieros que existen en la UE.</p>
-    </details>
+      <details>
+        <summary><span>¿Necesito experiencia previa?</span><span class="icon">+</span></summary>
+        <p>No. La mayoría empezamos desde cero. Avanzamos a tu ritmo.</p>
+      </details>
+      <details>
+        <summary><span>¿En qué moneda pago?</span><span class="icon">+</span></summary>
+        <p>Stripe te cobra en EUR; también puedo facturar en USD o MXN.</p>
+      </details>
+      <details>
+        <summary><span>¿Y si no puedo asistir un día?</span><span class="icon">+</span></summary>
+        <p>Reagendamos sin coste hasta 24 h antes de la sesión.</p>
+      </details>
+      <details>
+        <summary><span>¿Asesoría = coaching?</span><span class="icon">+</span></summary>
+        <p>No. Asesoría es para recomendar productos financieros; coaching es para aprender a operar los mercados financieros.</p>
+      </details>
+      <details>
+        <summary><span>¿Hay confidencialidad?</span><span class="icon">+</span></summary>
+        <p>Sí. Antes de empezar firmamos un NDA mutuo.</p>
+      </details>
+      <details>
+        <summary><span>¿Qué es MiFID II?</span><span class="icon">+</span></summary>
+        <p>Es la directiva europea que regula los servicios de inversión. Mi
+        certificación me permite enseñarte mejor a entender el mercado financiero y los diferentes productos financieros que existen en la UE.</p>
+      </details>
     </div>
   </section>
 
@@ -855,7 +902,6 @@
   </footer>
 
 </div>
-
 
 
 <!-- ============ TWEAKS PANEL ============ -->
