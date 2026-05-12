@@ -1,0 +1,1459 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Tu Primera Inversión — Alexandra</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://fonts.cdnfonts.com/css/coolvetica" />
+<link rel="stylesheet" href="https://fonts.cdnfonts.com/css/lemon-milk-2" />
+
+<style>
+  :root{
+    /* paleta solicitada */
+    --evergreen: #002500;
+    --evergreen-d:#001a00;
+    --palm:      #929982;
+    --palm-d:    #6e735f;
+    --sand:      #EDCBB1;
+    --sand-l:    #f3dac5;   /* sand suavizada para fondo principal */
+    --sand-d:    #e2b899;
+    --rose:      #B7245C;
+    --rose-d:    #8e1846;
+    --rose-l:    #d44e7d;
+
+    --ink:       var(--evergreen);
+    --ink-soft:  #2b3a2b;
+    --ink-mute:  #5c6a5c;
+    --line:      rgba(0,37,0,.16);
+    --line-soft: rgba(0,37,0,.08);
+    --paper:     #f8e7d4;   /* sand más claro */
+
+    --display: "Bebas Neue", "Lemon Milk", "Coolvetica", Impact, sans-serif;
+    --display-alt: "Lemon Milk", "Bebas Neue", Impact, sans-serif;
+    --heavy:   "Coolvetica", "Bebas Neue", "DM Sans", sans-serif;
+    --sans:    "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    --mono:    ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+    --col: 640px;
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--sand-l);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-weight:400;
+    font-size:17px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+
+  /* subtle paper grain */
+  body::after{
+    content:"";
+    position:fixed;inset:0;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0.05 0 0 0 0 0 0 0 0 0.5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/></svg>");
+    opacity:.35;
+    pointer-events:none;z-index:0;
+    mix-blend-mode:multiply;
+  }
+
+  a{color:inherit;text-decoration:none}
+  p{margin:0}
+
+  /* ============ LAYOUT ============ */
+  .wrap{
+    position:relative;z-index:1;
+    width:100%;
+    max-width:var(--col);
+    margin:0 auto;
+    padding:0 24px;
+  }
+  .wide{
+    position:relative;z-index:1;
+    width:100%;
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  section{position:relative;z-index:1}
+
+  /* ============ TYPE PRIMITIVES ============ */
+  .eyebrow{
+    font-family:var(--heavy);
+    font-size:12px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    font-weight:600;
+  }
+  .label{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:var(--heavy);
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--evergreen);
+    padding:9px 16px 9px 12px;
+    border:1.5px solid var(--evergreen);
+    border-radius:999px;
+    background:transparent;
+  }
+  .label .dot{
+    width:7px;height:7px;border-radius:50%;
+    background:var(--rose);
+  }
+
+  h1.display{
+    font-family:var(--display);
+    font-weight:400;
+    font-size:clamp(80px, 19vw, 180px);
+    line-height:.86;
+    letter-spacing:-.005em;
+    margin:0;
+    color:var(--evergreen);
+    text-transform:uppercase;
+  }
+  h1.display em{
+    font-style:normal;
+    color:var(--rose);
+  }
+  h1.display .geo{
+    font-family:var(--display-alt);
+    display:block;
+    letter-spacing:-.01em;
+  }
+
+  h2.section-title{
+    font-family:var(--display);
+    font-weight:400;
+    font-size:clamp(48px, 9vw, 84px);
+    line-height:.92;
+    letter-spacing:-.005em;
+    text-transform:uppercase;
+    margin:0;
+    color:var(--evergreen);
+  }
+  h2.section-title em{font-style:normal;color:var(--rose)}
+
+  .lede{
+    font-family:var(--sans);
+    font-size:clamp(20px, 2.6vw, 24px);
+    line-height:1.4;
+    color:var(--ink-soft);
+    font-weight:400;
+  }
+  .lede strong{color:var(--evergreen);font-weight:600}
+  .lede em{
+    font-style:normal;
+    color:var(--rose);
+    font-weight:500;
+    background:linear-gradient(transparent 65%, rgba(183,36,92,.18) 65%);
+    padding:0 2px;
+  }
+
+  /* ============ HERO ============ */
+  .hero{
+    padding:24px 0 80px;
+    position:relative;
+  }
+  .top-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 0 40px;
+    border-bottom:1px solid var(--line-soft);
+    margin-bottom:48px;
+  }
+  .brand{
+    font-family:var(--display);
+    font-size:28px;
+    line-height:1;
+    letter-spacing:.02em;
+    color:var(--evergreen);
+    display:flex;align-items:center;gap:12px;
+  }
+  .brand .mark{
+    width:12px;height:12px;
+    background:var(--rose);
+    border-radius:50%;
+  }
+  .brand-meta{
+    font-family:var(--heavy);
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--ink-mute);
+  }
+
+  .hero-headline{margin-top:12px}
+
+  .hero-sub{
+    margin-top:36px;
+    font-family:var(--sans);
+    font-size:clamp(19px,2.4vw,23px);
+    line-height:1.45;
+    color:var(--ink-soft);
+    max-width:560px;
+    font-weight:400;
+  }
+  .hero-sub strong{
+    color:var(--evergreen);
+    font-weight:600;
+  }
+  .hero-sub .hl{
+    color:var(--rose);
+    font-weight:600;
+    background:linear-gradient(transparent 65%, rgba(183,36,92,.18) 65%);
+  }
+
+  .hero-meta{
+    margin-top:36px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:0;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .hero-meta span{
+    flex:1 1 auto;
+    min-width:130px;
+    padding:14px 18px 14px 0;
+    font-family:var(--heavy);
+    font-weight:600;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--evergreen);
+    border-right:1px solid var(--line);
+    display:flex;align-items:center;gap:10px;
+  }
+  .hero-meta span:last-child{border-right:0}
+  .hero-meta span:not(:first-child){padding-left:18px}
+  .hero-meta .mk{
+    width:6px;height:6px;background:var(--rose);border-radius:50%;
+    flex-shrink:0;
+  }
+  @media (max-width:540px){
+    .hero-meta span{flex:1 1 50%;border-right:0;border-bottom:1px solid var(--line);padding-left:0!important;padding-right:18px}
+    .hero-meta span:nth-child(odd){padding-left:0}
+    .hero-meta span:nth-child(even){padding-left:18px!important;border-left:1px solid var(--line)}
+    .hero-meta span:nth-last-child(-n+2){border-bottom:0}
+  }
+
+  /* ============ CTA ============ */
+  .cta-block{
+    margin-top:40px;
+  }
+  .price-row{
+    display:flex;
+    align-items:center;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .cta{
+    display:inline-flex;
+    align-items:center;
+    gap:18px;
+    background:var(--rose);
+    color:var(--paper);
+    font-family:var(--heavy);
+    font-weight:600;
+    font-size:17px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    padding:22px 28px;
+    border:none;
+    border-radius:0;
+    cursor:pointer;
+    text-decoration:none;
+    transition:background .2s ease, transform .2s ease;
+    position:relative;
+  }
+  .cta:hover{background:var(--rose-d);transform:translateY(-2px)}
+  .cta .arrow{
+    width:22px;height:22px;
+    border-top:2px solid var(--paper);
+    border-right:2px solid var(--paper);
+    transform:rotate(45deg);
+    transition:transform .25s ease;
+  }
+  .cta:hover .arrow{transform:rotate(45deg) translate(3px,-3px)}
+
+  .cta.dark{background:var(--evergreen);color:var(--sand)}
+  .cta.dark:hover{background:#003a00}
+  .cta.dark .arrow{border-color:var(--sand)}
+
+  .cta-note{
+    margin-top:18px;
+    font-family:var(--heavy);
+    font-weight:600;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--ink-mute);
+  }
+  .cta-note b{color:var(--evergreen);font-weight:700}
+
+  .price-stamp{
+    font-family:var(--display);
+    line-height:1;
+    color:var(--evergreen);
+  }
+  .price-stamp .now{
+    font-size:64px;
+    line-height:.9;
+  }
+  .price-stamp .was{
+    font-family:var(--display);
+    font-size:22px;
+    color:var(--ink-mute);
+    text-decoration:line-through;
+    margin-left:8px;
+  }
+  .price-stamp .label-l{
+    display:block;
+    font-family:var(--heavy);
+    font-weight:600;
+    font-size:11px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--rose);
+    margin-bottom:6px;
+  }
+
+  /* ============ SECTION MARKER ============ */
+  .section-marker{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    padding:96px 0 32px;
+  }
+  .section-marker .num{
+    font-family:var(--display);
+    font-size:24px;
+    color:var(--rose);
+    letter-spacing:.05em;
+  }
+  .section-marker .line{
+    flex:1;height:1px;background:var(--line);
+  }
+  .section-marker .name{
+    font-family:var(--heavy);
+    font-weight:600;
+    font-size:12px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--evergreen);
+  }
+
+  /* ============ PROBLEM ============ */
+  .problem p{
+    font-family:var(--sans);
+    font-size:clamp(20px,3vw,26px);
+    line-height:1.4;
+    color:var(--ink);
+    margin-bottom:24px;
+    font-weight:400;
+  }
+  .problem .quiet{
+    color:var(--ink-mute);
+  }
+  .problem .pull{
+    font-family:var(--display);
+    text-transform:uppercase;
+    font-size:clamp(28px,5vw,42px);
+    line-height:1;
+    letter-spacing:-.005em;
+    color:var(--rose);
+    border-left:3px solid var(--rose);
+    padding:6px 0 6px 20px;
+    margin:32px 0;
+  }
+  .problem .punch{
+    font-family:var(--display);
+    text-transform:uppercase;
+    font-size:clamp(36px,6.5vw,58px);
+    line-height:.95;
+    margin-top:48px;
+    color:var(--evergreen);
+    letter-spacing:-.005em;
+  }
+  .problem .punch em{font-style:normal;color:var(--rose)}
+
+  /* ============ CURRICULUM ============ */
+  .days{margin-top:8px}
+  .day{
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:28px;
+    padding:40px 0;
+    border-top:1px solid var(--line);
+    align-items:start;
+  }
+  .day:last-child{border-bottom:1px solid var(--line)}
+  .day .n{
+    font-family:var(--display);
+    font-size:120px;
+    line-height:.78;
+    color:var(--rose);
+    min-width:110px;
+    letter-spacing:-.02em;
+  }
+  .day .tag{
+    font-family:var(--heavy);
+    font-weight:600;
+    font-size:11px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--palm-d);
+    margin-bottom:12px;
+    display:block;
+  }
+  .day h3{
+    font-family:var(--display);
+    font-weight:400;
+    text-transform:uppercase;
+    font-size:clamp(24px,3.5vw,32px);
+    line-height:1.02;
+    letter-spacing:-.005em;
+    margin:0 0 14px;
+    color:var(--evergreen);
+  }
+  .day h3 em{font-style:normal;color:var(--palm-d)}
+  .day p{
+    color:var(--ink-soft);
+    font-size:16px;
+    line-height:1.55;
+    font-weight:400;
+  }
+  .day .duration{
+    margin-top:16px;
+    font-family:var(--heavy);
+    font-weight:600;
+    font-size:11px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--ink-mute);
+    display:flex;align-items:center;gap:10px;
+  }
+  .day .duration::before{
+    content:"";width:18px;height:1px;background:var(--ink-mute);
+  }
+  @media (max-width:540px){
+    .day{grid-template-columns:1fr;gap:8px}
+    .day .n{font-size:88px}
+  }
+
+  /* ============ FOR WHO ============ */
+  .for-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:0;
+    margin-top:24px;
+    border:1px solid var(--line);
+    background:var(--sand);
+  }
+  @media (min-width:680px){
+    .for-grid{grid-template-columns:1fr 1fr}
+    .for-col{padding:36px}
+    .for-col + .for-col{border-left:1px solid var(--line)}
+  }
+  .for-col{padding:28px 24px}
+  .for-col + .for-col{border-top:1px solid var(--line)}
+  @media (min-width:680px){
+    .for-col + .for-col{border-top:0}
+  }
+  .for-col h4{
+    font-family:var(--display);
+    text-transform:uppercase;
+    font-size:32px;
+    letter-spacing:.005em;
+    margin:0 0 24px;
+    color:var(--evergreen);
+    font-weight:400;
+    display:flex;align-items:center;gap:14px;
+  }
+  .for-col.yes h4 .dot{
+    width:14px;height:14px;border-radius:50%;background:var(--rose);
+  }
+  .for-col.no h4 .dot{
+    width:14px;height:14px;background:transparent;border:2px solid var(--palm-d);border-radius:50%;
+  }
+  .for-col.no h4{color:var(--palm-d)}
+  .for-col ul{
+    list-style:none;padding:0;margin:0;
+    display:flex;flex-direction:column;gap:16px;
+  }
+  .for-col li{
+    font-family:var(--sans);
+    font-size:17px;
+    line-height:1.45;
+    color:var(--evergreen);
+    padding-left:22px;
+    position:relative;
+    font-weight:400;
+  }
+  .for-col.yes li::before{
+    content:"+";
+    position:absolute;left:0;top:0;
+    font-family:var(--display);
+    color:var(--rose);
+    font-size:22px;
+    line-height:1.1;
+  }
+  .for-col.no li{color:var(--palm-d)}
+  .for-col.no li::before{
+    content:"–";
+    position:absolute;left:0;top:0;
+    font-family:var(--display);
+    color:var(--palm-d);
+    font-size:22px;
+    line-height:1.1;
+  }
+
+  /* ============ INCLUDES ============ */
+  .includes{
+    margin-top:8px;
+    border-top:1.5px solid var(--evergreen);
+  }
+  .inc{
+    display:grid;
+    grid-template-columns:64px 1fr auto;
+    align-items:center;
+    gap:20px;
+    padding:24px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .inc:last-child{border-bottom:1.5px solid var(--evergreen)}
+  .inc .ix{
+    font-family:var(--display);
+    font-size:32px;
+    color:var(--rose);
+    letter-spacing:.02em;
+  }
+  .inc .it{
+    font-family:var(--display);
+    font-size:clamp(22px,3vw,28px);
+    line-height:1;
+    text-transform:uppercase;
+    letter-spacing:-.005em;
+    color:var(--evergreen);
+    padding-top:4px;
+  }
+  .inc .meta{
+    font-family:var(--heavy);
+    font-weight:600;
+    font-size:11px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--palm-d);
+    text-align:right;
+  }
+  @media (max-width:540px){
+    .inc{grid-template-columns:auto 1fr;gap:14px}
+    .inc .meta{grid-column:1/-1;text-align:left;padding-left:84px;margin-top:-4px}
+  }
+
+  /* ============ DOWNLOADS ============ */
+  .downloads-block{
+    margin-top:48px;
+    padding:36px 28px;
+    background:var(--sand);
+    border:1.5px solid var(--evergreen);
+    position:relative;
+  }
+  @media (min-width:680px){
+    .downloads-block{padding:44px 40px}
+  }
+  .downloads-block::before{
+    content:"";
+    position:absolute;
+    top:-1.5px;left:-1.5px;
+    width:48px;height:8px;
+    background:var(--rose);
+  }
+  .dl-header{margin-bottom:32px}
+  .dl-eyebrow{
+    font-family:var(--heavy);
+    font-weight:600;
+    font-size:12px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--rose);
+    display:inline-block;
+    margin-bottom:14px;
+  }
+  .dl-title{
+    font-family:var(--display);
+    font-weight:400;
+    text-transform:uppercase;
+    font-size:clamp(28px,4.5vw,40px);
+    line-height:.98;
+    letter-spacing:-.005em;
+    color:var(--evergreen);
+    margin:0 0 14px;
+  }
+  .dl-title em{font-style:normal;color:var(--rose)}
+  .dl-sub{
+    font-size:16px;
+    line-height:1.5;
+    color:var(--ink-soft);
+    max-width:520px;
+  }
+
+  .dl-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:14px;
+  }
+  @media (min-width:640px){
+    .dl-grid{grid-template-columns:1fr 1fr;gap:16px}
+  }
+  .dl-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    padding:18px;
+    display:grid;
+    grid-template-columns:auto 1fr auto;
+    align-items:center;
+    gap:16px;
+    transition:transform .2s ease, border-color .2s ease;
+    position:relative;
+  }
+  .dl-card:hover{
+    border-color:var(--evergreen);
+    transform:translateY(-2px);
+  }
+  .dl-icon{
+    width:44px;height:48px;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--evergreen);
+    flex-shrink:0;
+  }
+  .dl-icon svg{width:100%;height:100%}
+  .dl-icon[data-type="xlsx"]{color:var(--evergreen)}
+  .dl-icon[data-type="pdf"]{color:var(--rose)}
+  .dl-meta{min-width:0}
+  .dl-name{
+    font-family:var(--display);
+    font-size:20px;
+    line-height:1.05;
+    text-transform:uppercase;
+    color:var(--evergreen);
+    letter-spacing:-.005em;
+    margin-bottom:4px;
+  }
+  .dl-type{
+    font-family:var(--heavy);
+    font-weight:600;
+    font-size:10.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--palm-d);
+  }
+  .dl-badge{
+    font-family:var(--heavy);
+    font-weight:700;
+    font-size:10px;
+    letter-spacing:.14em;
+    color:var(--sand);
+    background:var(--evergreen);
+    padding:6px 9px;
+    line-height:1;
+    flex-shrink:0;
+  }
+  .dl-card:has(.dl-icon[data-type="pdf"]) .dl-badge{background:var(--rose)}
+
+  .dl-footer{
+    margin-top:24px;
+    padding-top:20px;
+    border-top:1px dashed var(--line);
+    font-family:var(--sans);
+    font-size:14px;
+    line-height:1.5;
+    color:var(--ink-soft);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .dl-footer b{color:var(--evergreen);font-weight:600}
+  .dl-stamp{
+    display:inline-block;
+    font-family:var(--heavy);
+    font-weight:700;
+    font-size:10px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    background:var(--rose);
+    color:var(--sand);
+    padding:5px 9px;
+    line-height:1;
+  }
+
+  /* ============ OFFER ============ */
+  .offer{
+    background:var(--evergreen);
+    color:var(--sand);
+    margin:48px -24px 0;
+    padding:56px 32px;
+    position:relative;
+    overflow:hidden;
+  }
+  @media (min-width:680px){
+    .offer{margin:56px 0 0;padding:72px 64px}
+  }
+  .offer::after{
+    content:"";
+    position:absolute;
+    top:-80px;right:-80px;
+    width:300px;height:300px;
+    border-radius:50%;
+    background:var(--rose);
+    opacity:.18;
+    pointer-events:none;
+  }
+  .offer .eyebrow{color:var(--sand);opacity:.7}
+  .offer h2{color:var(--sand);margin-top:10px;position:relative;z-index:1}
+  .offer h2 em{color:var(--rose-l)}
+  .offer .price{
+    margin-top:36px;
+    display:flex;align-items:flex-start;gap:18px;flex-wrap:wrap;
+    position:relative;z-index:1;
+  }
+  .offer .price .big{
+    font-family:var(--display);
+    font-size:clamp(120px,22vw,200px);
+    line-height:.82;
+    color:var(--sand);
+    letter-spacing:-.01em;
+  }
+  .offer .price .old{
+    font-family:var(--display);
+    font-size:36px;
+    color:var(--palm);
+    text-decoration:line-through;
+    line-height:1;
+    padding-top:14px;
+  }
+  .offer .price-meta{
+    margin-top:24px;
+    display:flex;flex-wrap:wrap;gap:8px 16px;
+    font-family:var(--heavy);font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--sand);
+    opacity:.75;
+    position:relative;z-index:1;
+  }
+  .offer .price-meta span{display:inline-flex;align-items:center;gap:8px}
+  .offer .price-meta span::before{
+    content:"";width:5px;height:5px;background:var(--rose-l);border-radius:50%;
+  }
+  .offer .cta{
+    margin-top:36px;
+    background:var(--rose);
+    color:var(--sand);
+    position:relative;z-index:1;
+  }
+  .offer .cta:hover{background:var(--rose-l)}
+  .offer .urgency{
+    margin-top:28px;
+    font-family:var(--sans);
+    font-size:17px;
+    color:var(--sand);
+    opacity:.85;
+    max-width:480px;
+    line-height:1.55;
+    position:relative;z-index:1;
+  }
+  .offer .urgency b{color:var(--rose-l);font-weight:600}
+
+  /* ============ ABOUT ============ */
+  .about{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:32px;
+    align-items:start;
+  }
+  @media (min-width:680px){
+    .about{grid-template-columns:220px 1fr;gap:48px}
+  }
+  .portrait{
+    width:100%;
+    aspect-ratio:3/4;
+    background:var(--palm);
+    border:1.5px solid var(--evergreen);
+    position:relative;
+    overflow:hidden;
+  }
+  .portrait::before{
+    content:"";
+    position:absolute;inset:0;
+    background-image:
+      repeating-linear-gradient(135deg,
+        rgba(0,37,0,.12) 0 1px,
+        transparent 1px 14px);
+  }
+  .portrait .ph{
+    position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--heavy);
+    font-weight:600;
+    font-size:11px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--evergreen);
+    text-align:center;
+    padding:12px;
+  }
+  .about-text .quote{
+    font-family:var(--display);
+    text-transform:uppercase;
+    font-size:clamp(28px,4.5vw,38px);
+    line-height:1;
+    letter-spacing:-.005em;
+    color:var(--rose);
+    margin-bottom:24px;
+  }
+  .about-text p{
+    font-size:18px;
+    line-height:1.55;
+    color:var(--ink-soft);
+    margin-bottom:16px;
+  }
+  .about-text p em{
+    color:var(--evergreen);
+    font-style:normal;
+    font-weight:600;
+  }
+  .about-text .sig{
+    margin-top:28px;
+    font-family:var(--display);
+    font-size:48px;
+    line-height:1;
+    color:var(--evergreen);
+    letter-spacing:-.005em;
+    text-transform:uppercase;
+  }
+  .about-text .credentials{
+    margin-top:8px;
+    font-family:var(--heavy);
+    font-weight:600;
+    font-size:11px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--palm-d);
+  }
+
+  /* ============ FAQ ============ */
+  .faq{margin-top:8px;border-top:1.5px solid var(--evergreen)}
+  details.q{
+    border-bottom:1px solid var(--line);
+    padding:0;
+  }
+  details.q:last-child{border-bottom:1.5px solid var(--evergreen)}
+  details.q summary{
+    list-style:none;
+    cursor:pointer;
+    padding:28px 48px 28px 0;
+    font-family:var(--display);
+    text-transform:uppercase;
+    font-size:clamp(22px,3vw,28px);
+    line-height:1;
+    letter-spacing:-.005em;
+    position:relative;
+    color:var(--evergreen);
+    transition:color .2s ease;
+  }
+  details.q summary:hover{color:var(--rose)}
+  details.q summary::-webkit-details-marker{display:none}
+  details.q summary::after{
+    content:"+";
+    position:absolute;
+    right:0;top:50%;
+    transform:translateY(-50%);
+    font-family:var(--display);
+    font-size:38px;
+    color:var(--rose);
+    transition:transform .25s ease;
+    line-height:1;
+  }
+  details.q[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+  details.q .a{
+    padding:0 48px 30px 0;
+    font-size:17px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    max-width:580px;
+  }
+  details.q .a em{color:var(--rose);font-style:normal;font-weight:600}
+
+  /* ============ FOOTER ============ */
+  footer{
+    margin-top:120px;
+    padding:56px 0 60px;
+    background:var(--evergreen);
+    color:var(--sand);
+  }
+  .foot-inner{
+    display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;
+  }
+  .foot-brand{
+    font-family:var(--display);
+    font-size:48px;
+    line-height:1;
+    color:var(--sand);
+    letter-spacing:.005em;
+  }
+  .foot-brand .dot{color:var(--rose)}
+  .foot-meta{
+    font-family:var(--heavy);
+    font-weight:600;
+    font-size:11px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--sand);
+    opacity:.65;
+    text-align:right;
+    line-height:1.9;
+  }
+
+  /* ============ STICKY MOBILE CTA ============ */
+  .sticky-cta{
+    position:fixed;left:0;right:0;bottom:0;
+    background:var(--evergreen);
+    color:var(--sand);
+    padding:14px 20px;
+    display:none;
+    justify-content:space-between;
+    align-items:center;
+    gap:14px;
+    z-index:50;
+  }
+  .sticky-cta .sp{
+    display:flex;flex-direction:column;line-height:1;gap:4px;
+  }
+  .sticky-cta .sp .p{
+    font-family:var(--display);font-size:30px;color:var(--sand);line-height:.9;
+  }
+  .sticky-cta .sp .l{
+    font-family:var(--heavy);font-weight:600;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--palm);
+  }
+  .sticky-cta a{
+    background:var(--rose);
+    color:var(--sand);
+    padding:14px 18px;
+    font-family:var(--heavy);
+    font-weight:600;
+    font-size:13px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  .sticky-cta a .ar{
+    width:14px;height:14px;
+    border-top:2px solid var(--sand);
+    border-right:2px solid var(--sand);
+    transform:rotate(45deg);
+  }
+  @media (max-width:680px){
+    .sticky-cta{display:flex}
+    body{padding-bottom:80px}
+  }
+
+  /* reveal */
+  @keyframes rise{
+    from{opacity:0;transform:translateY(14px)}
+    to{opacity:1;transform:none}
+  }
+  .rise{opacity:0;animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
+  .d1{animation-delay:.05s}
+  .d2{animation-delay:.18s}
+  .d3{animation-delay:.32s}
+  .d4{animation-delay:.46s}
+  .d5{animation-delay:.6s}
+
+</style>
+</head>
+<body>
+
+<!-- ============ TOP BAR ============ -->
+<div class="wrap">
+  <div class="top-bar rise d1">
+    <div class="brand"><span class="mark"></span>Alexandra</div>
+    <div class="brand-meta">Curso · €67</div>
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" data-screen-label="01 Hero">
+  <div class="wrap">
+
+    <div class="label rise d1">
+      <span class="dot"></span>
+      Curso online · Acceso inmediato
+    </div>
+
+    <h1 class="display hero-headline rise d2">
+      Tu Primera<br/>
+      <em>Inversión</em>
+    </h1>
+
+    <p class="hero-sub rise d3">
+      <strong>5 días. 15 minutos al día.</strong> Al quinto día, tienes tu dinero <span class="hl">trabajando por primera vez</span> — con criterio, con calma y sin necesitar a nadie que lo haga por ti.
+    </p>
+
+    <div class="hero-meta rise d4">
+      <span><i class="mk"></i> 5 vídeos</span>
+      <span><i class="mk"></i> 15 min/día</span>
+      <span><i class="mk"></i> Acceso de por vida</span>
+      <span><i class="mk"></i> Desde cero</span>
+    </div>
+
+    <div class="cta-block rise d5">
+      <div class="price-row">
+        <a class="cta" href="#comprar">
+          Empiezo hoy por €67
+          <span class="arrow"></span>
+        </a>
+        <div class="price-stamp">
+          <span class="label-l">Precio lanzamiento</span>
+          <span class="now">€67</span><span class="was">€97</span>
+        </div>
+      </div>
+      <p class="cta-note">Pago único · <b>Acceso inmediato</b> · Sin permanencia</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ PROBLEMA ============ -->
+<section data-screen-label="02 Problema">
+  <div class="wrap">
+    <div class="section-marker">
+      <span class="num">01</span>
+      <span class="line"></span>
+      <span class="name">El problema</span>
+    </div>
+
+    <div class="problem">
+      <p>Llevas tiempo pensando que <strong style="color:var(--evergreen);font-weight:600;">deberías invertir</strong>.</p>
+      <p class="quiet">Lo sabes. Pero cada vez que intentas entender cómo funciona esto, acabas con diez pestañas abiertas, más confundida que al principio y con la misma conclusión de siempre:</p>
+      <div class="pull">"Esto no es para mí todavía."</div>
+      <p class="quiet">Y lo vas aplazando. Un mes más. Un año más.</p>
+      <p>Mientras tanto, tu dinero parado en una cuenta corriente está <strong style="color:var(--rose);font-weight:600;">perdiendo valor cada mes</strong> — silenciosamente, sin que nadie te avise.</p>
+      <div class="punch">El problema no eres tú.<br/>Es que <em>nadie te lo explicó</em><br/>de una forma aplicable.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOLUCIÓN ============ -->
+<section data-screen-label="03 Solucion">
+  <div class="wrap">
+    <div class="section-marker">
+      <span class="num">02</span>
+      <span class="line"></span>
+      <span class="name">La solución</span>
+    </div>
+
+    <h2 class="section-title">De cero<br/>a <em>invertida</em><br/>en 5 días.</h2>
+
+    <p class="lede" style="margin-top:36px;">
+      <strong>Tu Primera Inversión</strong> es un curso de 5 días — 15 minutos al día — diseñado para que pases de <em>no saber absolutamente nada</em> a tener tu primera inversión real activa.
+    </p>
+
+    <p style="margin-top:28px;font-family:var(--display);text-transform:uppercase;font-size:clamp(32px,5.5vw,48px);line-height:1;color:var(--evergreen);letter-spacing:-.005em;">
+      Sin abrumarte.<br/>
+      Sin jerga.<br/>
+      <span style="color:var(--rose);">Sin excusas.</span>
+    </p>
+
+    <p style="margin-top:32px;font-size:18px;line-height:1.6;color:var(--ink-soft);">
+      Cada día recibes un vídeo corto, concreto y directo. Al quinto día, no solo entiendes cómo funciona el mercado — <strong style="color:var(--rose);font-weight:600;">ya has actuado</strong>.
+    </p>
+  </div>
+</section>
+
+<!-- ============ LOS 5 DÍAS ============ -->
+<section data-screen-label="04 Curriculum">
+  <div class="wrap">
+    <div class="section-marker">
+      <span class="num">03</span>
+      <span class="line"></span>
+      <span class="name">Los 5 días</span>
+    </div>
+
+    <h2 class="section-title">Qué vas<br/>a <em>aprender.</em></h2>
+
+    <div class="days" style="margin-top:48px;">
+
+      <div class="day">
+        <div class="n">01</div>
+        <div>
+          <span class="tag">Día 1 · Lunes</span>
+          <h3>Por qué tener dinero en el banco te está haciendo más pobre <em>(aunque no lo parezca)</em></h3>
+          <p>Entiendes la inflación, el coste de oportunidad y por qué esperar tiene un precio real.</p>
+          <div class="duration">≈ 15 min</div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="n">02</div>
+        <div>
+          <span class="tag">Día 2 · Martes</span>
+          <h3>El mercado financiero explicado de verdad: sin jerga, sin trampa, en 15 min</h3>
+          <p>Acciones, fondos, ETFs, bonos — el mapa completo para que nada suene a chino.</p>
+          <div class="duration">≈ 15 min</div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="n">03</div>
+        <div>
+          <span class="tag">Día 3 · Miércoles</span>
+          <h3>Qué tipo de inversora eres tú <em>— y por qué no todas empezamos igual</em></h3>
+          <p>Descubres tu perfil de riesgo real y qué estrategia encaja con tu vida, no con la de otra persona.</p>
+          <div class="duration">≈ 15 min</div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="n">04</div>
+        <div>
+          <span class="tag">Día 4 · Jueves</span>
+          <h3>Tu primer euro invertido: qué broker, cómo abrirlo y dónde meter el dinero hoy</h3>
+          <p>Paso a paso. Sin letra pequeña. Al final del vídeo, tu cuenta está abierta.</p>
+          <div class="duration">≈ 15 min</div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="n">05</div>
+        <div>
+          <span class="tag">Día 5 · Viernes</span>
+          <h3>Tu estrategia personal: cuánto invertir, con qué frecuencia y qué no tocar nunca</h3>
+          <p>Sales con un plan. No con teoría — con decisiones concretas sobre tu dinero real.</p>
+          <div class="duration">≈ 15 min</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ PARA QUIÉN ============ -->
+<section data-screen-label="05 Para Quien">
+  <div class="wrap">
+    <div class="section-marker">
+      <span class="num">04</span>
+      <span class="line"></span>
+      <span class="name">Para quién</span>
+    </div>
+
+    <h2 class="section-title">¿Es esto<br/><em>para ti?</em></h2>
+
+    <div class="for-grid">
+      <div class="for-col yes">
+        <h4><span class="dot"></span>Sí, si…</h4>
+        <ul>
+          <li>Tienes dinero parado en una cuenta corriente y sabes que debería estar trabajando.</li>
+          <li>Has intentado entender esto antes pero siempre te perdiste en el camino.</li>
+          <li>Quieres empezar a invertir pero no sabes por dónde, ni con cuánto, ni en qué.</li>
+          <li>No tienes horas para estudiar — solo 15 minutos al día.</li>
+        </ul>
+      </div>
+      <div class="for-col no">
+        <h4><span class="dot"></span>No, si…</h4>
+        <ul>
+          <li>Ya tienes una cartera activa y buscas estrategias avanzadas.</li>
+          <li>Buscas hacerte rica rápido — eso no existe, y yo no lo vendo.</li>
+          <li>Quieres que alguien tome las decisiones por ti.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INCLUYE ============ -->
+<section data-screen-label="06 Incluye">
+  <div class="wrap">
+    <div class="section-marker">
+      <span class="num">05</span>
+      <span class="line"></span>
+      <span class="name">Qué incluye</span>
+    </div>
+
+    <h2 class="section-title">Lo que recibes<br/>al <em>pagar.</em></h2>
+
+    <div class="includes" style="margin-top:48px;">
+      <div class="inc">
+        <div class="ix">01</div>
+        <div class="it">5 vídeos de ≈15 min — directos, sin relleno</div>
+        <div class="meta">75 min totales</div>
+      </div>
+      <div class="inc">
+        <div class="ix">02</div>
+        <div class="it">Acceso inmediato en cuanto se confirma el pago</div>
+        <div class="meta">Sin esperas</div>
+      </div>
+      <div class="inc">
+        <div class="ix">03</div>
+        <div class="it">Acceso de por vida — vuelves cuando quieras</div>
+        <div class="meta">Para siempre</div>
+      </div>
+      <div class="inc">
+        <div class="ix">04</div>
+        <div class="it">Visualizable desde móvil, tablet u ordenador</div>
+        <div class="meta">Cualquier dispositivo</div>
+      </div>
+      <div class="inc">
+        <div class="ix">05</div>
+        <div class="it">+ 4 descargables prácticos en Excel y PDF</div>
+        <div class="meta">Ver abajo</div>
+      </div>
+    </div>
+
+    <!-- DESCARGABLES SUB-BLOCK -->
+    <div class="downloads-block">
+      <div class="dl-header">
+        <span class="dl-eyebrow">+ Material descargable</span>
+        <h3 class="dl-title">Las herramientas que vas a <em>usar de verdad.</em></h3>
+        <p class="dl-sub">No teoría. Plantillas, hojas de cálculo y guías que abres, rellenas y aplicas a tu propio dinero — el mismo día.</p>
+      </div>
+
+      <div class="dl-grid">
+
+        <div class="dl-card">
+          <div class="dl-icon" data-type="xlsx">
+            <svg viewBox="0 0 32 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2 2h20l8 8v24H2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M22 2v8h8" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M7 18h18M7 23h18M7 28h18M13 18v10M19 18v10" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="dl-meta">
+            <div class="dl-name">Calculadora interés compuesto</div>
+            <div class="dl-type">Hoja de cálculo · XLSX</div>
+          </div>
+          <div class="dl-badge">XLSX</div>
+        </div>
+
+        <div class="dl-card">
+          <div class="dl-icon" data-type="pdf">
+            <svg viewBox="0 0 32 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2 2h20l8 8v24H2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M22 2v8h8" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M7 19h18M7 24h18M7 29h12" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="dl-meta">
+            <div class="dl-name">Glosario de términos de inversión</div>
+            <div class="dl-type">Documento · PDF</div>
+          </div>
+          <div class="dl-badge">PDF</div>
+        </div>
+
+        <div class="dl-card">
+          <div class="dl-icon" data-type="pdf">
+            <svg viewBox="0 0 32 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2 2h20l8 8v24H2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M22 2v8h8" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <circle cx="11" cy="22" r="2" fill="currentColor"/>
+              <circle cx="17" cy="22" r="2" fill="currentColor"/>
+              <circle cx="23" cy="22" r="2" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M7 29h18" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="dl-meta">
+            <div class="dl-name">Quiz perfil inversora</div>
+            <div class="dl-type">Documento · PDF</div>
+          </div>
+          <div class="dl-badge">PDF</div>
+        </div>
+
+        <div class="dl-card">
+          <div class="dl-icon" data-type="xlsx">
+            <svg viewBox="0 0 32 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2 2h20l8 8v24H2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M22 2v8h8" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M7 18h18M7 23h18M7 28h18M13 18v10M19 18v10" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="dl-meta">
+            <div class="dl-name">Brokers y estrategia</div>
+            <div class="dl-type">Hoja de cálculo · XLSX</div>
+          </div>
+          <div class="dl-badge">XLSX</div>
+        </div>
+
+      </div>
+
+      <div class="dl-footer">
+        <span class="dl-stamp">Incluido</span>
+        Valor estimado por separado: <b>€47</b> — entra todo en el curso, sin coste extra.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ OFERTA / PRECIO ============ -->
+<section id="comprar" data-screen-label="07 Oferta">
+  <div class="wrap">
+    <div class="offer">
+      <p class="eyebrow">Precio de lanzamiento</p>
+      <h2 class="section-title">Empiezas hoy.<br/>Inviertes el <em>viernes.</em></h2>
+
+      <div class="price">
+        <span class="big">€67</span>
+        <span class="old">€97</span>
+      </div>
+
+      <div class="price-meta">
+        <span>Pago único</span>
+        <span>Sin suscripción</span>
+        <span>Acceso instantáneo</span>
+        <span>Garantía de devolución</span>
+      </div>
+
+      <a class="cta" href="#" onclick="alert('Aquí va el link a tu pasarela de pago (Stripe / Hotmart / Gumroad / etc.)');return false;">
+        Empiezo hoy
+        <span class="arrow"></span>
+      </a>
+
+      <p class="urgency">
+        Este precio sube a <b>€97</b> cuando termine el lanzamiento. Si te lo estás pensando, este es el momento — el precio nunca volverá a estar tan bajo.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOBRE ALEXANDRA ============ -->
+<section data-screen-label="08 Sobre">
+  <div class="wrap">
+    <div class="section-marker">
+      <span class="num">06</span>
+      <span class="line"></span>
+      <span class="name">Quién te enseña</span>
+    </div>
+
+    <div class="about">
+      <div class="portrait">
+        <div class="ph">Foto de Alexandra<br/>(retrato vertical 3:4)</div>
+      </div>
+      <div class="about-text">
+        <div class="quote">"Este curso es lo que me hubiera gustado tener cuando yo empecé."</div>
+        <p>Soy <em>Alexandra</em>. Asesora financiera y creadora de contenido de educación financiera para mujeres.</p>
+        <p>He ayudado a cientos de mujeres a entender cómo funciona el dinero y a dar su primer paso de inversión — sin que nadie las juzgue por no haberlo hecho antes.</p>
+        <div class="sig">— Alexandra</div>
+        <div class="credentials">Asesora financiera · Educación financiera para mujeres</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section data-screen-label="09 FAQ">
+  <div class="wrap">
+    <div class="section-marker">
+      <span class="num">07</span>
+      <span class="line"></span>
+      <span class="name">Preguntas</span>
+    </div>
+
+    <h2 class="section-title">Lo que <em>siempre</em><br/>me preguntan.</h2>
+
+    <div class="faq" style="margin-top:48px;">
+
+      <details class="q">
+        <summary>¿Necesito saber algo de finanzas para empezar?</summary>
+        <div class="a">No. Este curso está diseñado <em>exactamente</em> para quien empieza desde cero. No asumo que ya sabes nada — empezamos por lo más básico y construimos desde ahí, en 15 minutos al día.</div>
+      </details>
+
+      <details class="q">
+        <summary>¿Cuánto dinero necesito para invertir?</summary>
+        <div class="a">Con <em>50€</em> ya puedes hacer tu primera inversión real. En el día 4 te explico exactamente cómo abrir tu cuenta y dónde meter ese primer dinero — sin mínimos imposibles ni letra pequeña.</div>
+      </details>
+
+      <details class="q">
+        <summary>¿Durante cuánto tiempo tengo acceso?</summary>
+        <div class="a"><em>De por vida.</em> Lo ves a tu ritmo y vuelves cuando quieras — si en seis meses necesitas repasar el día 3, lo tendrás ahí esperándote.</div>
+      </details>
+
+      <details class="q">
+        <summary>¿Es esto una asesoría personalizada?</summary>
+        <div class="a">No — este es un curso con metodología general. Si después quieres un plan adaptado a tu situación específica, tengo una <em>asesoría 1:1</em> para eso.</div>
+      </details>
+
+      <details class="q">
+        <summary>¿Qué pasa si no me sirve?</summary>
+        <div class="a">Si después del primer vídeo sientes que no es lo que esperabas, <em>escríbeme y te devuelvo el dinero</em>. Sin preguntas, sin trámites raros.</div>
+      </details>
+
+      <details class="q">
+        <summary>¿Cómo recibo el curso después de pagar?</summary>
+        <div class="a">Recibes un email automático con tus accesos en menos de un minuto desde que se confirma el pago. Si por lo que sea tarda, me escribes y lo solucionamos al momento.</div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section data-screen-label="10 CTA Final">
+  <div class="wrap" style="margin-top:96px;margin-bottom:40px;">
+    <h2 class="section-title" style="text-align:center;">
+      Tu dinero<br/>ya está esperando a<br/>que <em>empieces.</em>
+    </h2>
+    <div style="display:flex;justify-content:center;margin-top:48px;">
+      <a class="cta" href="#comprar">
+        Empiezo hoy por €67
+        <span class="arrow"></span>
+      </a>
+    </div>
+    <p style="text-align:center;margin-top:18px;font-family:var(--heavy);font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mute);">
+      Pago seguro · Acceso instantáneo · Sin permanencia
+    </p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wide">
+    <div class="foot-inner">
+      <div>
+        <div class="foot-brand">Alexandra<span class="dot">.</span></div>
+        <div style="font-family:var(--heavy);font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--palm);margin-top:10px;">Educación financiera para mujeres</div>
+      </div>
+      <div class="foot-meta">
+        © 2026 Alexandra · Todos los derechos reservados<br/>
+        Aviso legal · Política de privacidad · Términos
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ STICKY MOBILE CTA ============ -->
+<div class="sticky-cta">
+  <div class="sp">
+    <span class="p">€67</span>
+    <span class="l">Precio lanzamiento</span>
+  </div>
+  <a href="#comprar">Empiezo hoy <span class="ar"></span></a>
+</div>
+
+</body>
+</html>
