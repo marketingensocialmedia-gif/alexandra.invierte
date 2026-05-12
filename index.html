@@ -275,6 +275,21 @@
   .offer .price-note { font-size: 12px; opacity: 0.7; }
   .offer .pay {
     display: flex; align-items: center; justify-content: center; gap: 8px;
+      .offer .price-note { font-size: 12px; opacity: 0.7; }   ← esta ya existe, no la toques
+  .offer .scarcity {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    opacity: 0.75;
+    margin: 0.5rem 0 0;
+  }
+  .offer .guarantee {
+    font-size: 0.78rem;
+    opacity: 0.65;
+    margin-top: 0.75rem;
+    font-style: italic;
+  }
     background: var(--cream); color: var(--olive-deep);
     padding: 15px 18px;
     font-family: "Bricolage Grotesque", system-ui, sans-serif;
@@ -698,47 +713,53 @@
       <span class="it">Tú eliges.</span>
     </h2>
 
-    <div class="offers-grid">
-    <div class="offer olive">
-      <span class="bignum">01</span>
-      <span class="tag">Asesoría 1:1</span>
-      <h3>Tu plan financiero</h3>
-      <p class="sub">Para ordenar tu vida financiera, ahorrar bien y empezar a invertir.</p>
-      <div class="sessions"><span class="line"></span>4 sesiones · 40 min · zoom</div>
-      <ul>
-        <li><span class="plus">+</span>Tú perfil financiero y de riesgo</li>
-        <li><span class="plus">+</span>Retornos y expectativas</li>
-        <li><span class="plus">+</span>Diversificación</li>
-        <li><span class="plus">+</span>Productos financieros y estrategía</li>
-        <li><span class="plus">+</span>Factores macroeconomicos</li>
-        <li><span class="plus">+</span>Estructura del mercado</li>
-        <li><span class="plus">+</span>WhatsApp directo · 30 días</li>
-      </ul>
-      <div class="price-row">
-        <span class="price">€397</span>
-        <span class="price-note">paquete · sin recurrencia</span>
-      </div>
-      <a href="https://buy.stripe.com/3cIdRa6KT0LD5Wd4J22880d" class="pay">Pagar con Stripe →</a>
-    </div>
-
+   <div class="offers-grid">
     <div class="offer wine">
-      <span class="bignum">02</span>
-      <span class="tag">Coaching trading</span>
-      <h3>Swing trading desde cero</h3>
-      <p class="sub">Aprende a operar acciones con sistema, no con suerte.</p>
-      <div class="sessions"><span class="line"></span>5 sesiones · 60 min · zoom</div>
+      <span class="bignum">01</span>
+      <span class="tag">Coaching Trading</span>
+      <h3>Swing Trading Desde Cero</h3>
+      <p class="sub">Aprende a operar acciones con sistema, no con suerte. En 5 sesiones, pasas de no saber nada a tener una metodología real y repetible.</p>
+      <div class="sessions"><span class="line"></span>5 sesiones · 75 min · zoom</div>
       <ul>
-        <li><span class="plus">+</span>Análisis técnico desde cero</li>
-        <li><span class="plus">+</span>Cómo elegir acciones para swing</li>
-        <li><span class="plus">+</span>Gestión de riesgo y posición</li>
-        <li><span class="plus">+</span>Análisis financieros desde cero</li>
-        <li><span class="plus">+</span>Cómo calcular la rentabilidad</li>
-        <li><span class="plus">+</span>Cómo evitar los más comúnes del swing trading</li>
-        <li><span class="plus">+</span>WhatsApp directo · 60 días</li>
+        <li><span class="plus">+</span>Análisis técnico aplicado → <em>lees un gráfico y sabes qué está pasando, sin adivinar</em></li>
+        <li><span class="plus">+</span>Cómo seleccionar acciones para swing → <em>nunca más entras "porque lo vi en redes"</em></li>
+        <li><span class="plus">+</span>Gestión de riesgo y tamaño de posición → <em>proteges tu capital antes de buscar ganancias</em></li>
+        <li><span class="plus">+</span>Fundamentos financieros que sí importan → <em>entiendes la empresa detrás del ticker</em></li>
+        <li><span class="plus">+</span>Cómo calcular rentabilidad real → <em>sabes si tu operación vale la pena antes de entrar</em></li>
+        <li><span class="plus">+</span>Los 7 errores más comunes del swing trader principiante → <em>y cómo evitarlos desde el primer día</em></li>
+        <li><span class="plus">+</span>WhatsApp directo 60 días → <em>acompañamiento mientras procesas lo aprendido en el mercado real</em></li>
       </ul>
       <div class="price-row">
         <span class="price">€597</span>
-        <span class="price-note">paquete · sin recurrencia</span>
+        <span class="price-note">paquete único · sin permanencia</span>
+      </div>
+      <p class="scarcity">Solo 3 plazas disponibles este mes.</p>
+      <a href="TU_STRIPE_LINK_AQUÍ" class="pay">→ QUIERO APRENDER A OPERAR</a>
+    </div>
+
+    <div class="offer olive">
+      <span class="bignum">02</span>
+      <span class="tag">Asesoría 1:1</span>
+      <h3>Tu Primer Plan de Inversión — Hecho a Tu Medida</h3>
+      <p class="sub">Deja de aplazar lo que siempre quisiste hacer con tu dinero. En 4 sesiones, saldrás con un plan claro, personalizado y listo para ejecutar.</p>
+      <div class="sessions"><span class="line"></span>4 sesiones · 60 min · zoom</div>
+      <ul>
+        <li><span class="plus">+</span>Analizamos tu situación y perfil de riesgo → <em>sabes exactamente con qué puedes operar sin perder el sueño</em></li>
+        <li><span class="plus">+</span>Definimos retornos realistas → <em>no más expectativas que te decepcionan ni promesas vacías</em></li>
+        <li><span class="plus">+</span>Diseñamos tu estrategia de diversificación → <em>tu dinero trabajando en varios frentes, no todo en un solo lugar</em></li>
+        <li><span class="plus">+</span>Exploramos los productos que realmente te convienen → <em>sin productos que solo benefician al banco</em></li>
+        <li><span class="plus">+</span>Entiendes el mercado y el contexto macro → <em>tomas decisiones con criterio, no con miedo</em></li>
+        <li><span class="plus">+</span>WhatsApp directo 30 días → <em>no estás sola cuando tengas dudas después</em></li>
+      </ul>
+      <div class="price-row">
+        <span class="price">€397</span>
+        <span class="price-note">paquete único · sin permanencia</span>
+      </div>
+      <p class="scarcity">Solo 3 plazas disponibles este mes.</p>
+      <a href="https://buy.stripe.com/3cIdRa6KT0LD5Wd4J22880d" class="pay">→ EMPIEZO MI PLAN AHORA</a>
+      <p class="guarantee">Si en la primera sesión sientes que no es para ti, te devuelvo el dinero.</p>
+    </div>
+    </div>
       </div>
       <a href="https://buy.stripe.com/9B6cN66KTfGx4S9fnG2880c" class="pay">Pagar con Stripe →</a>
     </div>
