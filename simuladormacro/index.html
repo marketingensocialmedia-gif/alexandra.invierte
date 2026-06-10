@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulador Macro 2026–2029 — Ve los 3 futuros de tu dinero · Latinas en Wall Street</title>
+<meta name="description" content="Un simulador interactivo que te muestra, en palabras simples, cómo le iría a tu dinero en los 3 caminos posibles de la economía global 2026–2029. Sin jerga. Sin adivinar.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M30 16 V84' stroke='%23d8b367' stroke-width='6' stroke-linecap='round' fill='none'/%3E%3Cpath d='M30 84 H88' stroke='%23d8b367' stroke-width='6' stroke-linecap='round' fill='none'/%3E%3Cpolyline points='32,73 46,63 58,51 70,45 85,25' stroke='%23f3d496' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Ccircle cx='85' cy='25' r='5' fill='%23f3d496'/%3E%3C/svg%3E">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root{
+  --bg-deep:#0e0b07; --bg:#14110c; --surface:#1a1610; --surface-hi:#221c13;
+  --gold:#d8b367; --gold-bright:#f3d496; --gold-deep:#a8843f;
+  --text:#f3ece0; --muted:#7f7664; --faint:#56503f;
+  --line:rgba(216,179,103,.22); --line-soft:rgba(216,179,103,.10);
+  --pos:#9fd08a; --neg:#e07856;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --serif:'Instrument Serif',Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg-deep);color:var(--text);font-family:var(--mono);line-height:1.6}
+
+.wrap{max-width:980px;margin:0 auto;padding:0 20px}
+.eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+.eyebrow::before{content:"// ";color:var(--gold-deep)}
+
+/* ===== Nav ===== */
+nav{display:flex;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--line-soft);background:var(--bg);position:sticky;top:0;z-index:10}
+nav .name{font-family:var(--serif);font-size:17px}
+nav .name em{color:var(--gold-bright)}
+nav .cta-mini{margin-left:auto;font-size:11px;letter-spacing:.1em;color:var(--bg-deep);background:var(--gold);padding:8px 16px;text-decoration:none;font-weight:700;transition:background .2s}
+nav .cta-mini:hover{background:var(--gold-bright)}
+
+/* ===== Hero ===== */
+.hero{padding:72px 0 56px;position:relative;overflow:hidden}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,6vw,62px);line-height:1.04;letter-spacing:-.01em;margin:16px 0 0;max-width:18ch}
+.hero h1 em{font-style:italic;color:var(--gold-bright)}
+.hero .sub{margin:20px 0 0;max-width:54ch;font-size:14px;color:var(--muted);line-height:1.8}
+.hero .sub strong{color:var(--text);font-weight:400}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px;align-items:center}
+.btn{display:inline-block;text-decoration:none;font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.06em;padding:15px 28px;transition:all .2s;cursor:pointer;border:1px solid transparent}
+.btn-gold{background:var(--gold);color:var(--bg-deep)}
+.btn-gold:hover{background:var(--gold-bright)}
+.btn-ghost{background:transparent;color:var(--gold);border-color:var(--gold-deep)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold-bright)}
+.hero .price-hint{font-size:11px;color:var(--faint)}
+.hero-chart{position:absolute;right:-40px;bottom:-10px;width:min(46vw,420px);opacity:.35;pointer-events:none}
+.hero-chart path.line{stroke-dasharray:900;stroke-dashoffset:900;animation:heroDraw 2.2s ease-out .3s forwards}
+.hero-chart circle{opacity:0;animation:heroDot .4s ease-out 2.3s forwards}
+@keyframes heroDraw{to{stroke-dashoffset:0}}
+@keyframes heroDot{to{opacity:1}}
+@media(max-width:760px){.hero-chart{display:none}}
+
+/* ===== Cinta de contexto ===== */
+.context-strip{border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);background:var(--bg);padding:10px 0;overflow:hidden}
+.context-strip .tape{display:flex;width:max-content;animation:tape 26s linear infinite;font-size:11px}
+@keyframes tape{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.context-strip span{padding:0 22px;white-space:nowrap;color:var(--muted)}
+.context-strip .g{color:var(--gold)} .context-strip .b{color:var(--gold-bright)}
+
+/* ===== Secciones ===== */
+section{padding:64px 0}
+.sec-title{font-family:var(--serif);font-weight:400;font-size:clamp(26px,4vw,38px);line-height:1.15;margin:12px 0 0}
+.sec-title em{font-style:italic;color:var(--gold-bright)}
+.sec-sub{margin-top:14px;max-width:60ch;font-size:13px;color:var(--muted);line-height:1.8}
+
+/* Pasos */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:36px}
+@media(max-width:760px){.steps{grid-template-columns:1fr}}
+.step{border:1px solid var(--line-soft);background:var(--surface);padding:24px 20px}
+.step .n{font-size:10px;letter-spacing:.2em;color:var(--gold-deep)}
+.step h3{font-family:var(--serif);font-weight:400;font-size:20px;margin:10px 0 8px;color:var(--gold-bright)}
+.step p{font-size:12px;color:var(--muted);line-height:1.75}
+
+/* Demo embebido (mini-prueba interactiva) */
+.demo{border:1px solid var(--gold);background:var(--bg);padding:0;margin-top:36px}
+.demo-head{padding:10px 16px;border-bottom:1px solid var(--line-soft);font-size:10px;letter-spacing:.22em;color:var(--gold-bright)}
+.demo-head b{color:var(--gold-deep);font-weight:400}
+.demo-body{padding:18px 16px}
+.demo-paths{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+@media(max-width:680px){.demo-paths{grid-template-columns:1fr}}
+.dp{font-family:var(--mono);text-align:left;padding:10px 12px;border:1px solid var(--line-soft);background:var(--surface);color:var(--text);cursor:pointer;font-size:11px;line-height:1.5;transition:all .2s}
+.dp.active{border-color:var(--gold);background:var(--surface-hi)}
+.dp .c{font-size:9px;color:var(--faint);letter-spacing:.1em}
+.dp.active .c{color:var(--gold-bright)}
+.dp .l{display:block;font-weight:700;margin-top:3px}
+.demo-result{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 18px;padding:14px;background:var(--surface);border:1px solid var(--line-soft)}
+.demo-result .k{font-size:10px;letter-spacing:.14em;color:var(--muted)}
+.demo-result .v{font-size:26px;font-weight:700}
+.demo-result .pos{color:var(--pos)} .demo-result .neg{color:var(--neg)}
+.demo-result .note{font-size:10px;color:var(--faint);width:100%}
+.demo-lock{padding:12px 16px;border-top:1px solid var(--line-soft);font-size:11px;color:var(--muted)}
+.demo-lock a{color:var(--gold-bright)}
+
+/* Para quién */
+.fit{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:32px}
+@media(max-width:680px){.fit{grid-template-columns:1fr}}
+.fit-col{border:1px solid var(--line-soft);background:var(--surface);padding:22px 20px}
+.fit-col h4{font-size:11px;letter-spacing:.2em;margin-bottom:14px}
+.fit-col.yes h4{color:var(--pos)} .fit-col.no h4{color:var(--neg)}
+.fit-col ul{list-style:none}
+.fit-col li{font-size:12px;color:var(--muted);line-height:1.7;padding:6px 0;border-bottom:1px solid var(--line-soft)}
+.fit-col li:last-child{border:0}
+.fit-col li::before{content:"→ ";color:var(--gold-deep)}
+
+/* Precio */
+.price-box{border:1px solid var(--gold);background:var(--bg);max-width:520px;margin:36px auto 0;padding:36px 30px;text-align:center}
+.price-box .tag{font-size:10px;letter-spacing:.24em;color:var(--gold-deep)}
+.price-box .amount{font-family:var(--serif);font-size:58px;color:var(--gold-bright);margin:14px 0 2px;line-height:1}
+.price-box .amount small{font-size:18px;color:var(--muted);font-family:var(--mono)}
+.price-box .once{font-size:11px;color:var(--muted);margin-bottom:22px}
+.price-box ul{list-style:none;text-align:left;margin:0 0 26px;font-size:12px;color:var(--muted)}
+.price-box li{padding:7px 0;border-bottom:1px solid var(--line-soft);line-height:1.6}
+.price-box li::before{content:"✓ ";color:var(--gold)}
+.price-box li:last-child{border:0}
+.price-box .guarantee{font-size:10px;color:var(--faint);margin-top:14px}
+
+/* Email capture */
+.capture{border:1px solid var(--line-soft);background:var(--surface);padding:34px 28px;margin-top:0}
+.capture h3{font-family:var(--serif);font-weight:400;font-size:26px}
+.capture h3 em{color:var(--gold-bright);font-style:italic}
+.capture p{font-size:12px;color:var(--muted);margin:10px 0 20px;max-width:55ch;line-height:1.75}
+.capture form{display:flex;flex-wrap:wrap;gap:10px;max-width:520px}
+.capture input[type=email]{flex:1;min-width:220px;background:var(--bg-deep);border:1px solid var(--line);color:var(--text);font-family:var(--mono);font-size:13px;padding:14px 16px;outline:none}
+.capture input[type=email]:focus{border-color:var(--gold)}
+.capture input[type=email]::placeholder{color:var(--faint)}
+.capture .micro{font-size:10px;color:var(--faint);margin-top:10px}
+.capture .ok-msg{display:none;color:var(--pos);font-size:13px;padding:14px 0}
+
+/* FAQ */
+.faq{margin-top:32px;border-top:1px solid var(--line-soft)}
+.faq details{border-bottom:1px solid var(--line-soft);padding:0}
+.faq summary{cursor:pointer;padding:18px 4px;font-size:13px;color:var(--text);list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::after{content:"+";color:var(--gold);font-size:16px}
+.faq details[open] summary::after{content:"–"}
+.faq summary:hover{color:var(--gold-bright)}
+.faq .a{padding:0 4px 20px;font-size:12px;color:var(--muted);line-height:1.8;max-width:65ch}
+
+/* Footer */
+footer{border-top:1px solid var(--line-soft);background:var(--bg);padding:28px 0;margin-top:40px}
+footer .disc{font-size:10px;color:var(--faint);line-height:1.7;max-width:80ch}
+footer .disc b{color:var(--gold-deep);font-weight:400}
+footer .sig{display:flex;align-items:center;gap:8px;margin-top:16px;font-size:9px;letter-spacing:.2em;color:var(--faint)}
+
+@media (prefers-reduced-motion:reduce){
+  .context-strip .tape{animation:none}
+  .hero-chart path.line{animation:none;stroke-dashoffset:0}
+  .hero-chart circle{animation:none;opacity:1}
+}
+.btn:focus-visible,.dp:focus-visible,input:focus-visible{outline:2px solid var(--gold-bright);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<nav>
+  <svg width="26" height="26" viewBox="0 0 100 100" aria-hidden="true"><path d="M30 16 V84" stroke="#d8b367" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M30 84 H88" stroke="#d8b367" stroke-width="5" stroke-linecap="round" fill="none"/><polyline points="32,73 46,63 58,51 70,45 85,25" stroke="#f3d496" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="85" cy="25" r="5" fill="#f3d496"/></svg>
+  <span class="name"><em>Latinas</em> en Wall Street</span>
+  <a class="cta-mini" href="#precio">QUIERO EL SIMULADOR</a>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Simulador Macro 2026–2029 · Herramienta interactiva</div>
+    <h1>Nadie sabe qué viene. <em>Tu dinero no tiene por qué adivinarlo.</em></h1>
+    <p class="sub">La guerra disparó el petróleo. La inflación volvió a subir. Y ni los expertos saben si lo que viene es un boom, más inflación o una recesión. <strong>Este simulador te muestra los 3 caminos posibles de la economía — y cómo le iría a tu dinero en cada uno.</strong> En palabras simples, sin jerga, para empezar de cero.</p>
+    <div class="hero-cta">
+      <a class="btn btn-gold" href="#precio">QUIERO EL SIMULADOR →</a>
+      <a class="btn btn-ghost" href="#demo">Probar la demo gratis</a>
+    </div>
+    <p class="price-hint" style="margin-top:14px">Pago único · Acceso inmediato · Funciona en tu navegador, sin instalar nada</p>
+  </div>
+  <svg class="hero-chart" viewBox="0 0 400 300" aria-hidden="true">
+    <path d="M40 20 V270" stroke="#d8b367" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <path d="M40 270 H380" stroke="#d8b367" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <path class="line" d="M48 240 L100 215 L150 230 L200 170 L250 185 L300 120 L360 55" stroke="#f3d496" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <circle cx="360" cy="55" r="7" fill="#f3d496"/>
+  </svg>
+</header>
+
+<!-- ===== CINTA DE CONTEXTO ===== -->
+<div class="context-strip" aria-hidden="true">
+  <div class="tape" id="tape"></div>
+</div>
+
+<!-- ===== EL PROBLEMA / QUÉ HACE ===== -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Qué hace por ti</div>
+    <h2 class="sec-title">De <em>"no entiendo nada de economía"</em> a verla con tus propios ojos. En 10 minutos.</h2>
+    <p class="sec-sub">No es un curso. No es un PDF de 80 páginas. Es una herramienta interactiva: tocas, exploras, y entiendes. Tres pasos:</p>
+    <div class="steps">
+      <div class="step">
+        <div class="n">PASO 1</div>
+        <h3>Dónde estamos hoy</h3>
+        <p>La economía de junio 2026 explicada como te la contaría una amiga: por qué todo está caro, qué hace la Fed, y por qué hasta los expertos están confundidos.</p>
+      </div>
+      <div class="step">
+        <div class="n">PASO 2</div>
+        <h3>Los 3 caminos posibles</h3>
+        <p>Boom de IA, inflación persistente o recesión global — cada camino con su probabilidad, su historia, y cómo le iría al S&amp;P 500, al Nasdaq, al oro y a los bonos en 3 años.</p>
+      </div>
+      <div class="step">
+        <div class="n">PASO 3</div>
+        <h3>La lección que cambia todo</h3>
+        <p>Una mezcla de ejemplo que sobrevive en los TRES caminos. Vas a entender por fin qué es diversificar — y por qué los profesionales no necesitan adivinar el futuro.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DEMO INTERACTIVA ===== -->
+<section id="demo" style="padding-top:0">
+  <div class="wrap">
+    <div class="demo">
+      <div class="demo-head"><b>// </b>PRUEBA UN PEDACITO · ELIGE UN CAMINO</div>
+      <div class="demo-body">
+        <div class="demo-paths" role="tablist">
+          <button class="dp active" data-k="a"><span class="c">CAMINO A · ~40%</span><span class="l">El conflicto se calma y la IA cumple</span></button>
+          <button class="dp" data-k="b"><span class="c">CAMINO B · ~35%</span><span class="l">La inflación se queda a vivir</span></button>
+          <button class="dp" data-k="c"><span class="c">CAMINO C · ~25%</span><span class="l">El golpe rompe la economía</span></button>
+        </div>
+        <div class="demo-result">
+          <span class="k">LA MEZCLA DIVERSIFICADA DE EJEMPLO RINDE</span>
+          <span class="v" id="demo-v">+34.2%</span>
+          <span class="k">en 3 años (hipotético)</span>
+          <span class="note" id="demo-note">Mientras el Nasdaq vuela +70%, la mezcla captura buena parte — sin apostarlo todo.</span>
+        </div>
+      </div>
+      <div class="demo-lock">🔒 En el simulador completo: el detalle de cada ETF, los gráficos animados, el "por qué" de cada movimiento, y la lección completa de diversificación. <a href="#precio">Desbloquéalo abajo ↓</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PARA QUIÉN ===== -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="eyebrow">Honestidad primero</div>
+    <h2 class="sec-title">¿Es <em>para ti?</em></h2>
+    <div class="fit">
+      <div class="fit-col yes">
+        <h4>SÍ, SI…</h4>
+        <ul>
+          <li>Sientes que la economía te afecta pero nadie te la explicó nunca</li>
+          <li>Quieres entender ANTES de invertir un solo euro o peso</li>
+          <li>Las noticias financieras te suenan a otro idioma</li>
+          <li>Aprendes mejor tocando y viendo que leyendo teoría</li>
+        </ul>
+      </div>
+      <div class="fit-col no">
+        <h4>NO, SI…</h4>
+        <ul>
+          <li>Buscas que alguien te diga exactamente qué comprar (eso es asesoría personalizada — esto es educación)</li>
+          <li>Quieres predicciones garantizadas del futuro (no existen, y quien te las venda, miente)</li>
+          <li>Ya dominas análisis macro y construcción de portafolios</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRECIO ===== -->
+<section id="precio" style="padding-top:0">
+  <div class="wrap">
+    <div class="eyebrow" style="text-align:center">Acceso completo</div>
+    <div class="price-box">
+      <div class="tag">PAGO ÚNICO · TUYO PARA SIEMPRE</div>
+      <div class="amount">17 €<small> / ~19 USD</small></div>
+      <div class="once">Menos que una cena — por entender de una vez cómo se mueve tu dinero</div>
+      <ul>
+        <li>El Simulador Macro 2026–2029 completo, interactivo</li>
+        <li>Los 3 caminos con gráficos animados y el "por qué" de cada activo</li>
+        <li>La lección de diversificación con la mezcla de ejemplo</li>
+        <li>Funciona en tu navegador — celular o computadora, sin instalar nada</li>
+        <li>Actualización gratis cuando salgan los datos del próximo trimestre</li>
+      </ul>
+      <!-- ⚙️ REEMPLAZA el href con tu link de pago de Lemon Squeezy o Gumroad -->
+      <a href="https://latinasenwallstreetsimulador.lemonsqueezy.com/checkout/buy/95bcc79a-fe73-475c-bf9f-b78301b6a1d4" target="_blank" class="tu-clase-de-boton">
+   COMPRAR SIMULADOR MACRO
+</a>
+      <div class="guarantee">Pago seguro · Acceso inmediato tras la compra · Garantía de 7 días: si no entendiste nada nuevo, te devuelvo tu dinero</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EMAIL CAPTURE ===== -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="capture">
+      <h3>¿Todavía no estás <em>segura?</em></h3>
+      <p>Te entiendo — internet está lleno de humo financiero. Déjame tu email y te mando gratis el <strong style="color:var(--text)">Camino A completo</strong> (el más probable según el consenso) para que veas exactamente cómo funciona el simulador antes de decidir. Sin spam, sin presión.</p>
+      <!-- ⚙️ REEMPLAZA TU_FORM_ID con tu ID de Formspree (formspree.io) -->
+      <form id="capture-form" action="https://formspree.io/f/xbdearyr" method="POST">
+        <input type="email" name="email" required placeholder="tu@email.com" aria-label="Tu email">
+        <input type="hidden" name="origen" value="landing-simulador-macro">
+        <button class="btn btn-ghost" type="submit">MÁNDAME LA MUESTRA GRATIS</button>
+      </form>
+      <div class="ok-msg" id="ok-msg">✓ ¡Listo! Revisa tu correo en los próximos minutos (y la carpeta de spam, por si acaso).</div>
+      <div class="micro">Solo te escribiré con la muestra y avisos del simulador. Puedes salirte cuando quieras.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="eyebrow">Preguntas frecuentes</div>
+    <div class="faq">
+      <details>
+        <summary>¿Necesito saber de inversiones para usarlo?</summary>
+        <div class="a">Cero. Está diseñado para empezar de cero: cada concepto se explica en palabras simples, con ejemplos de empresas que ya conoces (Apple, Coca-Cola, Nvidia). Si sabes leer, puedes usarlo.</div>
+      </details>
+      <details>
+        <summary>¿Esto me dice en qué invertir?</summary>
+        <div class="a">No — y eso es bueno. El simulador es educación general: te enseña el MAPA de cómo se mueve la economía y cómo reaccionan los distintos instrumentos. La decisión de qué hacer con TU dinero depende de tu situación personal, y nadie serio te la puede dar en una herramienta de 17 euros. Quien te prometa eso, te está vendiendo humo.</div>
+      </details>
+      <details>
+        <summary>¿Cómo recibo el acceso?</summary>
+        <div class="a">Inmediato: al completar el pago recibes el simulador en tu correo. Lo abres en cualquier navegador — celular, tablet o computadora. No hay que instalar nada ni crear cuentas.</div>
+      </details>
+      <details>
+        <summary>¿Los datos están actualizados?</summary>
+        <div class="a">Sí — el "dónde estamos hoy" usa datos públicos de junio 2026 (FMI, Reserva Federal, inflación de USA). Y cuando salgan los datos del próximo trimestre, recibirás la versión actualizada gratis en tu correo.</div>
+      </details>
+      <details>
+        <summary>¿Sirve si vivo en México / Colombia / España / USA?</summary>
+        <div class="a">Sí. Los conceptos son universales — la inflación, las tasas y la diversificación funcionan igual en todos lados. Además, cada ETF de ejemplo incluye tanto su versión americana como su equivalente europea (UCITS), para que veas las dos caras del mapa.</div>
+      </details>
+      <details>
+        <summary>¿Y si no me sirve?</summary>
+        <div class="a">Garantía simple de 7 días: si lo usaste y no entendiste nada nuevo sobre cómo se mueve tu dinero, me escribes y te devuelvo el pago. Sin formularios eternos ni preguntas incómodas.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="disc"><b>⚠ EDUCACIÓN GENERAL — NO ES CONSEJO FINANCIERO PERSONALIZADO. </b>El Simulador Macro es una herramienta educativa. Los escenarios, probabilidades y rendimientos mostrados son hipotéticos e ilustrativos, basados en patrones históricos típicos — no son predicciones ni recomendaciones de inversión. Los instrumentos mencionados (VOO, QQQ, GLD, IEF y equivalentes UCITS) aparecen como ejemplos de sus categorías. Rendimientos pasados no garantizan resultados futuros. Antes de invertir, considera tu situación personal y, si lo necesitas, consulta con un profesional autorizado.</div>
+    <div class="sig">
+      <svg width="14" height="14" viewBox="0 0 100 100" aria-hidden="true"><path d="M30 16 V84" stroke="#d8b367" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M30 84 H88" stroke="#d8b367" stroke-width="6" stroke-linecap="round" fill="none"/><polyline points="32,73 46,63 58,51 70,45 85,25" stroke="#f3d496" stroke-width="5" fill="none"/><circle cx="85" cy="25" r="5" fill="#f3d496"/></svg>
+      LATINAS EN WALL STREET · COMUNIDAD DE INVERSIÓN · © 2026
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Cinta de contexto */
+const items = [
+  "<span class='b'>INFLACIÓN USA 4.2% ANUAL</span>",
+  "<span class='g'>FED 3.50–3.75% · EN PAUSA</span>",
+  "<span class='g'>PIB GLOBAL 2026E +3.1%</span>",
+  "<span class='b'>PETRÓLEO: SHOCK POR GUERRA</span>",
+  "<span class='g'>3 CAMINOS · 4 ETFs · 1 LECCIÓN</span>",
+  "<span class='g'>EN PALABRAS SIMPLES · SIN JERGA</span>",
+];
+const half = items.map(i=>"<span>"+i+"</span>").join("");
+document.getElementById("tape").innerHTML = half + half;
+
+/* Mini-demo: la mezcla en cada camino */
+const DEMO = {
+  a:{ v:34.2, note:"Mientras el Nasdaq vuela +70%, la mezcla captura buena parte — sin apostarlo todo." },
+  b:{ v:11.8, note:"El oro (+45%) rescata a la mezcla mientras las tech sufren. La inflación no la hunde." },
+  c:{ v:-0.5, note:"Las acciones caen -15% y -25%… y la mezcla queda casi plana. Eso hacen los bonos y el oro." },
+};
+document.querySelectorAll(".dp").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll(".dp").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    const d = DEMO[btn.dataset.k];
+    const v = document.getElementById("demo-v");
+    v.textContent = (d.v>0?"+":"")+d.v.toFixed(1)+"%";
+    v.className = "v "+(d.v>=0?"pos":"neg");
+    document.getElementById("demo-note").textContent = d.note;
+  });
+});
+
+/* Formulario: envío sin salir de la página */
+const form = document.getElementById("capture-form");
+form.addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  const btn = form.querySelector("button");
+  btn.textContent = "ENVIANDO…"; btn.disabled = true;
+  try{
+    const res = await fetch(form.action, { method:"POST", body:new FormData(form), headers:{Accept:"application/json"} });
+    if(res.ok){ form.style.display="none"; document.getElementById("ok-msg").style.display="block"; }
+    else{ btn.textContent="INTENTA DE NUEVO"; btn.disabled=false; }
+  }catch(err){ btn.textContent="INTENTA DE NUEVO"; btn.disabled=false; }
+});
+</script>
+</body>
+</html>
