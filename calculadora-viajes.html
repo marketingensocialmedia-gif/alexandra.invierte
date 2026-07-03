@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Inversión para Viajes ✈️ · Latinas en Wall Street</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M30 16 V84' stroke='%23a8843f' stroke-width='6' stroke-linecap='round' fill='none'/%3E%3Cpath d='M30 84 H88' stroke='%23a8843f' stroke-width='6' stroke-linecap='round' fill='none'/%3E%3Cpolyline points='32,73 46,63 58,51 70,45 85,25' stroke='%23d8b367' stroke-width='5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Ccircle cx='85' cy='25' r='5' fill='%23d8b367'/%3E%3C/svg%3E">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root{
+  /* Base de marca — modo claro del kit */
+  --bg:#f3ece0; --bg-soft:#efe6d6; --card:#fffdf8;
+  --ink:#14110c; --muted:#7f7664; --faint:#b3a98f;
+  --gold:#d8b367; --gold-deep:#a8843f; --gold-bright:#f3d496;
+  --line:rgba(168,132,63,.25); --line-soft:rgba(168,132,63,.12);
+  /* Vibrantes */
+  --teal:#2a9d8f; --teal-soft:#e3f4f2;
+  --coral:#e76f51; --coral-soft:#fdeae4;
+  --purple:#8557c7; --purple-soft:#f0e9fb;
+  --green:#3f9d5a; --green-soft:#e7f5ec;
+  --sky:#3a86ff;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --serif:'Instrument Serif',Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--mono);line-height:1.6;
+  background-image:radial-gradient(circle at 85% 8%, rgba(216,179,103,.18), transparent 40%),radial-gradient(circle at 8% 95%, rgba(42,157,143,.10), transparent 35%)}
+.wrap{max-width:880px;margin:0 auto;padding:0 18px}
+
+/* ===== Header ===== */
+header{padding:22px 0 8px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-name{font-family:var(--serif);font-size:19px}
+.brand-name em{font-style:italic;color:var(--gold-deep)}
+.brand-sub{font-size:9px;letter-spacing:.26em;color:var(--muted)}
+.hero{text-align:center;padding:28px 0 10px}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(30px,5.5vw,48px);line-height:1.08}
+.hero h1 em{font-style:italic;color:var(--gold-deep)}
+.hero p{margin:14px auto 0;max-width:52ch;font-size:13px;color:var(--muted)}
+
+/* ===== Pasos ===== */
+.panel{background:var(--card);border:1px solid var(--line-soft);border-radius:18px;padding:26px 22px;margin-top:22px;box-shadow:0 4px 24px rgba(20,17,12,.05)}
+.step-tag{display:inline-block;font-size:10px;letter-spacing:.2em;color:var(--gold-deep);background:var(--bg-soft);border:1px solid var(--line-soft);border-radius:99px;padding:4px 14px;margin-bottom:14px}
+.q{font-family:var(--serif);font-size:23px;font-weight:400;margin-bottom:16px}
+
+/* Destinos */
+.dest-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:680px){.dest-grid{grid-template-columns:repeat(2,1fr)}}
+.dest{font-family:var(--mono);background:var(--bg-soft);border:2px solid transparent;border-radius:14px;padding:14px 8px;text-align:center;cursor:pointer;transition:all .2s}
+.dest:hover{transform:translateY(-2px)}
+.dest.active{border-color:var(--gold);background:#fff;box-shadow:0 6px 18px rgba(216,179,103,.3)}
+.dest .e{font-size:30px;display:block}
+.dest .n{font-size:11px;font-weight:700;display:block;margin-top:6px}
+
+/* Tiers */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+@media(max-width:680px){.tiers{grid-template-columns:1fr}}
+.tier{font-family:var(--mono);border:2px solid transparent;border-radius:14px;padding:16px 12px;text-align:center;cursor:pointer;transition:all .2s}
+.tier .e{font-size:26px}.tier .n{font-size:12px;font-weight:700;display:block;margin-top:4px}
+.tier .c{font-size:12px;display:block;margin-top:6px;font-weight:700}
+.tier .d{font-size:9px;color:var(--muted);display:block;margin-top:2px}
+.tier[data-t="mochilero"]{background:var(--teal-soft);color:#1c6e64}
+.tier[data-t="vip"]{background:var(--coral-soft);color:#b04a31}
+.tier[data-t="lujo"]{background:var(--purple-soft);color:#5e3f96}
+.tier.active{border-color:currentColor;transform:scale(1.03);box-shadow:0 6px 18px rgba(20,17,12,.12)}
+
+/* Sliders */
+.slider-row{margin-top:8px}
+.slider-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.slider-head .lab{font-size:12px;color:var(--muted)}
+.slider-head .val{font-size:22px;font-weight:700;color:var(--gold-deep)}
+input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:10px;border-radius:99px;background:linear-gradient(90deg,var(--gold) var(--fill,50%),var(--bg-soft) var(--fill,50%));outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:26px;height:26px;border-radius:50%;background:var(--gold-deep);border:3px solid #fff;box-shadow:0 2px 8px rgba(20,17,12,.3)}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--gold-deep);border:3px solid #fff;box-shadow:0 2px 8px rgba(20,17,12,.3)}
+.slider-marks{display:flex;justify-content:space-between;font-size:9px;color:var(--faint);margin-top:4px}
+
+/* Moneda */
+.currency{display:flex;gap:8px;justify-content:center;margin-top:18px}
+.cur{font-family:var(--mono);font-size:12px;font-weight:700;padding:8px 18px;border-radius:99px;border:1.5px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;transition:all .2s}
+.cur.active{background:var(--ink);color:var(--gold-bright);border-color:var(--ink)}
+
+/* ===== Resultado ===== */
+.result-hero{text-align:center;padding:6px 0 18px}
+.verdict{font-size:38px}
+.result-hero h2{font-family:var(--serif);font-weight:400;font-size:clamp(24px,4vw,34px);margin-top:6px}
+.result-hero h2 em{font-style:italic;color:var(--gold-deep)}
+.result-hero .sub{font-size:12px;color:var(--muted);max-width:48ch;margin:10px auto 0}
+.big-numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}
+@media(max-width:680px){.big-numbers{grid-template-columns:1fr}}
+.bignum{border-radius:14px;padding:16px;text-align:center}
+.bignum .k{font-size:10px;letter-spacing:.12em;color:var(--muted)}
+.bignum .v{font-size:24px;font-weight:700;margin-top:4px}
+.bignum.gold{background:var(--bg-soft)} .bignum.gold .v{color:var(--gold-deep)}
+.bignum.green{background:var(--green-soft)} .bignum.green .v{color:var(--green)}
+.bignum.goal{background:var(--teal-soft)} .bignum.goal .v{color:var(--teal)}
+.gift{margin-top:14px;text-align:center;font-size:13px;background:var(--green-soft);border-radius:12px;padding:12px 16px;color:#2c6e41}
+.gift b{font-size:15px}
+.gap-box{margin-top:14px;background:var(--coral-soft);border-radius:12px;padding:14px 16px;font-size:12px;color:#a14228;line-height:1.7}
+.gap-box b{display:block;font-size:13px;margin-bottom:4px}
+
+/* Plan */
+.plan{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+@media(max-width:680px){.plan{grid-template-columns:1fr}}
+.inst{border-radius:14px;padding:16px;border:1px solid var(--line-soft);background:#fff;position:relative;overflow:hidden}
+.inst .pct-badge{position:absolute;top:12px;right:12px;font-size:14px;font-weight:700;padding:3px 10px;border-radius:99px}
+.inst .e{font-size:26px}
+.inst h4{font-size:13px;margin-top:8px}
+.inst .rate{font-size:12px;font-weight:700;margin-top:2px}
+.inst .why{font-size:10.5px;color:var(--muted);margin-top:8px;line-height:1.65}
+.inst .amt{font-size:11px;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);color:var(--ink)}
+.inst[data-c="teal"] .pct-badge{background:var(--teal-soft);color:var(--teal)} .inst[data-c="teal"] .rate{color:var(--teal)}
+.inst[data-c="coral"] .pct-badge{background:var(--coral-soft);color:var(--coral)} .inst[data-c="coral"] .rate{color:var(--coral)}
+.inst[data-c="purple"] .pct-badge{background:var(--purple-soft);color:var(--purple)} .inst[data-c="purple"] .rate{color:var(--purple)}
+.plan-note{font-size:10.5px;color:var(--muted);margin-top:12px;line-height:1.7}
+
+/* Chart */
+.chart-box{margin-top:8px}
+.chart-legend{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:11px;margin-bottom:10px}
+.chart-legend .sw{display:inline-block;width:18px;height:4px;border-radius:2px;margin-right:6px;vertical-align:middle}
+#chart{width:100%;height:auto;display:block}
+#chart .grow{stroke-dasharray:1400;stroke-dashoffset:1400;animation:drawLine 1.6s ease-out forwards}
+#chart .enddot{opacity:0;animation:popDot .3s ease-out 1.5s forwards}
+@keyframes drawLine{to{stroke-dashoffset:0}}
+@keyframes popDot{to{opacity:1}}
+
+footer{margin:34px 0 30px}
+.disc{font-size:9.5px;color:var(--muted);line-height:1.75;background:var(--bg-soft);border-radius:12px;padding:14px 16px}
+.disc b{color:var(--gold-deep);font-weight:400}
+.sig{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:18px;font-size:9px;letter-spacing:.2em;color:var(--faint)}
+@media(prefers-reduced-motion:reduce){#chart .grow{animation:none;stroke-dashoffset:0}#chart .enddot{animation:none;opacity:1}}
+button:focus-visible,input:focus-visible{outline:2px solid var(--gold-deep);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <div class="brand">
+    <svg width="34" height="34" viewBox="0 0 100 100" aria-hidden="true"><path d="M30 16 V84" stroke="#a8843f" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M30 84 H88" stroke="#a8843f" stroke-width="5" stroke-linecap="round" fill="none"/><polyline points="32,73 46,63 58,51 70,45 85,25" stroke="#d8b367" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="85" cy="25" r="5" fill="#d8b367"/></svg>
+    <div>
+      <div class="brand-name"><em>Latinas</em> en Wall Street</div>
+      <div class="brand-sub">CALCULADORA DE INVERSIÓN PARA VIAJES</div>
+    </div>
+  </div>
+  <div class="hero">
+    <h1>Tu próximo viaje, <em>pagado por tu dinero</em> — no solo por tu esfuerzo ✈️</h1>
+    <p>Dime a dónde sueñas ir, cuánto puedes apartar al mes, y te muestro cómo los instrumentos de bajo riesgo hacen que llegues antes — o más lejos. 💛</p>
+  </div>
+  <div class="currency" role="group" aria-label="Moneda">
+    <button class="cur active" data-cur="EUR">€ EUR</button>
+    <button class="cur" data-cur="USD">$ USD</button>
+    <button class="cur" data-cur="MXN">$ MXN</button>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- PASO 1 · DESTINO -->
+  <section class="panel">
+    <span class="step-tag">PASO 1 DE 3</span>
+    <h2 class="q">🌍 ¿A dónde te vas?</h2>
+    <div class="dest-grid" id="dest-grid" role="group" aria-label="Destino"></div>
+    <div class="tiers" id="tiers" role="group" aria-label="Estilo de viaje"></div>
+  </section>
+
+  <!-- PASO 2 y 3 · AHORRO Y PLAZO -->
+  <section class="panel">
+    <span class="step-tag">PASO 2 DE 3</span>
+    <h2 class="q">💰 ¿Cuánto puedes apartar al mes?</h2>
+    <div class="slider-row">
+      <div class="slider-head"><span class="lab">Tu aporte mensual</span><span class="val" id="monthly-val"></span></div>
+      <input type="range" id="monthly" min="0" max="100" value="35" aria-label="Aporte mensual">
+      <div class="slider-marks"><span id="mk-min"></span><span id="mk-max"></span></div>
+    </div>
+    <div style="height:26px"></div>
+    <span class="step-tag">PASO 3 DE 3</span>
+    <h2 class="q">📅 ¿En cuántos meses quieres estar ahí?</h2>
+    <div class="slider-row">
+      <div class="slider-head"><span class="lab">Tu plazo</span><span class="val" id="months-val"></span></div>
+      <input type="range" id="months" min="3" max="36" value="14" aria-label="Meses para el viaje">
+      <div class="slider-marks"><span>3 meses</span><span>36 meses</span></div>
+    </div>
+  </section>
+
+  <!-- RESULTADO -->
+  <section class="panel" id="result-panel">
+    <div class="result-hero">
+      <div class="verdict" id="verdict-emoji">🎉</div>
+      <h2 id="verdict-title"></h2>
+      <p class="sub" id="verdict-sub"></p>
+    </div>
+    <div class="big-numbers">
+      <div class="bignum goal"><div class="k">🎯 META DEL VIAJE</div><div class="v" id="r-goal"></div></div>
+      <div class="bignum gold"><div class="k">💪 TÚ APORTAS</div><div class="v" id="r-saved"></div></div>
+      <div class="bignum green"><div class="k">✨ TU DINERO TRABAJANDO</div><div class="v" id="r-total"></div></div>
+    </div>
+    <div class="gift" id="gift"></div>
+    <div class="gap-box" id="gap-box" style="display:none"></div>
+  </section>
+
+  <!-- PLAN -->
+  <section class="panel">
+    <span class="step-tag">TU PLAN DE BAJO RIESGO</span>
+    <h2 class="q">🧰 Dónde pondría el dinero alguien que sabe</h2>
+    <div class="plan" id="plan"></div>
+    <p class="plan-note" id="plan-note"></p>
+  </section>
+
+  <!-- GRÁFICO -->
+  <section class="panel chart-box">
+    <span class="step-tag">LA DIFERENCIA, EN UNA IMAGEN</span>
+    <h2 class="q">📈 Invertir vs. guardar bajo el colchón</h2>
+    <div class="chart-legend">
+      <span><span class="sw" style="background:#d8b367"></span>Tu dinero invirtiendo (bajo riesgo)</span>
+      <span><span class="sw" style="background:#b3a98f"></span>Ahorro simple (0%)</span>
+      <span><span class="sw" style="background:#2a9d8f"></span>🎯 Tu meta</span>
+    </div>
+    <svg id="chart" viewBox="0 0 800 360" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Gráfico de crecimiento del dinero"></svg>
+  </section>
+
+  <footer>
+    <div class="disc"><b>⚠️ EDUCACIÓN GENERAL — NO ES CONSEJO FINANCIERO PERSONALIZADO. </b>Las tasas mostradas son orientativas (junio 2026) y cambian con el tiempo y según el país y la entidad. Los costos de viaje son estimaciones ilustrativas por persona. Los instrumentos mencionados (cuentas remuneradas, fondos monetarios, Letras del Tesoro, CETES, T-Bills) se presentan como ejemplos de sus categorías de bajo riesgo y corto plazo — verifica condiciones reales antes de decidir. Rendimientos pasados no garantizan resultados futuros. Hecho con 💛 para que entiendas tu dinero.</div>
+    <div class="sig">
+      <svg width="14" height="14" viewBox="0 0 100 100" aria-hidden="true"><path d="M30 16 V84" stroke="#a8843f" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M30 84 H88" stroke="#a8843f" stroke-width="6" stroke-linecap="round" fill="none"/><polyline points="32,73 46,63 58,51 70,45 85,25" stroke="#d8b367" stroke-width="5" fill="none"/><circle cx="85" cy="25" r="5" fill="#d8b367"/></svg>
+      LATINAS EN WALL STREET · COMUNIDAD DE INVERSIÓN
+    </div>
+  </footer>
+</main>
+
+<script>
+/* ============ CONFIG ============ */
+const DESTINOS = [
+  { id:"bali",      e:"🏝️", n:"Bali",        base:1200 },
+  { id:"tailandia", e:"🐘", n:"Tailandia",   base:1300 },
+  { id:"corea",     e:"🇰🇷", n:"Corea del Sur", base:1900 },
+  { id:"japon",     e:"🗾", n:"Japón",       base:2000 },
+  { id:"nyc",       e:"🗽", n:"Nueva York",  base:1500 },
+  { id:"italia",    e:"🍝", n:"Italia",      base:900 },
+  { id:"caribe",    e:"🏖️", n:"Caribe",      base:800 },
+  { id:"patagonia", e:"🏔️", n:"Patagonia",   base:1400 },
+];
+const TIERS = [
+  { id:"mochilero", e:"🎒", n:"Mochilero", mult:1,   d:"Hostales, street food, aventura" },
+  { id:"vip",       e:"✨", n:"VIP",        mult:2.1, d:"Hoteles 4★, experiencias top" },
+  { id:"lujo",      e:"👑", n:"Gran Lujo",  mult:5,   d:"5★, vuelos premium, sin límites" },
+];
+/* Tasas anuales orientativas por moneda (jun 2026) e instrumentos locales */
+const CURRENCIES = {
+  EUR: { sym:"€", fx:1, monthlyMax:1500, monthlyDefault:250,
+    inst:[
+      { id:"cuenta", e:"🏦", n:"Cuenta Remunerada", rate:2.2, c:"teal",   why:"Tu dinero disponible SIEMPRE. Para lo que aportas los últimos meses y el colchón de imprevistos." },
+      { id:"fondo",  e:"💧", n:"Fondo Monetario",   rate:2.6, c:"coral",  why:"Liquidez en 1-2 días con tasa algo mejor. El motor del plan para metas de 6 a 24 meses." },
+      { id:"letras", e:"🏛️", n:"Letras del Tesoro", rate:2.4, c:"purple", why:"Le prestas al Estado español 3-12 meses a tasa fija conocida. Para el dinero que NO tocarás." },
+    ]},
+  USD: { sym:"$", fx:1.08, monthlyMax:1600, monthlyDefault:270,
+    inst:[
+      { id:"cuenta", e:"🏦", n:"High-Yield Savings", rate:4.0, c:"teal",   why:"Tu dinero disponible SIEMPRE. Para lo que aportas los últimos meses y el colchón de imprevistos." },
+      { id:"fondo",  e:"💧", n:"Money Market Fund",  rate:4.5, c:"coral",  why:"Liquidez en 1-2 días con tasa algo mejor. El motor del plan para metas de 6 a 24 meses." },
+      { id:"letras", e:"🏛️", n:"T-Bills (Tesoro USA)", rate:4.2, c:"purple", why:"Le prestas al gobierno de USA 3-12 meses a tasa fija conocida. Para el dinero que NO tocarás." },
+    ]},
+  MXN: { sym:"$", fx:20, monthlyMax:30000, monthlyDefault:5000,
+    inst:[
+      { id:"cuenta", e:"🏦", n:"Cuenta Remunerada", rate:7.0, c:"teal",   why:"Tu dinero disponible SIEMPRE. Para lo que aportas los últimos meses y el colchón de imprevistos." },
+      { id:"fondo",  e:"💧", n:"Fondo de Deuda CP",  rate:8.0, c:"coral",  why:"Liquidez en 1-2 días con tasa algo mejor. El motor del plan para metas de 6 a 24 meses." },
+      { id:"letras", e:"🏛️", n:"CETES",              rate:8.5, c:"purple", why:"Le prestas al gobierno mexicano 28-364 días a tasa fija conocida. Para el dinero que NO tocarás." },
+    ]},
+};
+/* Mezcla por plazo: [cuenta, fondo, letras] */
+function mixByHorizon(m){
+  if(m<=6)  return [0.7,0.3,0];
+  if(m<=12) return [0.4,0.4,0.2];
+  if(m<=24) return [0.25,0.45,0.3];
+  return [0.15,0.45,0.4];
+}
+
+/* ============ ESTADO ============ */
+let state = { dest:"corea", tier:"vip", cur:"EUR", monthly:250, months:14 };
+
+/* ============ HELPERS ============ */
+const $ = id=>document.getElementById(id);
+function fmt(n){
+  const c=CURRENCIES[state.cur];
+  return c.sym+Math.round(n).toLocaleString("es-ES")+(state.cur!=="EUR"?" "+state.cur:"");
+}
+function goalAmount(){
+  const d=DESTINOS.find(x=>x.id===state.dest), t=TIERS.find(x=>x.id===state.tier);
+  return d.base*t.mult*CURRENCIES[state.cur].fx;
+}
+function blendedAnnualRate(){
+  const mix=mixByHorizon(state.months), inst=CURRENCIES[state.cur].inst;
+  return mix.reduce((acc,w,i)=>acc+w*inst[i].rate,0);
+}
+function fvSeries(pmt,annualRate,n){
+  const r=annualRate/100/12, out=[0]; let v=0;
+  for(let i=1;i<=n;i++){ v=v*(1+r)+pmt; out.push(v); }
+  return out;
+}
+function monthsToGoal(pmt,annualRate,goal,cap=240){
+  const r=annualRate/100/12; let v=0;
+  for(let i=1;i<=cap;i++){ v=v*(1+r)+pmt; if(v>=goal) return i; }
+  return null;
+}
+
+/* ============ RENDER CONTROLES ============ */
+function renderDestinos(){
+  $("dest-grid").innerHTML = DESTINOS.map(d=>`
+    <button class="dest${d.id===state.dest?' active':''}" data-d="${d.id}">
+      <span class="e">${d.e}</span><span class="n">${d.n}</span>
+    </button>`).join("");
+  document.querySelectorAll(".dest").forEach(b=>b.onclick=()=>{state.dest=b.dataset.d;renderAll();});
+}
+function renderTiers(){
+  $("tiers").innerHTML = TIERS.map(t=>{
+    const cost=DESTINOS.find(x=>x.id===state.dest).base*t.mult*CURRENCIES[state.cur].fx;
+    return `<button class="tier${t.id===state.tier?' active':''}" data-t="${t.id}">
+      <span class="e">${t.e}</span><span class="n">${t.n}</span>
+      <span class="c">~${fmt(cost)}</span><span class="d">${t.d}</span>
+    </button>`;
+  }).join("");
+  document.querySelectorAll(".tier").forEach(b=>b.onclick=()=>{state.tier=b.dataset.t;renderAll();});
+}
+function renderCurrency(){
+  document.querySelectorAll(".cur").forEach(b=>{
+    b.classList.toggle("active",b.dataset.cur===state.cur);
+    b.onclick=()=>{
+      state.cur=b.dataset.cur;
+      const c=CURRENCIES[state.cur];
+      state.monthly=c.monthlyDefault;
+      renderAll();
+    };
+  });
+}
+function renderSliders(){
+  const c=CURRENCIES[state.cur];
+  const mEl=$("monthly");
+  mEl.max=100;
+  mEl.value=Math.round(state.monthly/c.monthlyMax*100);
+  mEl.style.setProperty("--fill",mEl.value+"%");
+  $("monthly-val").textContent=fmt(state.monthly)+" /mes";
+  $("mk-min").textContent=fmt(0);
+  $("mk-max").textContent=fmt(c.monthlyMax);
+  mEl.oninput=()=>{
+    state.monthly=Math.round((mEl.value/100)*c.monthlyMax/10)*10;
+    mEl.style.setProperty("--fill",mEl.value+"%");
+    $("monthly-val").textContent=fmt(state.monthly)+" /mes";
+    renderResult();
+  };
+  const moEl=$("months");
+  moEl.value=state.months;
+  moEl.style.setProperty("--fill",((state.months-3)/33*100)+"%");
+  $("months-val").textContent=state.months+" meses";
+  moEl.oninput=()=>{
+    state.months=+moEl.value;
+    moEl.style.setProperty("--fill",((state.months-3)/33*100)+"%");
+    $("months-val").textContent=state.months+" meses";
+    renderResult();
+  };
+}
+
+/* ============ RENDER RESULTADO ============ */
+function renderResult(){
+  const goal=goalAmount(), rate=blendedAnnualRate();
+  const invest=fvSeries(state.monthly,rate,state.months);
+  const simple=fvSeries(state.monthly,0,state.months);
+  const final=invest[state.months], saved=simple[state.months];
+  const interest=final-saved;
+  const d=DESTINOS.find(x=>x.id===state.dest), t=TIERS.find(x=>x.id===state.tier);
+
+  $("r-goal").textContent=fmt(goal);
+  $("r-saved").textContent=fmt(saved);
+  $("r-total").textContent=fmt(final);
+  $("gift").innerHTML=`✨ Tu dinero trabajando te regala <b>${fmt(interest)}</b> de interés — ${interest>0?"eso es "+(interest/state.monthly).toFixed(1)+" meses de aporte que NO salen de tu bolsillo 💛":""}`;
+
+  if(final>=goal){
+    const early=monthsToGoal(state.monthly,rate,goal);
+    $("verdict-emoji").textContent="🎉";
+    $("verdict-title").innerHTML=`¡${d.e} ${d.n} ${t.n} <em>es tuyo!</em>`;
+    $("verdict-sub").textContent = early && early<state.months
+      ? `De hecho, llegas a tu meta en el mes ${early} — ${state.months-early} meses ANTES de lo que planeabas. Podrías subir de categoría… o llevarte a alguien. 😉`
+      : `Llegas justo a tiempo, con ${fmt(final-goal)} de margen para los antojos del aeropuerto.`;
+    $("gap-box").style.display="none";
+  } else {
+    const gap=goal-final;
+    const needMonths=monthsToGoal(state.monthly,rate,goal);
+    const r=rate/100/12;
+    const needPmt=goal/(((Math.pow(1+r,state.months)-1)/r));
+    $("verdict-emoji").textContent="🧗‍♀️";
+    $("verdict-title").innerHTML=`Te faltan <em>${fmt(gap)}</em> — pero hay 3 salidas`;
+    $("verdict-sub").textContent="Respira: una meta con plan no es un sueño, es una fecha. Mira tus opciones 👇";
+    $("gap-box").style.display="block";
+    $("gap-box").innerHTML=`<b>🛠️ Elige tu ajuste:</b>
+      1️⃣ Sube tu aporte a <b>${fmt(Math.ceil(needPmt/10)*10)}/mes</b> y llegas en ${state.months} meses ·
+      2️⃣ Mantén tu aporte y viaja en <b>${needMonths?needMonths+" meses":"—"}</b> ·
+      3️⃣ Cambia a ${t.id!=="mochilero"?"🎒 Mochilero":"un destino más cercano"} y la meta baja sola.`;
+  }
+  renderPlan(); renderChart(invest,simple,goal);
+}
+
+function renderPlan(){
+  const mix=mixByHorizon(state.months), inst=CURRENCIES[state.cur].inst;
+  const total=fvSeries(state.monthly,blendedAnnualRate(),state.months)[state.months];
+  $("plan").innerHTML=inst.map((it,i)=>{
+    if(mix[i]===0) return "";
+    return `<div class="inst" data-c="${it.c}">
+      <span class="pct-badge">${Math.round(mix[i]*100)}%</span>
+      <span class="e">${it.e}</span>
+      <h4>${it.n}</h4>
+      <div class="rate">~${it.rate}% anual*</div>
+      <div class="why">${it.why}</div>
+      <div class="amt">≈ ${fmt(total*mix[i])} de tu meta viviría aquí</div>
+    </div>`;
+  }).join("");
+  const labels={EUR:"Letras del Tesoro",USD:"T-Bills",MXN:"CETES"};
+  $("plan-note").innerHTML=`💡 La regla detrás del reparto: cuanto más lejos está tu viaje, más peso a ${labels[state.cur]} y fondos (mejor tasa); cuanto más cerca, más peso a la cuenta (disponibilidad total). Con ${state.months} meses de plazo, este es el equilibrio típico de bajo riesgo. *Tasas orientativas que varían según entidad y momento.`;
+}
+
+/* ============ GRÁFICO ============ */
+function renderChart(invest,simple,goal){
+  const W=800,H=360,padL=70,padR=24,padT=24,padB=44;
+  const n=invest.length-1;
+  const maxY=Math.max(goal,invest[n])*1.12;
+  const x=i=>padL+(i/n)*(W-padL-padR);
+  const y=v=>H-padB-(v/maxY)*(H-padT-padB);
+  const line=(s)=>s.map((v,i)=>(i===0?"M":"L")+x(i).toFixed(1)+","+y(v).toFixed(1)).join(" ");
+  // grid
+  let grid="";
+  for(let g=0;g<=4;g++){
+    const gv=maxY*g/4, gy=y(gv);
+    grid+=`<line x1="${padL}" y1="${gy}" x2="${W-padR}" y2="${gy}" stroke="rgba(168,132,63,.12)" stroke-width="1"/>
+    <text x="${padL-8}" y="${gy+4}" text-anchor="end" font-size="11" fill="#b3a98f" font-family="JetBrains Mono">${fmt(gv).replace(" "+state.cur,"")}</text>`;
+  }
+  // month labels
+  let xlab="";
+  const stepM=n<=12?3:n<=24?6:12;
+  for(let m=0;m<=n;m+=stepM){
+    xlab+=`<text x="${x(m)}" y="${H-padB+20}" text-anchor="middle" font-size="11" fill="#b3a98f" font-family="JetBrains Mono">${m}m</text>`;
+  }
+  // area entre líneas (el "regalo")
+  const area=line(invest)+" L"+x(n).toFixed(1)+","+y(simple[n]).toFixed(1)+" "+simple.slice().reverse().map((v,idx)=>"L"+x(n-idx).toFixed(1)+","+y(v).toFixed(1)).join(" ")+" Z";
+  const gy=y(goal);
+  $("chart").innerHTML=`
+    ${grid}${xlab}
+    <path d="${area}" fill="rgba(63,157,90,.14)"/>
+    <line x1="${padL}" y1="${gy}" x2="${W-padR}" y2="${gy}" stroke="#2a9d8f" stroke-width="2" stroke-dasharray="7 6"/>
+    <text x="${W-padR}" y="${gy-8}" text-anchor="end" font-size="12" fill="#2a9d8f" font-family="JetBrains Mono" font-weight="700">🎯 META ${fmt(goal)}</text>
+    <path d="${line(simple)}" fill="none" stroke="#b3a98f" stroke-width="2.5" stroke-linecap="round"/>
+    <path class="grow" d="${line(invest)}" fill="none" stroke="#d8b367" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle class="enddot" cx="${x(n)}" cy="${y(invest[n])}" r="6" fill="#a8843f" stroke="#fff" stroke-width="2"/>
+  `;
+}
+
+/* ============ INIT ============ */
+function renderAll(){ renderCurrency(); renderDestinos(); renderTiers(); renderSliders(); renderResult(); }
+renderAll();
+</script>
+</body>
+</html>
