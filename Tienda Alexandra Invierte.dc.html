@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;display=swap" rel="stylesheet">
+<meta name="description" content="Alexandra Invierte — herramientas digitales para que las latinas aprendan a invertir en español. Plantillas, guías y retos desde $5.">
+<meta property="og:title" content="Alexandra Invierte — Tienda">
+<meta property="og:description" content="Deja de depender de tu sueldo. Haz que tu dinero trabaje.">
+<style>
+  html,body{margin:0;padding:0;background:#FCFCFB;color:#121212;-webkit-font-smoothing:antialiased}
+  *{box-sizing:border-box}
+  a{color:#121212;text-decoration:none}
+  a:hover{color:#B1122E}
+  input,button,select{font-family:'Newsreader',Georgia,serif}
+  ::selection{background:#B1122E;color:#FCFCFB}
+</style>
+</helmet>
+
+<div style="font-family:'Newsreader',Georgia,serif;background:#FCFCFB;color:#121212;min-height:100vh;overflow-x:hidden">
+
+<sc-if value="{{ showChrome }}" hint-placeholder-val="{{ true }}">
+<header style="position:sticky;top:0;z-index:50;background:#FCFCFB;border-bottom:1px solid #DAD9D6">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:1200px;margin:0 auto;padding:14px 20px">
+    <a href="#/" style="display:block;line-height:1">
+      <span style="font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:26px;letter-spacing:-.01em">Alexandra</span>
+      <span style="display:block;font-size:8px;letter-spacing:.34em;text-transform:uppercase;color:#6A6A6A;margin-top:3px">Invierte</span>
+    </a>
+    <nav style="display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:10px 20px;font-size:10px;letter-spacing:.2em;text-transform:uppercase">
+      <a href="#/tienda">Tienda</a>
+      <a href="#/gratis">Gratis</a>
+      <a href="#/historias">Resultados</a>
+      <a href="#/resenas">Reseñas</a>
+      <a href="#/sobre">Sobre mí</a>
+      <a href="#/carrito" style="display:flex;align-items:center;gap:7px;border:1px solid #DAD9D6;padding:9px 14px">
+        <span>Carrito</span>
+        <span style="font-variant-numeric:tabular-nums;color:#B1122E">{{ cartCount }}</span>
+      </a>
+      <a href="#/kit-inversora" style="background:#121212;color:#FCFCFB;padding:10px 14px" style-hover="background:#B1122E;color:#FCFCFB">El Kit ${{ bundlePrice }}</a>
+    </nav>
+  </div>
+  <sc-if value="{{ menuOpen }}">
+    <div style="border-top:1px solid #DAD9D6;background:#FCFCFB">
+      <div style="display:grid;max-width:1200px;margin:0 auto;padding:8px 20px 20px">
+        <a href="#/tienda" onClick="{{ closeMenu }}" style="padding:14px 0;border-bottom:1px solid #DAD9D6;font-family:'Playfair Display',serif;font-size:26px">Tienda</a>
+        <a href="#/kit-inversora" onClick="{{ closeMenu }}" style="padding:14px 0;border-bottom:1px solid #DAD9D6;font-family:'Playfair Display',serif;font-size:26px;color:#B1122E">El Kit · $7</a>
+        <a href="#/gratis" onClick="{{ closeMenu }}" style="padding:14px 0;border-bottom:1px solid #DAD9D6;font-family:'Playfair Display',serif;font-size:26px">Tutoriales gratis</a>
+        <a href="#/historias" onClick="{{ closeMenu }}" style="padding:14px 0;border-bottom:1px solid #DAD9D6;font-family:'Playfair Display',serif;font-size:26px">Resultados</a>
+        <a href="#/resenas" onClick="{{ closeMenu }}" style="padding:14px 0;border-bottom:1px solid #DAD9D6;font-family:'Playfair Display',serif;font-size:26px">Reseñas</a>
+        <a href="#/sobre" onClick="{{ closeMenu }}" style="padding:14px 0;font-family:'Playfair Display',serif;font-size:26px">Sobre mí</a>
+      </div>
+    </div>
+  </sc-if>
+</header>
+</sc-if>
+
+<!-- ───────────── HOME ───────────── -->
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<main>
+  <section style="max-width:1200px;margin:0 auto;padding:44px 20px 0">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid #121212;padding-bottom:10px;font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:#6A6A6A">
+      <span>Nº 01 — Edición Inversora</span>
+      <span style="color:#B1122E">Latinas en Wall Street</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;padding:38px 0 0;align-items:center">
+      <div>
+        <p style="margin:0 0 20px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#B1122E">// Empieza hoy, no algún día</p>
+        <h1 style="margin:0;font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(46px,9.5vw,104px);line-height:.92;letter-spacing:-.02em;text-wrap:balance">Deja de depender<br>de tu sueldo.<br><em style="font-style:italic;color:#B1122E">Haz que tu dinero<br>trabaje.</em></h1>
+        <p style="margin:26px 0 0;max-width:46ch;font-size:19px;line-height:1.55;color:#121212">Herramientas digitales, en español, para mujeres que empiezan de cero: presupuesto, primera inversión, ETFs y la calma de entender lo que estás haciendo.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin:30px 0 8px">
+          <a href="#/kit-inversora" style="background:#121212;color:#FCFCFB;padding:17px 30px;font-size:11px;letter-spacing:.2em;text-transform:uppercase" style-hover="background:#B1122E;color:#FCFCFB">Desbloquea 7 herramientas por $7</a>
+          <a href="#/gratis" style="border:1px solid #121212;padding:17px 30px;font-size:11px;letter-spacing:.2em;text-transform:uppercase" style-hover="background:#121212;color:#FCFCFB">Guía gratis</a>
+        </div>
+        <p style="margin:14px 0 0;font-size:13px;color:#6A6A6A">Pago único. Acceso inmediato. Contenido educativo — nunca asesoría personalizada.</p>
+      </div>
+      <div style="position:relative;filter:grayscale(1) contrast(1.08);border:1px solid #DAD9D6">
+        <img src="assets/fotos/hero.png" alt="Mujer joven sonriendo" style="display:block;width:100%;height:clamp(320px,52vw,520px);object-fit:cover;object-position:50% 30%">
+      </div>
+    </div>
+  </section>
+
+  <section style="border-top:1px solid #DAD9D6;border-bottom:1px solid #DAD9D6;margin-top:52px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));max-width:1200px;margin:0 auto">
+      <div style="padding:26px 20px;border-right:1px solid #DAD9D6">
+        <p style="margin:0;font-family:'Playfair Display',serif;font-size:34px">+38.000</p>
+        <p style="margin:6px 0 0;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#6A6A6A">Mujeres en la comunidad</p>
+      </div>
+      <div style="padding:26px 20px;border-right:1px solid #DAD9D6">
+        <p style="margin:0;font-family:'Playfair Display',serif;font-size:34px">+2.100</p>
+        <p style="margin:6px 0 0;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#6A6A6A">Herramientas descargadas</p>
+      </div>
+      <div style="padding:26px 20px;border-right:1px solid #DAD9D6">
+        <p style="margin:0;font-family:'Playfair Display',serif;font-size:34px">4,9/5</p>
+        <p style="margin:6px 0 0;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#6A6A6A">Valoración de alumnas</p>
+      </div>
+      <div style="padding:26px 20px">
+        <p style="margin:0;font-family:'Playfair Display',serif;font-size:34px">Desde $5</p>
+        <p style="margin:6px 0 0;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#6A6A6A">Sin suscripciones</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1200px;margin:0 auto;padding:68px 20px 0">
+    <div style="border:1px solid #121212;padding:clamp(24px,4vw,52px);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px">
+      <div>
+        <p style="margin:0 0 16px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#B1122E">// La oferta de la casa</p>
+        <h2 style="margin:0;font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(34px,5.5vw,62px);line-height:1;letter-spacing:-.02em">El Kit de la <em style="font-style:italic">Inversora</em></h2>
+        <p style="margin:20px 0 0;max-width:42ch;font-size:18px;line-height:1.55">Siete herramientas para pasar de "no sé por dónde empezar" a tener tu presupuesto, tu cuenta abierta y tu primer aporte hecho.</p>
+        <div style="display:flex;align-items:baseline;gap:14px;margin:28px 0 0">
+          <span style="font-family:'Playfair Display',serif;font-size:60px;line-height:1">${{ bundlePrice }}</span>
+          <span style="text-decoration:line-through;color:#6A6A6A;font-size:20px">$97</span>
+        </div>
+        <a href="#/kit-inversora" style="display:inline-block;background:#121212;color:#FCFCFB;padding:17px 30px;margin-top:22px;font-size:11px;letter-spacing:.2em;text-transform:uppercase" style-hover="background:#B1122E">Ver el kit completo</a>
+      </div>
+      <ul style="margin:0;padding:0;list-style:none;display:grid;gap:0;align-content:start;border-top:1px solid #DAD9D6">
+        <sc-for list="{{ bundleItems }}" as="b" hint-placeholder-count="7">
+          <li style="display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid #DAD9D6;font-size:16px">
+            <span>{{ b.title }}</span>
+            <span style="color:#6A6A6A;text-decoration:line-through;font-variant-numeric:tabular-nums">{{ b.was }}</span>
+          </li>
+        </sc-for>
+      </ul>
+    </div>
+  </section>
+
+  <section style="max-width:1200px;margin:0 auto;padding:68px 20px 0">
+    <div style="display:flex;align-items:end;justify-content:space-between;gap:20px;border-bottom:1px solid #121212;padding-bottom:14px">
+      <h2 style="margin:0;font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(28px,4.5vw,46px);letter-spacing:-.02em">Lo más <em style="font-style:italic">descargado</em></h2>
+      <a href="#/tienda" style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#B1122E;white-space:nowrap">Ver toda la tienda →</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1px;background:#DAD9D6;border:1px solid #DAD9D6;border-top:0;margin-top:0">
+      <sc-for list="{{ featured }}" as="p" hint-placeholder-count="6">
+        <article style="background:#FCFCFB;padding:20px">
+          <a href="{{ p.href }}" style="display:block">
+            <img src="{{ p.img }}" alt="{{ p.title }}" style="display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border:1px solid #DAD9D6">
+            <h3 style="margin:16px 0 4px;font-family:'Playfair Display',serif;font-weight:400;font-size:22px;line-height:1.15">{{ p.title }}</h3>
+          </a>
+          <p style="margin:0 0 14px;font-size:14px;color:#6A6A6A;line-height:1.45">{{ p.tagline }}</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid #DAD9D6;padding-top:14px">
+            <span style="font-family:'Playfair Display',serif;font-size:24px">{{ p.priceLabel }}</span>
+            <button onClick="{{ p.add }}" style="background:#121212;color:#FCFCFB;border:0;padding:12px 16px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer" style-hover="background:#B1122E">Añadir</button>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="background:#121212;color:#FCFCFB;margin-top:72px">
+    <div style="max-width:1200px;margin:0 auto;padding:clamp(44px,7vw,84px) 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;align-items:center">
+      <div>
+        <p style="margin:0 0 16px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#B1122E">// Carta semanal</p>
+        <h2 style="margin:0;font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(32px,5vw,54px);line-height:1.02;letter-spacing:-.02em">La guía <em style="font-style:italic">Primeros $100</em>, gratis.</h2>
+        <p style="margin:18px 0 0;max-width:44ch;font-size:17px;line-height:1.55;color:#FCFCFB;opacity:.86">Cómo invertir tus primeros cien dólares sin adivinar. Te llega al correo en dos minutos, junto con un 10% de descuento en tu primera compra.</p>
+      </div>
+      <div>
+        <sc-if value="{{ subscribed }}">
+          <p style="margin:0;font-family:'Playfair Display',serif;font-size:28px;line-height:1.2">Listo. Revisa tu correo — la guía va en camino. <em style="font-style:italic;color:#B1122E">Gracias.</em></p>
+        </sc-if>
+        <sc-if value="{{ notSubscribed }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ subscribe }}" style="display:grid;gap:12px">
+            <input type="text" name="nombre" placeholder="Tu nombre" style="background:none;border:0;border-bottom:1px solid rgba(252,252,251,.35);color:#FCFCFB;padding:14px 2px;font-size:17px;outline:none">
+            <input type="email" name="email" required="required" placeholder="Tu correo" style="background:none;border:0;border-bottom:1px solid rgba(252,252,251,.35);color:#FCFCFB;padding:14px 2px;font-size:17px;outline:none">
+            <button type="submit" style="background:#FCFCFB;color:#121212;border:0;padding:17px 24px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;margin-top:8px" style-hover="background:#B1122E;color:#FCFCFB">Quiero la guía gratis</button>
+            <p style="margin:0;font-size:12px;color:rgba(252,252,251,.6)">Sin spam. Te puedes dar de baja en un clic.</p>
+          </form>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1200px;margin:0 auto;padding:72px 20px 0">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:44px;align-items:start">
+      <div style="filter:grayscale(1) contrast(1.05);border:1px solid #DAD9D6">
+        <img src="assets/fotos/alexandra.jpeg" alt="Alexandra" style="display:block;width:100%;height:clamp(300px,42vw,440px);object-fit:cover;object-position:50% 25%">
+      </div>
+      <div>
+        <p style="margin:0 0 16px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#B1122E">// Sobre mí</p>
+        <h2 style="margin:0;font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(30px,4.6vw,50px);line-height:1.02;letter-spacing:-.02em">Aprendí esto <em style="font-style:italic">tarde</em>. Tú no tienes que esperar.</h2>
+        <p style="margin:20px 0 0;font-size:18px;line-height:1.6;max-width:48ch">Soy Alexandra. Crecí sin que nadie en mi casa hablara de dinero, y pasé años pensando que invertir era cosa de hombres con corbata. Hoy leo mercados todos los días y traduzco lo que veo a un español que se entiende.</p>
+        <p style="margin:16px 0 0;font-size:18px;line-height:1.6;max-width:48ch;color:#6A6A6A">No te voy a vender humo, no te voy a prometer rentabilidades y no te voy a hacer sentir tonta. Te voy a dar las herramientas que a mí me habrían ahorrado diez años.</p>
+        <a href="#/sobre" style="display:inline-block;margin-top:24px;border-bottom:1px solid #121212;font-size:11px;letter-spacing:.2em;text-transform:uppercase">Leer mi historia completa</a>
+      </div>
+    </div>
+  </section>
+</main>
+</sc-if>
+
+<!-- ───────────── TIENDA ───────────── -->
+<sc-if value="{{ isShop }}">
+<main style="max-width:1200px;margin:0 auto;padding:44px 20px 0">
+  <p style="margin:0 0 14px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#B1122E">// Catálogo completo</p>
+  <h1 style="margin:0;font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(40px,7vw,80px);line-height:.98;letter-spacing:-.02em">La <em style="font-style:italic">tienda</em></h1>
+  <p style="margin:18px 0 34px;max-width:52ch;font-size:18px;line-height:1.55;color:#6A6A6A">Todo es descarga inmediata, pago único y hecho para principiantes absolutas.</p>
+
+  <div style="display:grid;gap:18px;border-top:1px solid #121212;border-bottom:1px solid #DAD9D6;padding:20px 0 22px">
+    <input type="search" value="{{ query }}" onChange="{{ setQuery }}" placeholder="Buscar: ETFs, presupuesto, impuestos…" style="width:100%;background:none;border:0;border-bottom:1px solid #DAD9D6;padding:12px 2px;font-size:19px;outline:none">
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      <sc-for list="{{ cats }}" as="c" hint-placeholder-count="11">
+        <button onClick="{{ c.pick }}" style="{{ c.style }}">{{ c.name }}</button>
+      </sc-for>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px">
+      <span style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#6A6A6A">Precio máximo</span>
+      <input type="range" min="5" max="27" step="1" value="{{ maxPrice }}" onChange="{{ setMax }}" style="flex:1;min-width:160px;accent-color:#B1122E">
+      <span style="font-family:'Playfair Display',serif;font-size:24px;min-width:56px">{{ maxLabel }}</span>
+    </div>
+  </div>
+  <p style="margin:16px 0 0;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#6A6A6A">{{ resultLabel }}</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1px;background:#DAD9D6;border:1px solid #DAD9D6;margin:18px 0 0">
+    <sc-for list="{{ shopList }}" as="p" hint-placeholder-count="9">
+      <article style="background:#FCFCFB;padding:20px">
+        <a href="{{ p.href }}" style="display:block">
+          <img src="{{ p.img }}" alt="{{ p.title }}" style="display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border:1px solid #DAD9D6">
+          <h3 style="margin:16px 0 4px;font-family:'Playfair Display',serif;font-weight:400;font-size:22px;line-height:1.15">{{ p.title }}</h3>
+        </a>
+        <p style="margin:0 0 14px;font-size:14px;color:#6A6A6A;line-height:1.45">{{ p.tagline }}</p>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid #DAD9D6;padding-top:14px">
+          <span style="font-family:'Playfair Display',serif;font-size:24px">{{ p.priceLabel }}</span>
+          <button onClick="{{ p.add }}" style="background:#121212;color:#FCFCFB;border:0;padding:12px 16px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer" style-hover="background:#B1122E">Añadir</button>
+        </div>
+      </article>
+    </sc-for>
+  </div>
+  <sc-if value="{{ shopEmpty }}">
+    <p style="margin:34px 0;font-family:'Playfair Display',serif;font-size:28px">Nada por aquí. <em style="font-style:italic;color:#B1122E">Prueba otra palabra.</em></p>
+  </sc-if>
+</main>
+</sc-if>
+
+<!-- ───────────── PRODUCTO ───────────── -->
+<sc-if value="{{ isProduct }}">
+<main style="max-width:1200px;margin:0 auto;padding:30px 20px 0">
+  <p style="margin:0 0 26px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#6A6A6A"><a href="#/tienda">Tienda</a> / {{ prod.cat }}</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:48px;align-items:start">
+    <div style="display:grid;gap:12px">
+      <sc-if value="{{ viewIsCover }}" hint-placeholder-val="{{ true }}">
+        <img src="{{ prod.img }}" alt="{{ prod.title }}" style="display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border:1px solid #DAD9D6">
+      </sc-if>
+      <sc-if value="{{ viewIsPanel }}">
+        <div style="border:1px solid #DAD9D6;background:#F4F3F0;aspect-ratio:4/5;padding:clamp(20px,3.4vw,34px);display:flex;flex-direction:column">
+          <p style="margin:0 0 12px;font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:#B1122E">// {{ panel.label }}</p>
+          <h2 style="margin:0 0 20px;font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(22px,3.2vw,34px);line-height:1.06;letter-spacing:-.015em">{{ panel.heading }}</h2>
+          <ul style="margin:0;padding:0;list-style:none;border-top:1px solid #C9C7C2">
+            <sc-for list="{{ panel.rows }}" as="row" hint-placeholder-count="5">
+              <li style="display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid #DAD9D6;font-size:15px;line-height:1.35">
+                <span>{{ row.k }}</span>
+                <span style="color:#6A6A6A;font-variant-numeric:tabular-nums;white-space:nowrap">{{ row.v }}</span>
+              </li>
+            </sc-for>
+          </ul>
+          <p style="margin:auto 0 0;padding-top:18px;font-size:12px;line-height:1.5;color:#6A6A6A">{{ panel.note }}</p>
+        </div>
+      </sc-if>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
+        <sc-for list="{{ thumbs }}" as="t" hint-placeholder-count="4">
+          <button onClick="{{ t.pick }}" style="{{ t.style }}">
+            <sc-if value="{{ t.isImg }}" hint-placeholder-val="{{ true }}">
+              <img src="{{ t.img }}" alt="" style="display:block;width:100%;height:100%;object-fit:cover">
+            </sc-if>
+            <sc-if value="{{ t.notImg }}">
+              <span style="padding:8px">{{ t.label }}</span>
+            </sc-if>
+          </button>
+        </sc-for>
+      </div>
+      <p style="margin:2px 0 0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6A6A6A">Un vistazo al interior</p>
+    </div>
+    <div>
+      <h1 style="margin:0;font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(36px,6vw,64px);line-height:1;letter-spacing:-.02em">{{ prod.title }}</h1>
+      <p style="margin:18px 0 0;font-size:19px;line-height:1.6">{{ prod.desc }}</p>
+      <div style="display:flex;align-items:baseline;gap:14px;margin:28px 0 0">
+        <span style="font-family:'Playfair Display',serif;font-size:52px;line-height:1">{{ prod.priceLabel }}</span>
+        <span style="text-decoration:line-through;color:#6A6A6A;font-size:19px">{{ prod.wasLabel }}</span>
+      </div>
+      <sc-if value="{{ prodHasStripe }}">
+        <a href="{{ prod.stripe }}" style="display:block;text-align:center;background:#121212;color:#FCFCFB;padding:20px;margin:22px 0 10px;font-size:11px;letter-spacing:.2em;text-transform:uppercase" style-hover="background:#B1122E">Comprar ahora · {{ prod.priceLabel }}</a>
+        <button onClick="{{ addProd }}" style="width:100%;background:none;color:#121212;border:1px solid #121212;padding:17px;margin:0 0 10px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer" style-hover="background:#121212;color:#FCFCFB">Añadir al carrito</button>
+      </sc-if>
+      <sc-if value="{{ prodNoStripe }}" hint-placeholder-val="{{ true }}">
+        <button onClick="{{ addProd }}" style="width:100%;background:#121212;color:#FCFCFB;border:0;padding:20px;margin:22px 0 10px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer" style-hover="background:#B1122E">Añadir al carrito</button>
+      </sc-if>
+      <p style="margin:0 0 30px;font-size:13px;color:#6A6A6A">Descarga inmediata (PDF + plantilla editable). Pago único con Stripe.</p>
+
+      <p style="margin:0 0 12px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#B1122E">// Qué incluye</p>
+      <ul style="margin:0;padding:0;list-style:none;border-top:1px solid #DAD9D6">
+        <sc-for list="{{ prod.includes }}" as="i" hint-placeholder-count="5">
+          <li style="display:flex;gap:12px;padding:13px 0;border-bottom:1px solid #DAD9D6;font-size:16px;line-height:1.45"><span style="color:#B1122E">✓</span><span>{{ i }}</span></li>
+        </sc-for>
+      </ul>
+    </div>
+  </div>
+
+  <section style="margin-top:72px">
+    <h2 style="margin:0 0 0;font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(26px,4vw,40px);border-bottom:1px solid #121212;padding-bottom:12px">Lo que dicen las <em style="font-style:italic">alumnas</em></h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:#DAD9D6;border:1px solid #DAD9D6;border-top:0">
+      <sc-for list="{{ prod.reviews }}" as="r" hint-placeholder-count="3">
+        <figure style="background:#FCFCFB;margin:0;padding:24px">
+          <p style="margin:0 0 14px;font-size:10px;letter-spacing:.2em;color:#B1122E">★★★★★</p>
+          <blockquote style="margin:0;font-family:'Playfair Display',serif;font-size:21px;line-height:1.3">{{ r.t }}</blockquote>
+          <figcaption style="margin-top:16px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#6A6A6A">{{ r.n }}</figcaption>
+        </figure>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="margin-top:64px">
+    <h2 style="margin:0;font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(26px,4vw,40px);border-bottom:1px solid #121212;padding-bottom:12px">También te va a servir</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1px;background:#DAD9D6;border:1px solid #DAD9D6;border-top:0">
+      <sc-for list="{{ related }}" as="p" hint-placeholder-count="3">
+        <article style="background:#FCFCFB;padding:20px">
+          <a href="{{ p.href }}"><h3 style="margin:0 0 6px;font-family:'Playfair Display',serif;font-weight:400;font-size:21px;line-height:1.15">{{ p.title }}</h3></a>
+          <p style="margin:0 0 14px;font-size:14px;color:#6A6A6A">{{ p.cat }}</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;border-top:1px solid #DAD9D6;padding-top:12px">
+            <span style="font-family:'Playfair Display',serif;font-size:22px">{{ p.priceLabel }}</span>
+            <button onClick="{{ p.add }}" style="background:none;border:1px solid #121212;padding:10px 14px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer" style-hover="background:#121212;color:#FCFCFB">Añadir</button>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+  </section>
+</main>
+</sc-if>
+
+<!-- ───────────── BUNDLE ───────────── -->
+<sc-if value="{{ isBundle }}">
+<main>
+  <div style="background:#121212;color:#FCFCFB;text-align:center;padding:10px 20px;font-size:10px;letter-spacing:.24em;text-transform:uppercase">{{ scarcityLabel }}</div>
+  <section style="max-width:900px;margin:0 auto;padding:54px 20px 0;text-align:center">
+    <p style="margin:0 0 20px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#B1122E">// Oferta de bienvenida</p>
+    <h1 style="margin:0;font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(42px,9vw,92px);line-height:.94;letter-spacing:-.025em">Desbloquea 7 herramientas por <em style="font-style:italic;color:#B1122E">${{ bundlePrice }}</em></h1>
+    <p style="margin:24px auto 0;max-width:54ch;font-size:19px;line-height:1.55">Todo lo que necesitas para organizar tu dinero y hacer tu primera inversión este mes. Sin suscripción, sin curso de mil dólares, sin jerga.</p>
+    <a href="#/carrito" onClick="{{ addBundle }}" style="display:inline-block;background:#121212;color:#FCFCFB;padding:20px 38px;margin:30px 0 10px;font-size:12px;letter-spacing:.2em;text-transform:uppercase" style-hover="background:#B1122E">Sí, quiero el kit por ${{ bundlePrice }}</a>
+    <p style="margin:8px 0 0;font-size:13px;color:#6A6A6A">Acceso inmediato · Pago único · Garantía de 14 días</p>
+  </section>
+
+  <section style="max-width:900px;margin:0 auto;padding:66px 20px 0">
+    <h2 style="margin:0 0 0;font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(28px,4.5vw,44px);border-bottom:1px solid #121212;padding-bottom:12px">Qué hay <em style="font-style:italic">dentro</em></h2>
+    <ul style="margin:0;padding:0;list-style:none">
+      <sc-for list="{{ bundleItems }}" as="b" hint-placeholder-count="7">
+        <li style="display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:baseline;padding:20px 0;border-bottom:1px solid #DAD9D6">
+          <span style="font-size:10px;letter-spacing:.2em;color:#6A6A6A">{{ b.num }}</span>
+          <div>
+            <p style="margin:0;font-family:'Playfair Display',serif;font-size:26px;line-height:1.1">{{ b.title }}</p>
+            <p style="margin:6px 0 0;font-size:16px;color:#6A6A6A;line-height:1.45">{{ b.tagline }}</p>
+          </div>
+          <span style="color:#6A6A6A;text-decoration:line-through;font-size:18px;font-variant-numeric:tabular-nums">{{ b.was }}</span>
+        </li>
+      </sc-for>
+    </ul>
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:baseline;padding:22px 0">
+      <span style="font-size:11px;letter-spacing:.22em;text-transform:uppercase">Valor normal</span>
+      <span style="font-family:'Playfair Display',serif;font-size:34px;text-decoration:line-through;color:#6A6A6A">$97</span>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:baseline;border-top:1px solid #121212;border-bottom:1px solid #121212;padding:22px 0">
+      <span style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#B1122E">Hoy pagas</span>
+      <span style="font-family:'Playfair Display',serif;font-size:56px;line-height:1">${{ bundlePrice }}</span>
+    </div>
+  </section>
+
+  <section style="max-width:900px;margin:0 auto;padding:60px 20px 0">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:#DAD9D6;border:1px solid #DAD9D6">
+      <sc-for list="{{ bundleQuotes }}" as="r" hint-placeholder-count="3">
+        <figure style="background:#FCFCFB;margin:0;padding:26px">
+          <p style="margin:0 0 14px;font-size:10px;letter-spacing:.2em;color:#B1122E">★★★★★</p>
+          <blockquote style="margin:0;font-family:'Playfair Display',serif;font-size:22px;line-height:1.28">{{ r.t }}</blockquote>
+          <figcaption style="margin-top:16px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#6A6A6A">{{ r.n }}</figcaption>
+        </figure>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="max-width:900px;margin:0 auto;padding:60px 20px 0;text-align:center">
+    <h2 style="margin:0;font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(30px,5vw,52px);line-height:1.02">Siete herramientas.<br><em style="font-style:italic;color:#B1122E">Un café de precio.</em></h2>
+    <a href="#/carrito" onClick="{{ addBundle }}" style="display:inline-block;background:#121212;color:#FCFCFB;padding:20px 38px;margin:28px 0 0;font-size:12px;letter-spacing:.2em;text-transform:uppercase" style-hover="background:#B1122E">Empezar por ${{ bundlePrice }}</a>
+    <p style="margin:26px auto 0;max-width:62ch;font-size:12px;line-height:1.6;color:#6A6A6A">Finalidad educativa. El contenido no constituye recomendación de inversión personalizada. Toda inversión conlleva riesgo de pérdida.</p>
+  </section>
+</main>
+</sc-if>
+
+<!-- ───────────── CARRITO ───────────── -->
+<sc-if value="{{ isCart }}">
+<main style="max-width:900px;margin:0 auto;padding:44px 20px 0">
+  <h1 style="margin:0 0 26px;font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(36px,6vw,64px);letter-spacing:-.02em">Tu <em style="font-style:italic">carrito</em></h1>
+  <sc-if value="{{ cartEmpty }}">
+    <div style="border-top:1px solid #121212;padding:34px 0">
+      <p style="margin:0 0 20px;font-size:19px;color:#6A6A6A">Todavía no has añadido nada.</p>
+      <a href="#/kit-inversora" style="display:inline-block;background:#121212;color:#FCFCFB;padding:17px 30px;font-size:11px;letter-spacing:.2em;text-transform:uppercase">Ver el kit de $7</a>
+    </div>
+  </sc-if>
+  <sc-if value="{{ cartHasItems }}">
+    <ul style="margin:0;padding:0;list-style:none;border-top:1px solid #121212">
+      <sc-for list="{{ lines }}" as="l" hint-placeholder-count="2">
+        <li style="display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;padding:20px 0;border-bottom:1px solid #DAD9D6">
+          <div>
+            <p style="margin:0;font-family:'Playfair Display',serif;font-size:24px;line-height:1.15">{{ l.title }}</p>
+            <p style="margin:6px 0 0;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#6A6A6A">{{ l.meta }}</p>
+          </div>
+          <div style="display:flex;align-items:center;gap:18px">
+            <span style="font-family:'Playfair Display',serif;font-size:24px;font-variant-numeric:tabular-nums">{{ l.total }}</span>
+            <button onClick="{{ l.remove }}" style="background:none;border:1px solid #DAD9D6;padding:9px 12px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#6A6A6A;cursor:pointer" style-hover="border-color:#B1122E;color:#B1122E">Quitar</button>
+          </div>
+        </li>
+      </sc-for>
+    </ul>
+    <div style="display:flex;justify-content:space-between;align-items:baseline;padding:22px 0;border-bottom:1px solid #121212">
+      <span style="font-size:11px;letter-spacing:.22em;text-transform:uppercase">Subtotal</span>
+      <span style="font-family:'Playfair Display',serif;font-size:40px">{{ subtotalLabel }}</span>
+    </div>
+    <a href="{{ cartPayHref }}" style="display:block;text-align:center;background:#121212;color:#FCFCFB;padding:20px;margin:24px 0 10px;font-size:12px;letter-spacing:.2em;text-transform:uppercase" style-hover="background:#B1122E">Ir a pagar</a>
+    <a href="#/tienda" style="display:block;text-align:center;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#6A6A6A;padding:8px">Seguir viendo la tienda</a>
+  </sc-if>
+</main>
+</sc-if>
+
+<!-- ───────────── CHECKOUT ───────────── -->
+<sc-if value="{{ isCheckout }}">
+<main style="max-width:1040px;margin:0 auto;padding:34px 20px 0">
+  <a href="#/" style="display:block;text-align:center;font-family:'Playfair Display',serif;font-style:italic;font-size:26px;margin-bottom:8px">Alexandra</a>
+  <p style="margin:0 0 34px;text-align:center;font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:#6A6A6A">Pago seguro con Stripe</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:44px;align-items:start">
+    <form onSubmit="{{ pay }}" style="display:grid;gap:22px">
+      <div>
+        <p style="margin:0 0 14px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#B1122E">// 1 · Tus datos</p>
+        <input type="email" required="required" placeholder="Correo para recibir los archivos" style="width:100%;background:none;border:0;border-bottom:1px solid #DAD9D6;padding:14px 2px;font-size:18px;outline:none">
+        <input type="text" required="required" placeholder="Nombre y apellido" style="width:100%;background:none;border:0;border-bottom:1px solid #DAD9D6;padding:14px 2px;font-size:18px;outline:none;margin-top:10px">
+      </div>
+      <div>
+        <p style="margin:0 0 14px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#B1122E">// 2 · Tarjeta</p>
+        <input type="text" required="required" placeholder="0000 0000 0000 0000" style="width:100%;background:none;border:0;border-bottom:1px solid #DAD9D6;padding:14px 2px;font-size:18px;outline:none">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:10px">
+          <input type="text" required="required" placeholder="MM / AA" style="width:100%;background:none;border:0;border-bottom:1px solid #DAD9D6;padding:14px 2px;font-size:18px;outline:none">
+          <input type="text" required="required" placeholder="CVC" style="width:100%;background:none;border:0;border-bottom:1px solid #DAD9D6;padding:14px 2px;font-size:18px;outline:none">
+        </div>
+      </div>
+      <div style="border:1px solid #B1122E;padding:22px;display:grid;gap:12px">
+        <p style="margin:0;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#B1122E">// Añade esto por $3 (solo aquí)</p>
+        <label style="display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;cursor:pointer">
+          <input type="checkbox" checked="{{ bump }}" onChange="{{ toggleBump }}" style="width:20px;height:20px;accent-color:#B1122E;margin-top:5px">
+          <span>
+            <span style="display:block;font-family:'Playfair Display',serif;font-size:24px;line-height:1.12">Sí, añade el Diccionario de Wall Street</span>
+            <span style="display:block;margin-top:8px;font-size:15px;line-height:1.5;color:#6A6A6A">180 términos del mercado explicados en una frase cada uno, para que no tengas que volver a googlear a escondidas. <strong style="color:#121212">$3</strong> en vez de $5.</span>
+          </span>
+        </label>
+      </div>
+      <button type="submit" style="background:#121212;color:#FCFCFB;border:0;padding:22px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer" style-hover="background:#B1122E">Pagar {{ totalLabel }}</button>
+      <p style="margin:0;font-size:12px;line-height:1.6;color:#6A6A6A">Al pagar aceptas los <a href="#/legales" style="border-bottom:1px solid #DAD9D6">términos</a> y confirmas que el contenido es educativo. Garantía de 14 días.</p>
+    </form>
+    <aside style="border:1px solid #DAD9D6;padding:26px">
+      <p style="margin:0 0 18px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#6A6A6A">Tu pedido</p>
+      <ul style="margin:0;padding:0;list-style:none;border-top:1px solid #DAD9D6">
+        <sc-for list="{{ lines }}" as="l" hint-placeholder-count="2">
+          <li style="display:flex;justify-content:space-between;gap:14px;padding:13px 0;border-bottom:1px solid #DAD9D6;font-size:16px">
+            <span>{{ l.title }}</span><span style="font-variant-numeric:tabular-nums">{{ l.total }}</span>
+          </li>
+        </sc-for>
+        <sc-if value="{{ bump }}">
+          <li style="display:flex;justify-content:space-between;gap:14px;padding:13px 0;border-bottom:1px solid #DAD9D6;font-size:16px;color:#B1122E">
+            <span>Diccionario de Wall Street</span><span>$3</span>
+          </li>
+        </sc-if>
+      </ul>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;padding-top:18px">
+        <span style="font-size:11px;letter-spacing:.22em;text-transform:uppercase">Total</span>
+        <span style="font-family:'Playfair Display',serif;font-size:38px">{{ totalLabel }}</span>
+      </div>
+      <p style="margin:18px 0 0;font-size:13px;line-height:1.55;color:#6A6A6A">Recibes los archivos por correo al instante y el acceso a la plataforma del curso si compraste el kit.</p>
+    </aside>
+  </div>
+</main>
+</sc-if>
+
+<!-- ───────────── UPSELL ───────────── -->
+<sc-if value="{{ isUpsell }}">
+<main style="max-width:860px;margin:0 auto;padding:44px 20px 0;text-align:center">
+  <p style="margin:0 0 8px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#B1122E">// Pago confirmado — espera, una cosa más</p>
+  <p style="margin:0 0 26px;font-size:14px;color:#6A6A6A">No cierres esta página: tu tarjeta ya está guardada, esto es un solo clic.</p>
+  <h1 style="margin:0;font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(36px,7vw,72px);line-height:.98;letter-spacing:-.02em">Añade la masterclass <em style="font-style:italic">Tu cartera de 3 ETFs</em> por $27</h1>
+  <p style="margin:22px auto 0;max-width:56ch;font-size:19px;line-height:1.55">75 minutos en los que construyo, en pantalla y desde cero, una cartera sencilla de tres ETFs: qué mira una, en qué orden, y cómo se aporta cada mes sin volverse loca. Normalmente $97.</p>
+  <div style="border-top:1px solid #DAD9D6;margin:34px 0 0;padding:26px 0 0;display:grid;gap:12px;text-align:left;max-width:520px;margin-left:auto;margin-right:auto">
+    <p style="margin:0;display:flex;gap:12px;font-size:17px"><span style="color:#B1122E">✓</span>Grabación completa + repaso de 12 minutos</p>
+    <p style="margin:0;display:flex;gap:12px;font-size:17px"><span style="color:#B1122E">✓</span>La hoja de decisión que uso para comparar ETFs</p>
+    <p style="margin:0;display:flex;gap:12px;font-size:17px"><span style="color:#B1122E">✓</span>Calendario de aportes mensuales</p>
+  </div>
+  <button onClick="{{ acceptUpsell }}" style="width:100%;max-width:520px;background:#121212;color:#FCFCFB;border:0;padding:22px;margin:32px 0 12px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer" style-hover="background:#B1122E">Sí, añádela por $27 con un clic</button>
+  <button onClick="{{ declineUpsell }}" style="display:block;margin:0 auto;background:none;border:0;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#6A6A6A;cursor:pointer;padding:10px;text-decoration:underline">No, gracias — ir a mis archivos</button>
+</main>
+</sc-if>
+
+<!-- ───────────── GRACIAS ───────────── -->
+<sc-if value="{{ isThanks }}">
+<main style="max-width:760px;margin:0 auto;padding:54px 20px 0">
+  <p style="margin:0 0 20px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#B1122E">// Compra confirmada</p>
+  <h1 style="margin:0;font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(38px,7vw,76px);line-height:.98;letter-spacing:-.02em">Ya está. <em style="font-style:italic">Bienvenida.</em></h1>
+  <p style="margin:22px 0 0;font-size:19px;line-height:1.6">Te acabo de enviar un correo con tus archivos y tu acceso. Si no aparece en 5 minutos, mira en promociones o spam.</p>
+  <div style="border:1px solid #121212;padding:26px;margin:32px 0 0">
+    <p style="margin:0 0 16px;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#6A6A6A">Tu pedido</p>
+    <ul style="margin:0;padding:0;list-style:none;border-top:1px solid #DAD9D6">
+      <sc-for list="{{ orderLines }}" as="l" hint-placeholder-count="2">
+        <li style="display:flex;justify-content:space-between;gap:14px;padding:13px 0;border-bottom:1px solid #DAD9D6;font-size:17px">
+          <span>{{ l.title }}</span><span style="font-variant-numeric:tabular-nums">{{ l.total }}</span>
+        </li>
+      </sc-for>
+    </ul>
+    <div style="display:flex;justify-content:space-between;align-items:baseline;padding-top:18px">
+      <span style="font-size:11px;letter-spacing:.22em;text-transform:uppercase">Pagado</span>
+      <span style="font-family:'Playfair Display',serif;font-size:36px">{{ orderTotalLabel }}</span>
+    </div>
+  </div>
+  <a href="#/" style="display:block;text-align:center;background:#121212;color:#FCFCFB;padding:20px;margin:26px 0 12px;font-size:12px;letter-spacing:.2em;text-transform:uppercase" style-hover="background:#B1122E">Entrar a la plataforma</a>
+  <p style="margin:0;text-align:center;font-size:13px;color:#6A6A6A">Se abre en la plataforma del curso con el mismo correo de tu compra.</p>
+  <p style="margin:34px 0 0;font-size:12px;line-height:1.6;color:#6A6A6A">Recuerda: todo el material es educativo y no constituye recomendación de inversión personalizada.</p>
+</main>
+</sc-if>
+
+<!-- ───────────── RESEÑAS ───────────── -->
+<sc-if value="{{ isReviews }}">
+<main style="max-width:1200px;margin:0 auto;padding:44px 20px 0">
+  <p style="margin:0 0 14px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#B1122E">// Lo que dicen ellas</p>
+  <h1 style="margin:0;font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(40px,7vw,80px);line-height:.98;letter-spacing:-.02em"><em style="font-style:italic">Reseñas</em></h1>
+  <p style="margin:18px 0 34px;max-width:52ch;font-size:18px;line-height:1.55;color:#6A6A6A">4,9 sobre 5 en 1.480 valoraciones verificadas de compra.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:#DAD9D6;border:1px solid #DAD9D6">
+    <sc-for list="{{ allReviews }}" as="r" hint-placeholder-count="9">
+      <figure style="background:#FCFCFB;margin:0;padding:26px">
+        <p style="margin:0 0 14px;font-size:10px;letter-spacing:.2em;color:#B1122E">★★★★★</p>
+        <blockquote style="margin:0;font-family:'Playfair Display',serif;font-size:22px;line-height:1.28">{{ r.t }}</blockquote>
+        <figcaption style="margin-top:18px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#6A6A6A">{{ r.n }} · {{ r.p }}</figcaption>
+      </figure>
+    </sc-for>
+  </div>
+</main>
+</sc-if>
+
+<!-- ───────────── HISTORIAS ───────────── -->
+<sc-if value="{{ isStories }}">
+<main style="max-width:1000px;margin:0 auto;padding:44px 20px 0">
+  <p style="margin:0 0 14px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#B1122E">// Resultados reales</p>
+  <h1 style="margin:0;font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(40px,7vw,78px);line-height:.98;letter-spacing:-.02em">De "no entiendo nada" a <em style="font-style:italic">su primer aporte</em></h1>
+  <p style="margin:20px 0 40px;max-width:58ch;font-size:18px;line-height:1.6;color:#6A6A6A">Aquí no vas a ver capturas de ganancias. Lo que cambió en estas mujeres fue entender, abrir su cuenta y empezar a aportar con constancia — eso es el resultado.</p>
+  <ul style="margin:0;padding:0;list-style:none;border-top:1px solid #121212">
+    <sc-for list="{{ stories }}" as="s" hint-placeholder-count="5">
+      <li style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px;padding:32px 0;border-bottom:1px solid #DAD9D6">
+        <div>
+          <p style="margin:0;font-family:'Playfair Display',serif;font-size:30px;line-height:1.08">{{ s.n }}</p>
+          <p style="margin:8px 0 0;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#6A6A6A">{{ s.meta }}</p>
+          <p style="margin:18px 0 0;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#B1122E">{{ s.milestone }}</p>
+        </div>
+        <div style="grid-column:span 2">
+          <p style="margin:0;font-size:18px;line-height:1.6">{{ s.t }}</p>
+        </div>
+      </li>
+    </sc-for>
+  </ul>
+  <p style="margin:34px 0 0;font-size:12px;line-height:1.6;color:#6A6A6A;max-width:70ch">Historias compartidas con permiso. Resultados individuales; el material es educativo y no garantiza ningún resultado económico.</p>
+</main>
+</sc-if>
+
+<!-- ───────────── GRATIS ───────────── -->
+<sc-if value="{{ isFree }}">
+<main style="max-width:1100px;margin:0 auto;padding:44px 20px 0">
+  <p style="margin:0 0 14px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#B1122E">// Empieza sin pagar nada</p>
+  <h1 style="margin:0;font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(40px,7vw,80px);line-height:.98;letter-spacing:-.02em">Tutoriales <em style="font-style:italic">gratis</em></h1>
+  <p style="margin:18px 0 36px;max-width:54ch;font-size:18px;line-height:1.55;color:#6A6A6A">Guías cortas para las dudas que me escriben todos los días. Déjame tu correo y te llegan al instante.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1px;background:#DAD9D6;border:1px solid #DAD9D6">
+    <sc-for list="{{ freebies }}" as="f" hint-placeholder-count="6">
+      <article style="background:#FCFCFB;padding:26px;display:grid;gap:10px;align-content:start">
+        <p style="margin:0;font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:#6A6A6A">{{ f.kind }}</p>
+        <h3 style="margin:0;font-family:'Playfair Display',serif;font-weight:400;font-size:25px;line-height:1.12">{{ f.title }}</h3>
+        <p style="margin:0;font-size:15px;line-height:1.5;color:#6A6A6A">{{ f.tagline }}</p>
+        <a href="#/gratis" style="margin-top:6px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#B1122E">Descargar gratis →</a>
+      </article>
+    </sc-for>
+  </div>
+  <div style="background:#121212;color:#FCFCFB;margin-top:44px;padding:clamp(28px,5vw,54px);display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:36px;align-items:center">
+    <div>
+      <h2 style="margin:0;font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(28px,4.5vw,44px);line-height:1.04">Un correo por semana, <em style="font-style:italic;color:#B1122E">cero ruido.</em></h2>
+      <p style="margin:16px 0 0;font-size:17px;line-height:1.55;opacity:.86">Qué pasó en los mercados y qué significa para tu bolsillo, en 3 minutos de lectura.</p>
+    </div>
+    <div>
+      <sc-if value="{{ subscribed }}">
+        <p style="margin:0;font-family:'Playfair Display',serif;font-size:27px">Suscrita. Nos vemos el lunes en tu bandeja.</p>
+      </sc-if>
+      <sc-if value="{{ notSubscribed }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ subscribe }}" style="display:grid;gap:12px">
+          <input type="email" required="required" placeholder="Tu correo" style="background:none;border:0;border-bottom:1px solid rgba(252,252,251,.35);color:#FCFCFB;padding:14px 2px;font-size:17px;outline:none">
+          <button type="submit" style="background:#FCFCFB;color:#121212;border:0;padding:17px 24px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer" style-hover="background:#B1122E;color:#FCFCFB">Suscribirme</button>
+        </form>
+      </sc-if>
+    </div>
+  </div>
+</main>
+</sc-if>
+
+<!-- ───────────── SOBRE ───────────── -->
+<sc-if value="{{ isAbout }}">
+<main style="max-width:1000px;margin:0 auto;padding:44px 20px 0">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:44px;align-items:start">
+    <div style="filter:grayscale(1) contrast(1.05);border:1px solid #DAD9D6">
+      <img src="assets/fotos/alexandra.jpeg" alt="Alexandra" style="display:block;width:100%;height:clamp(320px,48vw,520px);object-fit:cover;object-position:50% 25%">
+    </div>
+    <div>
+      <p style="margin:0 0 14px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#B1122E">// Sobre mí</p>
+      <h1 style="margin:0;font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(34px,5.5vw,60px);line-height:1;letter-spacing:-.02em">Soy Alexandra y <em style="font-style:italic">traduzco</em> Wall Street.</h1>
+      <p style="margin:22px 0 0;font-size:18px;line-height:1.65">Nací en una casa donde el dinero se hablaba en voz baja. Estudié, conseguí un buen sueldo y aun así llegaba justa a fin de mes, porque nadie me había enseñado la parte que importa: qué hacer con lo que ganas.</p>
+      <p style="margin:16px 0 0;font-size:18px;line-height:1.65">Hoy sigo los mercados a diario y trabajo en una empresa que enseña a gente en USA a invertir en swing trading. Mi trabajo es quitarle el misterio: explicar las gráficas de precios de acciones, como manejar en riesgo, pero no necesitas hacer swing trading para empezar a invertir en la bolsa; de hecho es mucho mas redituable invertir en ETFs a largo plazo!</p>
+      <p style="margin:16px 0 0;font-size:18px;line-height:1.65;color:#6A6A6A">Todo lo que vendo aquí cuesta menos que una cena, porque el objetivo no es que te endeudes en un curso: es que empieces.</p>
+      <a href="#/kit-inversora" style="display:inline-block;background:#121212;color:#FCFCFB;padding:17px 30px;margin-top:26px;font-size:11px;letter-spacing:.2em;text-transform:uppercase" style-hover="background:#B1122E">Empieza con el kit de ${{ bundlePrice }}</a>
+    </div>
+  </div>
+</main>
+</sc-if>
+
+<!-- ───────────── LEGALES ───────────── -->
+<sc-if value="{{ isLegal }}">
+<main style="max-width:760px;margin:0 auto;padding:44px 20px 0">
+  <h1 style="margin:0 0 34px;font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(34px,6vw,62px);letter-spacing:-.02em">Legales</h1>
+  <section style="border-top:1px solid #121212;padding:26px 0">
+    <h2 style="margin:0 0 12px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#B1122E">// Aviso de riesgo educativo</h2>
+    <p style="margin:0;font-size:17px;line-height:1.65">Todo el contenido de esta tienda tiene finalidad exclusivamente educativa e informativa. No constituye asesoramiento financiero ni recomendación de inversión personalizada. Toda inversión conlleva riesgo de pérdida del capital y los resultados pasados no garantizan resultados futuros. Antes de invertir, valora tu situación y, si lo necesitas, consulta a un profesional autorizado en tu país.</p>
+  </section>
+  <section style="border-top:1px solid #DAD9D6;padding:26px 0">
+    <h2 style="margin:0 0 12px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#B1122E">// Términos de compra</h2>
+    <p style="margin:0;font-size:17px;line-height:1.65">Los productos son digitales y de descarga inmediata. El pago se procesa mediante Stripe; no almacenamos datos de tarjeta. Ofrecemos garantía de 14 días desde la compra: escribe a hola@alexandrainvierte.com y te devolvemos el importe sin preguntas. La licencia es personal e intransferible; no se permite revender ni compartir los archivos.</p>
+  </section>
+  <section style="border-top:1px solid #DAD9D6;padding:26px 0">
+    <h2 style="margin:0 0 12px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#B1122E">// Privacidad</h2>
+    <p style="margin:0;font-size:17px;line-height:1.65">Usamos tu correo para entregarte lo que compras o descargas y para enviarte contenido educativo; puedes darte de baja en cualquier momento desde el pie de cualquier correo. Gestionamos la lista con MailerLite y medimos el tráfico con analítica y píxeles de publicidad para mostrarte nuestros propios contenidos. No vendemos tus datos. Para ejercer tus derechos de acceso o supresión, escribe a hola@alexandrainvierte.com.</p>
+  </section>
+</main>
+</sc-if>
+
+<sc-if value="{{ showChrome }}" hint-placeholder-val="{{ true }}">
+<footer style="border-top:1px solid #121212;margin-top:clamp(56px,9vw,104px)">
+  <div style="max-width:1200px;margin:0 auto;padding:44px 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:34px">
+    <div>
+      <p style="margin:0;font-family:'Playfair Display',serif;font-style:italic;font-size:30px">Alexandra</p>
+      <p style="margin:6px 0 0;font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:#6A6A6A">Invierte · Latinas en Wall Street</p>
+      <p style="margin:18px 0 0;font-size:15px;line-height:1.55;color:#6A6A6A;max-width:34ch">Herramientas en español para que tu dinero trabaje contigo.</p>
+    </div>
+    <nav style="display:grid;gap:10px;align-content:start;font-size:14px">
+      <p style="margin:0 0 6px;font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:#6A6A6A">Comprar</p>
+      <a href="#/tienda">Tienda</a>
+      <a href="#/kit-inversora">El Kit · ${{ bundlePrice }}</a>
+      <a href="#/gratis">Tutoriales gratis</a>
+    </nav>
+    <nav style="display:grid;gap:10px;align-content:start;font-size:14px">
+      <p style="margin:0 0 6px;font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:#6A6A6A">Confianza</p>
+      <a href="#/resenas">Reseñas</a>
+      <a href="#/historias">Resultados</a>
+      <a href="#/sobre">Sobre mí</a>
+      <a href="#/legales">Legales</a>
+    </nav>
+    <div>
+      <p style="margin:0 0 10px;font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:#6A6A6A">Escríbeme</p>
+      <p style="margin:0;font-size:15px;line-height:1.6">hola@alexandrainvierte.com<br>Instagram · TikTok · @alexandra.invierte</p>
+    </div>
+  </div>
+  <div style="border-top:1px solid #DAD9D6">
+    <p style="max-width:1200px;margin:0 auto;padding:20px;font-size:12px;line-height:1.6;color:#6A6A6A">© 2026 Alexandra Invierte. Contenido educativo; no constituye recomendación de inversión personalizada. Toda inversión conlleva riesgo de pérdida.</p>
+  </div>
+</footer>
+</sc-if>
+
+<sc-if value="{{ popupOpen }}">
+<div style="position:fixed;inset:0;z-index:100;background:rgba(18,18,18,.55);display:flex;align-items:center;justify-content:center;padding:20px">
+  <div style="background:#FCFCFB;border:1px solid #121212;max-width:460px;width:100%;padding:clamp(26px,5vw,40px);position:relative">
+    <button onClick="{{ closePopup }}" style="position:absolute;top:10px;right:12px;background:none;border:0;font-size:24px;line-height:1;color:#6A6A6A;cursor:pointer">+</button>
+    <p style="margin:0 0 14px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#B1122E">// Espera un segundo</p>
+    <h2 style="margin:0;font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(28px,5vw,40px);line-height:1.04">Llévate la guía <em style="font-style:italic">Primeros $100</em> gratis</h2>
+    <p style="margin:14px 0 0;font-size:16px;line-height:1.55;color:#6A6A6A">Y un 10% de descuento en tu primera compra, en el mismo correo.</p>
+    <form onSubmit="{{ subscribe }}" style="display:grid;gap:12px;margin-top:22px">
+      <input type="email" required="required" placeholder="Tu correo" style="background:none;border:0;border-bottom:1px solid #DAD9D6;padding:14px 2px;font-size:18px;outline:none">
+      <button type="submit" style="background:#121212;color:#FCFCFB;border:0;padding:18px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer" style-hover="background:#B1122E">Enviarme la guía</button>
+    </form>
+    <button onClick="{{ closePopup }}" style="display:block;margin:14px auto 0;background:none;border:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6A6A6A;cursor:pointer">No, gracias</button>
+  </div>
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;bundlePrice&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:7,&quot;tsType&quot;:&quot;number&quot;,&quot;min&quot;:5,&quot;max&quot;:27,&quot;unit&quot;:&quot;$&quot;,&quot;section&quot;:&quot;Oferta&quot;},&quot;scarcityLeft&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:87,&quot;tsType&quot;:&quot;number&quot;,&quot;min&quot;:1,&quot;max&quot;:100,&quot;section&quot;:&quot;Oferta&quot;},&quot;showExitPopup&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Captura de email&quot;}}">
+const CATS = ["Todas","Presupuesto","Primera inversión","ETFs","Cripto","Mentalidad","Ahorro","Mercado","Impuestos","Plantillas","Retos"];
+
+const P = [
+  {id:"presupuesto",num:"01",cat:"Presupuesto",price:9,was:24,title:"Presupuesto Consciente",tagline:"La hoja que te dice, sin culpa, a dónde se va tu sueldo.",
+   desc:"Una plantilla de presupuesto pensada para quien nunca ha hecho uno. Anotas lo que entra, lo que sale y la plantilla te muestra cuánto puedes invertir cada mes sin quedarte corta. Sin fórmulas que tengas que tocar.",
+   includes:["Plantilla en Google Sheets y Excel","Versión imprimible para escribir a mano","Vídeo de 14 minutos rellenándola conmigo","Guion para renegociar 3 gastos fijos","Regla 50/30/20 adaptada a sueldos latinos"],
+   reviews:[{n:"Marisol G.",t:"Es la primera vez en mi vida que sé cuánto me sobra."},{n:"Andrea P.",t:"Lo hice un domingo en 40 minutos y ya aparté mi primer aporte."},{n:"Kelly V.",t:"Sencillo de verdad, no como otras plantillas llenas de pestañas."}]},
+  {id:"primera-inversion",num:"02",cat:"Primera inversión",price:12,was:39,title:"Tu Primera Inversión",tagline:"De abrir la cuenta a hacer tu primer aporte, paso a paso.",
+   desc:"La guía que te lleva de la mano desde elegir bróker hasta pulsar comprar por primera vez. Capturas de pantalla reales, explicación de cada campo del formulario y qué hacer si algo te pide un documento raro.",
+   includes:["Guía de 68 páginas con capturas","Comparativa de 6 brókers para LATAM y España","Checklist de documentos para abrir cuenta","Qué mirar antes de tu primera compra","Lista de errores típicos de la primera semana"],
+   reviews:[{n:"Daniela R.",t:"Abrí mi cuenta con la guía abierta al lado. Sin miedo."},{n:"Yamile C.",t:"Me explicó las palabras raras del formulario, que era justo lo que me frenaba."},{n:"Sofía L.",t:"Vale muchísimo más de lo que cuesta."}]},
+  {id:"etfs",num:"03",cat:"ETFs",price:14,was:44,title:"ETFs sin Miedo",tagline:"Qué es un ETF, cómo se lee su ficha y cómo se elige.",
+   desc:"Todo lo que necesitas para entender un ETF sin ser economista: qué hay dentro, qué significan TER, índice o réplica, y cómo comparar dos fondos que parecen iguales pero no lo son.",
+   includes:["Guía de 52 páginas","Diccionario de la ficha de un ETF","Hoja de comparación para 5 fondos","3 ejemplos de carteras ilustrativas","Aviso de riesgo y finalidad educativa"],
+   reviews:[{n:"Paula M.",t:"Entendí en una tarde lo que llevaba un año evitando."},{n:"Rosa E.",t:"La hoja de comparación me ahorró horas de YouTube."},{n:"Nayeli T.",t:"Nada de humo, todo concreto."}]},
+  {id:"cripto",num:"04",cat:"Cripto",price:11,was:34,title:"Cripto con Cabeza",tagline:"Lo que hay que saber antes de poner un solo dólar.",
+   desc:"Una guía sobria sobre criptomonedas: qué es una cadena de bloques, cómo se custodia, qué riesgos reales existen y cómo decidir qué porcentaje tiene sentido para ti — si es que tiene alguno.",
+   includes:["Guía de 40 páginas","Checklist de seguridad de cuentas y claves","Señales de estafa que se repiten siempre","Cómo declarar lo básico","Glosario de 60 términos"],
+   reviews:[{n:"Carmen A.",t:"Por fin alguien que no me promete hacerme rica."},{n:"Lucía B.",t:"Me salvó de meter dinero en algo que era un esquema."},{n:"Fer N.",t:"Claridad total sobre los riesgos."}]},
+  {id:"mentalidad",num:"05",cat:"Mentalidad",price:9,was:27,title:"Mentalidad de Inversora",tagline:"Audio y cuaderno para dejar de sabotear tu dinero.",
+   desc:"Seis audios cortos y un cuaderno de trabajo sobre las creencias que heredamos del dinero: la culpa de gastar, el miedo a perder, la sensación de no merecerlo. Lo que ordena la cabeza antes de ordenar la cuenta.",
+   includes:["6 audios de 9 a 14 minutos","Cuaderno de 28 páginas para escribir","Ejercicio de historia familiar del dinero","Rutina de revisión mensual","Frases para cuando el mercado cae"],
+   reviews:[{n:"Gaby S.",t:"Lloré con el audio 3 y luego abrí mi cuenta."},{n:"Ana Luisa D.",t:"Es la parte que nadie te cuenta."},{n:"Verónica H.",t:"Lo escucho caminando, una y otra vez."}]},
+  {id:"reto-ahorro",num:"06",cat:"Retos",price:7,was:19,title:"Reto 30 Días de Ahorro",tagline:"Una acción pequeña al día durante un mes.",
+   desc:"Treinta tareas de menos de quince minutos que, sumadas, te dejan con un colchón empezado y los gastos fijos revisados. Se hace por WhatsApp o en el calendario imprimible.",
+   includes:["Calendario imprimible de 30 días","30 tareas explicadas en una frase","Registro de ahorro semanal","Recompensas sin gastar dinero","Qué hacer el día 31"],
+   reviews:[{n:"Liz O.",t:"Terminé el reto con 240 dólares que no existían antes."},{n:"Mariana F.",t:"Lo hice con mi hermana, se volvió un juego."},{n:"Tati R.",t:"Cortito y sin sermones."}]},
+  {id:"leer-mercado",num:"07",cat:"Mercado",price:14,was:42,title:"Cómo Leer el Mercado",tagline:"Entender un titular económico en 5 minutos.",
+   desc:"Qué mira una inversora cuando salen las noticias: inflación, tipos de interés, empleo, resultados. Cómo separar el dato del drama y por qué casi nunca hay que hacer nada ese mismo día.",
+   includes:["Guía de 46 páginas","Calendario de los datos que sí importan","Plantilla de diario de mercado","Cómo leer un informe de resultados","Fuentes gratuitas y fiables"],
+   reviews:[{n:"Jimena W.",t:"Ahora entiendo las noticias en lugar de asustarme."},{n:"Noe P.",t:"El calendario está pegado en mi nevera."},{n:"Claudia I.",t:"Muy bien explicado para principiantes."}]},
+  {id:"impuestos",num:"08",cat:"Impuestos",price:17,was:52,title:"Impuestos para Inversoras",tagline:"Qué se declara, cuándo y con qué papeles.",
+   desc:"La parte aburrida, ordenada. Qué genera impuestos al invertir, qué documentos te da el bróker, cómo se organizan las operaciones del año y qué preguntas hacerle a tu contadora para no pagar de más.",
+   includes:["Guía general por país (MX, CO, ES, US)","Plantilla de registro de operaciones","Lista de documentos a pedir al bróker","10 preguntas para tu contadora","Calendario fiscal básico"],
+   reviews:[{n:"Priscila E.",t:"Llegué a mi contadora con todo ordenado por primera vez."},{n:"Adri G.",t:"Me quitó una ansiedad enorme."},{n:"Wendy M.",t:"La plantilla de operaciones es oro."}]},
+  {id:"plantillas-notion",num:"09",cat:"Plantillas",price:19,was:58,title:"Kit de Plantillas Notion",tagline:"Nueve tableros para llevar tu dinero entero.",
+   desc:"El sistema completo en Notion: presupuesto, deudas, fondo de emergencia, seguimiento de aportes, metas y diario de mercado. Se duplica en un clic y funciona en el móvil.",
+   includes:["9 tableros conectados","Panel mensual automático","Seguimiento de aportes por producto","Vídeo de 22 minutos de puesta en marcha","Actualizaciones gratis de por vida"],
+   reviews:[{n:"Bren C.",t:"Dejé cuatro apps por esto."},{n:"Ruth V.",t:"Se duplica y ya está, nada de configurar."},{n:"Isa J.",t:"Lo reviso los domingos con café."}]},
+  {id:"fondo-emergencia",num:"10",cat:"Ahorro",price:9,was:26,title:"Fondo de Emergencia en 90 Días",tagline:"El colchón que va antes de invertir.",
+   desc:"Cuánto necesitas de verdad según tu situación, dónde guardarlo para que no se quede quieto y cómo llegar ahí en tres meses con aportes automáticos.",
+   includes:["Calculadora de tu cifra objetivo","Plan de 12 semanas","Dónde guardarlo: 4 opciones comparadas","Cómo automatizar el aporte","Qué cuenta como emergencia y qué no"],
+   reviews:[{n:"Elena Q.",t:"Ya no uso la tarjeta de crédito para imprevistos."},{n:"Meli A.",t:"La calculadora me dio una cifra realista."},{n:"Sara U.",t:"Simple y efectivo."}]},
+  {id:"diccionario",num:"11",cat:"Mercado",price:5,was:15,title:"Diccionario de Wall Street",tagline:"180 términos, cada uno en una frase.",
+   desc:"El glosario que te evita googlear a escondidas: de acción a volatilidad, cada término explicado en una sola frase clara y con un ejemplo de la vida real.",
+   includes:["180 términos ordenados","Ejemplo cotidiano en cada uno","Versión móvil para consultar rápido","Lista de siglas (ETF, TER, IPO, S&P 500)","Imprimible de bolsillo"],
+   reviews:[{n:"Cinthia N.",t:"Lo tengo abierto cuando veo tus vídeos."},{n:"Male T.",t:"Cinco dólares muy bien gastados."},{n:"Rocío D.",t:"Clarísimo y sin rodeos."}]},
+  {id:"reto-primera-compra",num:"12",cat:"Retos",price:7,was:21,title:"Reto 7 Días: Primera Compra",tagline:"Una semana para dejar de postergarlo.",
+   desc:"Siete días, siete pasos: decidir el bróker, abrir cuenta, verificar identidad, transferir, elegir, comprar, registrar. Con un mensaje diario que te dice exactamente qué hacer hoy.",
+   includes:["7 misiones diarias","Vídeos de 5 minutos por día","Checklist de verificación de cuenta","Registro de tu primera operación","Qué hacer el mes siguiente"],
+   reviews:[{n:"Kari L.",t:"Día 6 y ya tenía mi primera compra hecha."},{n:"Nubia S.",t:"Lo postergué dos años. Esta semana lo hice."},{n:"Eve R.",t:"El formato diario es lo que funciona."}]}
+];
+
+/* ══════════════════════════════════════════════════════════════════════
+   ▓▓▓  AQUÍ VAN TUS LINKS DE STRIPE  ▓▓▓
+   ----------------------------------------------------------------------
+   Cómo obtener cada link (2 minutos por producto):
+     1. stripe.com  →  Productos  →  + Añadir producto
+     2. Pon nombre y precio (pago único)  →  Guardar
+     3. En el producto, "Crear enlace de pago" (Payment Link)
+     4. Copia el link (se ve así: https://buy.stripe.com/xxxxxxxxxxxx)
+     5. Pégalo abajo entre las comillas del producto que corresponda
+   Si dejas un link vacío (""), ese producto usa el carrito de demo.
+   En Stripe, en cada Payment Link, activa:
+     · "Después del pago" → Redirigir a: .../#/gracias
+     · Sube el archivo del producto en "Entrega de producto digital"
+   ══════════════════════════════════════════════════════════════════════ */
+const STRIPE = {
+  "presupuesto":          "",
+  "primera-inversion":    "",
+  "etfs":                 "",
+  "cripto":               "",
+  "mentalidad":           "",
+  "reto-ahorro":          "",
+  "leer-mercado":         "",
+  "impuestos":            "",
+  "plantillas-notion":    "",
+  "fondo-emergencia":     "",
+  "diccionario":          "",
+  "reto-primera-compra":  "",
+  /* ofertas especiales */
+  "kit":                  "",   // El Kit de la Inversora ($7)
+  "cartera-3-etfs":       ""    // Masterclass upsell ($27)
+};
+/* ═════════════════ FIN DE LOS LINKS DE STRIPE ═════════════════ */
+
+/* Galería ilustrativa: 3 vistas del interior de cada producto. */
+const GALLERY = {
+  "presupuesto":[
+    {label:"Vista de la plantilla",heading:"Tu mes, en una pantalla",rows:[{k:"Ingresos netos",v:"2.400"},{k:"Gastos fijos",v:"1.180"},{k:"Gastos variables",v:"640"},{k:"Colchón del mes",v:"200"},{k:"Disponible para invertir",v:"380"}],note:"Cifras de ejemplo. La última fila se calcula sola."},
+    {label:"Vídeo · 14 min",heading:"La relleno contigo, fila por fila",rows:[{k:"01 · De dónde sacar tus números reales",v:"2:10"},{k:"02 · Fijos y variables sin trampas",v:"4:35"},{k:"03 · La fila que decide tu aporte",v:"8:02"},{k:"04 · Qué revisar cada día 1",v:"11:40"}]},
+    {label:"Imprimible",heading:"Guion para renegociar 3 gastos",rows:[{k:"Teléfono y datos",v:"✓"},{k:"Suscripciones dormidas",v:"✓"},{k:"Seguro o comisiones del banco",v:"✓"},{k:"Frases exactas para la llamada",v:"✓"}],note:"Una hoja para escribir a mano."}],
+  "primera-inversion":[
+    {label:"Dentro de la guía",heading:"68 páginas, en orden",rows:[{k:"1 · Antes de abrir nada",v:"pág. 4"},{k:"2 · Elegir bróker",v:"pág. 16"},{k:"3 · Abrir y verificar cuenta",v:"pág. 29"},{k:"4 · Transferir tu dinero",v:"pág. 44"},{k:"5 · Tu primera compra",v:"pág. 55"}]},
+    {label:"Comparativa",heading:"6 brókers, mismas preguntas",rows:[{k:"Comisión por operación",v:"✓"},{k:"Depósito mínimo",v:"✓"},{k:"Países aceptados",v:"✓"},{k:"Retirar dinero: cuántos días",v:"✓"},{k:"Idioma del soporte",v:"✓"}],note:"Comparativa informativa, no una recomendación."},
+    {label:"Checklist",heading:"Lo que te va a pedir el bróker",rows:[{k:"Documento de identidad vigente",v:"✓"},{k:"Comprobante de domicilio",v:"✓"},{k:"Número fiscal de tu país",v:"✓"},{k:"Cuenta bancaria a tu nombre",v:"✓"},{k:"Selfie de verificación",v:"✓"}]}],
+  "etfs":[
+    {label:"Anatomía de un ETF",heading:"Leer una ficha, línea por línea",rows:[{k:"Índice que replica",v:"qué compras"},{k:"TER",v:"lo que cuesta al año"},{k:"Réplica física o sintética",v:"cómo lo hace"},{k:"Divisa y domicilio",v:"por qué importa"},{k:"Patrimonio del fondo",v:"su tamaño"}]},
+    {label:"Hoja de comparación",heading:"Dos fondos que parecen iguales",rows:[{k:"Mismo índice",v:"sí / no"},{k:"Diferencia de TER",v:"0,07 %"},{k:"Reparte o acumula",v:"acumula"},{k:"Volumen diario",v:"alto"},{k:"Veredicto en una línea",v:"—"}],note:"Ejemplo ilustrativo con fines educativos."},
+    {label:"Ejemplos",heading:"3 carteras de ejemplo",rows:[{k:"Muy sencilla · 1 fondo global",v:"100 %"},{k:"Clásica · global + bonos",v:"80 / 20"},{k:"Tres piezas · global, USA, emergentes",v:"60 / 25 / 15"}],note:"Ilustrativas. No son recomendación de inversión."}],
+  "cripto":[
+    {label:"Dentro de la guía",heading:"Lo que se explica antes del dinero",rows:[{k:"Qué es una cadena de bloques",v:"pág. 5"},{k:"Custodia: quién guarda tus llaves",v:"pág. 13"},{k:"Riesgos reales, uno por uno",v:"pág. 21"},{k:"Qué porcentaje tiene sentido",v:"pág. 31"}]},
+    {label:"Checklist de seguridad",heading:"Antes de tu primer dólar",rows:[{k:"Verificación en dos pasos activada",v:"✓"},{k:"Frase de recuperación fuera del móvil",v:"✓"},{k:"Correo exclusivo para la cuenta",v:"✓"},{k:"Retiro de prueba pequeño",v:"✓"}]},
+    {label:"Señales de estafa",heading:"Las cinco que se repiten siempre",rows:[{k:"Rentabilidad fija prometida",v:"⚑"},{k:"Presión por tiempo",v:"⚑"},{k:"Bono por traer amigas",v:"⚑"},{k:"Soporte solo por WhatsApp",v:"⚑"},{k:"No puedes retirar sin \"pagar impuestos\"",v:"⚑"}]}],
+  "mentalidad":[
+    {label:"Los 6 audios",heading:"Para escuchar caminando",rows:[{k:"01 · De dónde viene tu miedo",v:"11 min"},{k:"02 · La culpa de gastar",v:"9 min"},{k:"03 · \"Esto no es para mí\"",v:"14 min"},{k:"04 · Perder no es fracasar",v:"12 min"},{k:"05 · Constancia sin obsesión",v:"10 min"},{k:"06 · Cuando el mercado cae",v:"13 min"}]},
+    {label:"Cuaderno · 28 págs.",heading:"Tu historia familiar del dinero",rows:[{k:"Lo que se decía en tu casa",v:"escribir"},{k:"Tu primer recuerdo de dinero",v:"escribir"},{k:"Lo que repites sin querer",v:"escribir"},{k:"La frase que eliges cambiar",v:"escribir"}]},
+    {label:"Rutina",heading:"Revisión mensual en 20 minutos",rows:[{k:"Qué aporté este mes",v:"✓"},{k:"Qué sentí al hacerlo",v:"✓"},{k:"Un gasto que quiero mirar",v:"✓"},{k:"Una cosa que no voy a tocar",v:"✓"}]}],
+  "reto-ahorro":[
+    {label:"Calendario",heading:"30 días, una tarea al día",rows:[{k:"Semana 1 · Ver la verdad",v:"días 1–7"},{k:"Semana 2 · Cortar fugas",v:"días 8–14"},{k:"Semana 3 · Renegociar",v:"días 15–21"},{k:"Semana 4 · Automatizar",v:"días 22–30"}],note:"Imprimible para pegar en la nevera."},
+    {label:"Ejemplos de tareas",heading:"Ninguna pasa de 15 minutos",rows:[{k:"Día 3 · Cancela una suscripción",v:"8 min"},{k:"Día 9 · Revisa comisiones del banco",v:"12 min"},{k:"Día 17 · Llama al operador",v:"15 min"},{k:"Día 24 · Programa la transferencia",v:"5 min"}]},
+    {label:"Registro",heading:"Lo que llevas guardado",rows:[{k:"Semana 1",v:"48"},{k:"Semana 2",v:"61"},{k:"Semana 3",v:"74"},{k:"Semana 4",v:"57"},{k:"Total del reto",v:"240"}],note:"Ejemplo real de una alumna, con su permiso."}],
+  "leer-mercado":[
+    {label:"Dentro de la guía",heading:"Qué mira una inversora",rows:[{k:"Inflación",v:"pág. 8"},{k:"Tipos de interés",v:"pág. 15"},{k:"Empleo",v:"pág. 22"},{k:"Resultados de empresas",v:"pág. 30"},{k:"Y por qué casi nunca haces nada hoy",v:"pág. 41"}]},
+    {label:"Calendario",heading:"Los datos que sí importan",rows:[{k:"IPC · mensual",v:"a mitad de mes"},{k:"Decisión de tipos",v:"cada 6 semanas"},{k:"Empleo USA",v:"primer viernes"},{k:"Temporada de resultados",v:"4 veces al año"}]},
+    {label:"Plantilla",heading:"Diario de mercado",rows:[{k:"El titular de hoy",v:"—"},{k:"El dato detrás del titular",v:"—"},{k:"Qué cambia para mi cartera",v:"—"},{k:"Qué voy a hacer (casi siempre: nada)",v:"—"}]}],
+  "impuestos":[
+    {label:"Por país",heading:"La misma lógica, cuatro sistemas",rows:[{k:"México",v:"pág. 9"},{k:"Colombia",v:"pág. 21"},{k:"España",v:"pág. 33"},{k:"Estados Unidos",v:"pág. 47"}],note:"Guía general. No sustituye a tu contadora."},
+    {label:"Plantilla",heading:"Registro de operaciones del año",rows:[{k:"Fecha y producto",v:"columna A–B"},{k:"Compra / venta",v:"columna C"},{k:"Importe y comisión",v:"columna D–E"},{k:"Divisa y tipo de cambio",v:"columna F–G"},{k:"Resultado del año",v:"automático"}]},
+    {label:"Conversación",heading:"10 preguntas para tu contadora",rows:[{k:"¿Qué declaro si no he vendido nada?",v:"✓"},{k:"¿Y si el bróker está en otro país?",v:"✓"},{k:"¿Cómo se compensan las pérdidas?",v:"✓"},{k:"¿Qué documentos necesitas de mí?",v:"✓"}]}],
+  "plantillas-notion":[
+    {label:"Los 9 tableros",heading:"Todo conectado, en un sitio",rows:[{k:"Presupuesto mensual",v:"01"},{k:"Deudas",v:"02"},{k:"Fondo de emergencia",v:"03"},{k:"Aportes por producto",v:"04"},{k:"Metas",v:"05"},{k:"Diario de mercado",v:"06"}],note:"Más: suscripciones, cuentas y revisión anual."},
+    {label:"Panel mensual",heading:"Se rellena solo",rows:[{k:"Aportado este mes",v:"380"},{k:"% del ingreso",v:"15,8 %"},{k:"Meses de colchón",v:"3,4"},{k:"Racha de aportes",v:"7 meses"}],note:"Cifras de ejemplo."},
+    {label:"Puesta en marcha",heading:"Vídeo de 22 minutos",rows:[{k:"Duplicar la plantilla",v:"1:20"},{k:"Poner tus números",v:"6:10"},{k:"Usarla desde el móvil",v:"14:05"},{k:"Tu revisión del domingo",v:"18:40"}]}],
+  "fondo-emergencia":[
+    {label:"Calculadora",heading:"Tu cifra, no la de internet",rows:[{k:"Gastos fijos del mes",v:"1.180"},{k:"Meses según tu trabajo",v:"× 4"},{k:"Deducible del seguro",v:"+ 300"},{k:"Tu objetivo",v:"5.020"}],note:"Ejemplo. La hoja calcula con tus datos."},
+    {label:"Plan de 12 semanas",heading:"Cómo llegar sin ahogarte",rows:[{k:"Semanas 1–3 · Base",v:"cuenta aparte"},{k:"Semanas 4–7 · Automático",v:"día de cobro"},{k:"Semanas 8–10 · Extras",v:"ventas y bonos"},{k:"Semanas 11–12 · Blindar",v:"reglas de uso"}]},
+    {label:"Comparación",heading:"Dónde guardarlo",rows:[{k:"Cuenta corriente",v:"acceso hoy"},{k:"Cuenta remunerada",v:"1–2 días"},{k:"Depósito a plazo",v:"atado"},{k:"Fondo monetario",v:"2–3 días"}],note:"Informativo, con fines educativos."}],
+  "diccionario":[
+    {label:"Muestra",heading:"Cada término, una frase",rows:[{k:"Acción",v:"un trozo de empresa"},{k:"ETF",v:"una cesta de muchas"},{k:"TER",v:"la comisión anual"},{k:"Volatilidad",v:"cuánto se mueve"},{k:"Dividendo",v:"tu parte del beneficio"}]},
+    {label:"Siglas",heading:"Las que salen en todas partes",rows:[{k:"S&P 500",v:"✓"},{k:"IPO",v:"✓"},{k:"PER",v:"✓"},{k:"MSCI World",v:"✓"},{k:"FED / BCE",v:"✓"}]},
+    {label:"Imprimible",heading:"Versión de bolsillo",rows:[{k:"4 páginas, dobladas",v:"✓"},{k:"Los 60 términos clave",v:"✓"},{k:"Versión móvil buscable",v:"✓"}],note:"Para tenerlo al lado mientras ves un vídeo."}],
+  "reto-primera-compra":[
+    {label:"Las 7 misiones",heading:"Una decisión por día",rows:[{k:"Día 1 · Elegir bróker",v:"5 min"},{k:"Día 2 · Abrir la cuenta",v:"12 min"},{k:"Día 3 · Verificar identidad",v:"8 min"},{k:"Día 4 · Transferir",v:"6 min"},{k:"Día 5 · Elegir qué comprar",v:"15 min"},{k:"Día 6 · Comprar",v:"4 min"}],note:"Día 7: registrar y respirar."},
+    {label:"Checklist",heading:"Verificación sin sustos",rows:[{k:"Nombre igual que en tu documento",v:"✓"},{k:"Foto sin reflejos",v:"✓"},{k:"Cuenta bancaria a tu nombre",v:"✓"},{k:"Qué hacer si te la rechazan",v:"✓"}]},
+    {label:"Registro",heading:"Tu primera operación",rows:[{k:"Fecha",v:"—"},{k:"Qué compraste",v:"—"},{k:"Importe",v:"—"},{k:"Cómo te sentiste",v:"—"}],note:"Esta última fila importa más de lo que parece."}]
+};
+
+const BUNDLE_IDS = ["presupuesto","primera-inversion","etfs","mentalidad","reto-ahorro","fondo-emergencia","diccionario"];
+const BUMP = {id:"diccionario-bump",title:"Diccionario de Wall Street",price:3};
+const UP = {id:"cartera-3-etfs",title:"Masterclass: Tu cartera de 3 ETFs",price:27};
+
+const REVIEWS = [
+  {n:"Marisol G.",p:"Presupuesto Consciente",t:"Es la primera vez en mi vida que sé cuánto me sobra a fin de mes."},
+  {n:"Daniela R.",p:"Tu Primera Inversión",t:"Abrí mi cuenta con la guía abierta al lado y sin miedo."},
+  {n:"Paula M.",p:"ETFs sin Miedo",t:"Entendí en una tarde lo que llevaba un año evitando."},
+  {n:"Gaby S.",p:"Mentalidad de Inversora",t:"Lloré con el audio tres y al día siguiente abrí mi cuenta."},
+  {n:"Liz O.",p:"Reto 30 Días",t:"Terminé el reto con 240 dólares que antes no existían."},
+  {n:"Priscila E.",p:"Impuestos para Inversoras",t:"Llegué a mi contadora con todo ordenado por primera vez."},
+  {n:"Bren C.",p:"Kit de Plantillas Notion",t:"Dejé de usar cuatro apps distintas. Todo vive en un sitio."},
+  {n:"Carmen A.",p:"Cripto con Cabeza",t:"Por fin alguien que me habla de riesgos y no de hacerme rica."},
+  {n:"Jimena W.",p:"Cómo Leer el Mercado",t:"Ahora entiendo las noticias en lugar de asustarme con ellas."},
+  {n:"Kari L.",p:"Reto 7 Días",t:"Día seis y ya tenía mi primera compra hecha. Seis días."},
+  {n:"Elena Q.",p:"Fondo de Emergencia",t:"Se me rompió el coche y no toqué la tarjeta de crédito."},
+  {n:"Cinthia N.",p:"Diccionario de Wall Street",t:"Lo tengo abierto cada vez que veo un vídeo de mercados."}
+];
+
+const STORIES = [
+  {n:"Marisol, 34 — Monterrey",meta:"Empezó con el kit de $7",milestone:"Cuenta abierta · Aporte mensual activo",t:"Llevaba tres años diciendo que iba a invertir \"cuando entendiera\". Hice el presupuesto un domingo, vi que me sobraban 90 dólares que se iban en cosas que ni recordaba, y con la guía de primera inversión abrí mi cuenta el martes. Hoy aporto lo mismo cada día 5, como si fuera un recibo."},
+  {n:"Rosa, 47 — Bogotá",meta:"Presupuesto + ETFs sin Miedo",milestone:"Entendió su primer ETF · Primer aporte hecho",t:"Mi miedo no era el dinero, era sentirme tonta preguntando. El diccionario y la guía de ETFs me dieron el vocabulario. La primera vez que leí una ficha de fondo completa y entendí cada línea, llamé a mi hija para contárselo."},
+  {n:"Daniela, 29 — Madrid",meta:"Reto 7 Días",milestone:"Cuenta verificada en 6 días",t:"Tenía la app del bróker descargada desde 2023 sin abrir. El reto me daba una sola tarea por día, y eso fue lo que cambió: no tenía que decidir nada, solo hacer lo de hoy. El día seis hice mi primera compra."},
+  {n:"Gaby, 38 — Guayaquil",meta:"Mentalidad de Inversora",milestone:"Dejó de aplazar · Fondo de emergencia completo",t:"Yo ganaba bien y seguía sin ahorrar nada, y no era un problema de matemáticas. Trabajar la parte de las creencias fue lo que desbloqueó el resto. Primero el colchón, ahora ya estoy aportando."},
+  {n:"Priscila, 41 — Ciudad de México",meta:"Impuestos para Inversoras",milestone:"Declaración ordenada · Sin sustos",t:"Invertía desde hacía un año pero vivía con la angustia de estar haciendo algo mal con los impuestos. Ordené todo el año en la plantilla en dos tardes y fui a mi contadora con los papeles listos."}
+];
+
+const FREE = [
+  {kind:"Guía PDF",title:"Tus primeros $100",tagline:"Cómo invertir cien dólares sin adivinar, en cuatro decisiones."},
+  {kind:"Plantilla",title:"Radiografía de tu sueldo",tagline:"Una hoja de una sola página para ver a dónde se va todo."},
+  {kind:"Vídeo · 18 min",title:"Qué es un ETF, de verdad",tagline:"La explicación que le doy a mi mamá, sin jerga."},
+  {kind:"Checklist",title:"Antes de abrir tu cuenta",tagline:"Los 9 documentos y datos que te va a pedir el bróker."},
+  {kind:"Guía PDF",title:"5 estafas que veo cada semana",tagline:"Cómo reconocer una promesa imposible en 30 segundos."},
+  {kind:"Audio",title:"Cuando el mercado cae",tagline:"Doce minutos para no vender por miedo."}
+];
+
+const BQ = [
+  {n:"Andrea P., Lima",t:"Siete herramientas por siete dólares. Me sentí casi mal pagando tan poco."},
+  {n:"Yamile C., Santiago",t:"Es el orden que llevaba años buscando en cursos de mil dólares."},
+  {n:"Nayeli T., Houston",t:"Empecé por el kit y en un mes ya tenía mi cuenta y mi primer aporte."}
+];
+
+const money = n => "$" + n;
+const byId = id => P.find(p => p.id === id);
+
+class Component extends DCLogic {
+  state = {route:"home", pid:null, q:"", cat:"Todas", max:27, cart:[], bump:true, order:null,
+           subscribed:false, popup:false, popupSeen:false, menu:false};
+
+  componentDidMount() {
+    this.sync = () => {
+      const h = (window.location.hash || "").replace(/^#\/?/, "");
+      const parts = h.split("/").filter(Boolean);
+      const r = parts[0] || "home";
+      this.setState({route:r, pid:parts[1] || null, menu:false, gi:0});
+      window.scrollTo(0, 0);
+    };
+    window.addEventListener("hashchange", this.sync);
+    this.sync();
+    try { this.setState({popupSeen: localStorage.getItem("ai_popup") === "1"}); } catch (e) {}
+    this.onOut = e => {
+      if (e.clientY <= 0 && !this.state.popupSeen && !this.state.subscribed && this.props.showExitPopup !== false) {
+        this.setState({popup:true, popupSeen:true});
+        try { localStorage.setItem("ai_popup", "1"); } catch (err) {}
+      }
+    };
+    document.addEventListener("mouseout", this.onOut);
+  }
+  componentWillUnmount() {
+    window.removeEventListener("hashchange", this.sync);
+    document.removeEventListener("mouseout", this.onOut);
+  }
+
+  go(r) { window.location.hash = "#/" + r; }
+
+  add(id, title, price) {
+    this.setState(s => {
+      const i = s.cart.findIndex(l => l.id === id);
+      if (i > -1) { const c = s.cart.slice(); c[i] = {...c[i], qty:c[i].qty + 1}; return {cart:c}; }
+      return {cart:[...s.cart, {id, title, price, qty:1}]};
+    });
+  }
+
+  card(p) {
+    return {...p, priceLabel:money(p.price), wasLabel:money(p.was), href:"#/producto/" + p.id,
+            img:"assets/portadas/" + p.id + ".png",
+            stripe:STRIPE[p.id] || "",
+            add:e => { if (e) e.preventDefault(); this.add(p.id, p.title, p.price); this.go("carrito"); }};
+  }
+
+  renderVals() {
+    const s = this.state;
+    const bundlePrice = this.props.bundlePrice ?? 7;
+    const r = s.route;
+    const cart = s.cart;
+    const subtotal = cart.reduce((a, l) => a + l.price * l.qty, 0);
+    const bumpOn = !!s.bump;
+    const total = subtotal + (bumpOn ? BUMP.price : 0);
+    const q = s.q.trim().toLowerCase();
+
+    const shop = P.filter(p =>
+      (s.cat === "Todas" || p.cat === s.cat) && p.price <= s.max &&
+      (!q || (p.title + " " + p.cat + " " + p.tagline + " " + p.desc).toLowerCase().includes(q))
+    ).map(p => this.card(p));
+
+    const prodRaw = byId(s.pid) || P[0];
+    const prod = this.card(prodRaw);
+    const related = P.filter(p => p.id !== prodRaw.id && p.cat === prodRaw.cat)
+      .concat(P.filter(p => p.id !== prodRaw.id && p.cat !== prodRaw.cat)).slice(0, 3).map(p => this.card(p));
+
+    const gi = s.gi || 0;
+    const gal = GALLERY[prodRaw.id] || [];
+    const panel = gal[gi - 1] || null;
+    const thumb = on => "padding:0;background:none;cursor:pointer;border:1px solid " + (on ? "#121212" : "#DAD9D6") +
+      ";aspect-ratio:1;display:flex;align-items:center;justify-content:center;text-align:center;font-family:'Newsreader',serif;font-size:9px;letter-spacing:.18em;text-transform:uppercase;line-height:1.4;color:" +
+      (on ? "#121212" : "#6A6A6A") + ";overflow:hidden";
+
+    const chip = on => "background:" + (on ? "#121212" : "none") + ";color:" + (on ? "#FCFCFB" : "#6A6A6A") +
+      ";border:1px solid " + (on ? "#121212" : "#DAD9D6") + ";padding:10px 15px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;font-family:'Newsreader',serif";
+
+    const orderItems = s.order ? s.order.items : [];
+
+    return {
+      bundlePrice,
+      isHome: r === "home", isShop: r === "tienda", isProduct: r === "producto", isBundle: r === "kit-inversora",
+      isCart: r === "carrito", isCheckout: r === "checkout", isUpsell: r === "upsell", isThanks: r === "gracias",
+      isReviews: r === "resenas", isStories: r === "historias", isFree: r === "gratis", isAbout: r === "sobre",
+      isLegal: r === "legales",
+      showChrome: ["kit-inversora", "checkout", "upsell", "gracias"].indexOf(r) === -1,
+
+      cartCount: cart.reduce((a, l) => a + l.qty, 0),
+      menuOpen: s.menu,
+      toggleMenu: () => this.setState(st => ({menu:!st.menu})),
+      closeMenu: () => this.setState({menu:false}),
+
+      featured: [P[1], P[2], P[0], P[8], P[4], P[11]].map(p => this.card(p)),
+      shopList: shop, shopEmpty: shop.length === 0,
+      resultLabel: shop.length + (shop.length === 1 ? " producto" : " productos"),
+      cats: CATS.map(name => ({name, style:chip(name === s.cat), pick:() => this.setState({cat:name})})),
+      query: s.q, setQuery: e => this.setState({q:e.target.value}),
+      maxPrice: s.max, maxLabel: money(s.max), setMax: e => this.setState({max:+e.target.value}),
+
+      prod, related,
+      addProd: () => { this.add(prodRaw.id, prodRaw.title, prodRaw.price); this.go("carrito"); },
+      prodHasStripe: !!prod.stripe, prodNoStripe: !prod.stripe,
+      viewIsCover: gi === 0, viewIsPanel: gi > 0 && !!panel, panel: panel || {rows:[]},
+      thumbs: [{isImg:true, notImg:false, img:prod.img, label:"Portada", style:thumb(gi === 0), pick:() => this.setState({gi:0})}]
+        .concat(gal.map((g, i) => ({isImg:false, notImg:true, img:"", label:g.label,
+          style:thumb(gi === i + 1), pick:() => this.setState({gi:i + 1})}))),
+
+      cartStripe: cart.length === 1 ? (STRIPE[cart[0].id] || "") : "",
+      cartPayHref: cart.length === 1 && STRIPE[cart[0].id] ? STRIPE[cart[0].id] : "#/checkout",
+      cartPayExternal: cart.length === 1 && !!STRIPE[cart[0].id],
+
+      bundleItems: BUNDLE_IDS.map((id, i) => {
+        const p = byId(id);
+        return {num:"Nº " + String(i + 1).padStart(2, "0"), title:p.title, tagline:p.tagline, was:money(p.was)};
+      }),
+      bundleQuotes: BQ,
+      bundleBuyHref: STRIPE.kit || "#/carrito",
+      upsellBuyHref: STRIPE["cartera-3-etfs"] || "#/gracias",
+      scarcityLabel: "Oferta de bienvenida · " + (this.props.scarcityLeft ?? 87) + " de 100 kits al precio de lanzamiento",
+      addBundle: e => {
+        if (e) e.preventDefault();
+        if (STRIPE.kit) { window.location.href = STRIPE.kit; return; }
+        this.add("kit", "El Kit de la Inversora (7 herramientas)", bundlePrice);
+        this.go("carrito");
+      },
+
+      lines: cart.map(l => ({title:l.title, meta:(l.qty > 1 ? l.qty + " × " + money(l.price) + " · " : "") + "Descarga digital",
+        total:money(l.price * l.qty), remove:() => this.setState(st => ({cart:st.cart.filter(x => x.id !== l.id)}))})),
+      cartEmpty: cart.length === 0, cartHasItems: cart.length > 0,
+      subtotalLabel: money(subtotal), totalLabel: money(total),
+
+      bump: bumpOn, toggleBump: () => this.setState(st => ({bump:!st.bump})),
+      pay: e => {
+        e.preventDefault();
+        const items = cart.map(l => ({title:l.title, total:money(l.price * l.qty)}));
+        if (bumpOn) items.push({title:BUMP.title, total:money(BUMP.price)});
+        this.setState({order:{items, total}});
+        this.go("upsell");
+      },
+      acceptUpsell: () => {
+        if (STRIPE["cartera-3-etfs"]) { window.location.href = STRIPE["cartera-3-etfs"]; return; }
+        this.setState(st => ({order:{items:[...(st.order ? st.order.items : []), {title:UP.title, total:money(UP.price)}],
+          total:(st.order ? st.order.total : 0) + UP.price}}));
+        this.go("gracias");
+      },
+      declineUpsell: () => this.go("gracias"),
+      orderLines: orderItems, orderTotalLabel: money(s.order ? s.order.total : 0),
+
+      allReviews: REVIEWS, stories: STORIES, freebies: FREE,
+
+      subscribed: s.subscribed, notSubscribed: !s.subscribed,
+      subscribe: e => { e.preventDefault(); this.setState({subscribed:true, popup:false}); },
+      popupOpen: s.popup, closePopup: () => this.setState({popup:false})
+    };
+  }
+}
+</script>
+</body>
+</html>
