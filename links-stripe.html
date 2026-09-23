@@ -118,20 +118,12 @@
   var EDIT_URL = 'https://github.com/marketingensocialmedia-gif/alexandra.invierte/edit/main/stripe-links.js';
   var DRAFT_KEY = 'ai-stripe-links-draft-v1';
   var ITEMS = [
-    { key: 'presupuesto',         name: 'Presupuesto Consciente',          price: 9 },
-    { key: 'primera-inversion',   name: 'Tu Primera Inversión',            price: 12 },
-    { key: 'etfs',                name: 'ETFs sin Miedo',                  price: 14 },
-    { key: 'cripto',              name: 'Cripto con Cabeza',               price: 11 },
-    { key: 'mentalidad',          name: 'Mentalidad de Inversora',         price: 9 },
-    { key: 'reto-ahorro',         name: 'Reto 30 Días de Ahorro',          price: 7 },
-    { key: 'leer-mercado',        name: 'Cómo Leer el Mercado',            price: 14 },
-    { key: 'impuestos',           name: 'Impuestos para Inversoras',       price: 17 },
-    { key: 'plantillas-notion',   name: 'Kit de Plantillas Notion',        price: 19 },
-    { key: 'fondo-emergencia',    name: 'Fondo de Emergencia en 90 Días',  price: 9 },
-    { key: 'diccionario',         name: 'Diccionario de Wall Street',      price: 5 },
-    { key: 'reto-primera-compra', name: 'Reto 7 Días: Primera Compra',     price: 7 },
-    { key: 'kit',                 name: 'El Kit de la Inversora',          price: 7,  tag: 'Oferta de bienvenida' },
-    { key: 'cartera-3-etfs',      name: 'Masterclass: Tu cartera de 3 ETFs', price: 27, tag: 'Aparece después de pagar' }
+    { key: 'kit',                    name: 'El Kit de la Inversora',           price: 7,   tag: 'El punto de partida' },
+    { key: 'tu-primer-plan',         name: 'Tu Primer Plan de Inversión',      price: 17,  tag: 'Fase 1 · Base' },
+    { key: 'mi-primer-portafolio',   name: 'Mi Primer Portafolio',             price: 37,  tag: 'Fase 2 · Mapa' },
+    { key: 'etfs-sin-miedo',         name: 'ETFs sin Miedo',                   price: 27,  tag: 'Fase 2 · Mapa' },
+    { key: 'reto-7-dias',            name: 'El Reto: Tu Primer Aporte en 7 Días', price: 19, tag: 'Fase 3 · Acción' },
+    { key: 'inversora-con-criterio', name: 'Inversora con Criterio',           price: 147, tag: 'El programa completo' }
   ];
   var KEYS = ITEMS.map(function (i) { return i.key; });
   var state = {};
