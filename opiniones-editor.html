@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Editor de opiniones · Alexandra Invierte</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;padding:0;background:#F2F0EC;color:#121212;font-family:'Newsreader',Georgia,serif}
+  *{box-sizing:border-box}
+  header{border-bottom:1px solid #DAD9D6;background:#FCFCFB;padding:22px 24px}
+  header h1{margin:0;font-family:'Playfair Display',serif;font-weight:400;font-size:32px}
+  header p{margin:6px 0 0;color:#6A6A6A;max-width:820px;font-size:15px;line-height:1.55}
+  main{max-width:1080px;margin:0 auto;padding:26px 24px 80px}
+  .row{background:#FCFCFB;border:1px solid #DAD9D6;padding:20px;margin-bottom:16px;border-radius:2px}
+  .row .row-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+  .row .row-head strong{font-family:'Playfair Display',serif;font-size:19px;font-weight:400}
+  .row .row-head .pill{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#B1122E}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .grid label{display:block;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#6A6A6A;margin-bottom:6px}
+  .grid input,.grid select,.grid textarea{width:100%;padding:10px 12px;border:1px solid #DAD9D6;font-family:inherit;font-size:15px;background:#FCFCFB}
+  .grid .full{grid-column:1 / -1}
+  .actions{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+  .btn{background:#121212;color:#FCFCFB;border:0;padding:11px 18px;font-family:inherit;font-size:11px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer}
+  .btn:hover{background:#B1122E}
+  .btn.ghost{background:none;color:#6A6A6A;border:1px solid #DAD9D6}
+  .btn.ghost:hover{color:#B1122E;border-color:#B1122E}
+  .btn.big{padding:16px 26px;font-size:12px}
+  .stripe{background:#FCFCFB;border:1px solid #DAD9D6;padding:22px;margin-bottom:24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+  .stripe .count{font-family:'Playfair Display',serif;font-size:22px}
+  .msg{margin-top:12px;font-size:14px;color:#6A6A6A}
+  textarea{min-height:110px;font-family:inherit;line-height:1.5}
+  .stars{display:inline-flex;gap:2px;font-size:20px;color:#DAD9D6;cursor:pointer;user-select:none}
+  .stars span.on{color:#B1122E}
+  .stars span{transition:color .1s}
+  .empty{padding:60px 20px;text-align:center;color:#6A6A6A;font-style:italic}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Editor de opiniones</h1>
+  <p>Pega aquí las opiniones que te llegan por WhatsApp, DM o correo. Cuando termines, dale a "Guardar y descargar". Te descarga el archivo <code>testimonios.js</code> — súbelo al repo de GitHub y en 1 minuto están online.</p>
+</header>
+
+<main>
+
+  <div class="stripe">
+    <div><span class="count" id="count">0</span> opiniones</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn ghost" onclick="addRow()">+ Añadir opinión</button>
+      <button class="btn big" onclick="saveAndDownload()">Guardar y descargar</button>
+    </div>
+  </div>
+
+  <div id="rows"></div>
+
+  <div class="stripe">
+    <div style="max-width:640px">
+      <strong style="font-family:'Playfair Display',serif;font-size:20px">Cómo subirlo a GitHub</strong>
+      <div class="msg">
+        1. Dale a <em>Guardar y descargar</em> arriba.<br>
+        2. Se descarga <code>testimonios.js</code>.<br>
+        3. Ve a <a href="https://github.com/marketingensocialmedia-gif/alexandra.invierte/edit/main/testimonios.js" target="_blank">github.com/…/testimonios.js</a>, borra todo lo que hay, pega el contenido del archivo descargado y da a Commit.<br>
+        4. En 1 minuto las opiniones aparecen en la web.
+      </div>
+    </div>
+    <button class="btn" onclick="copyToClipboard()">Copiar contenido</button>
+  </div>
+
+</main>
+
+<script src="./testimonios.js?t=1"></script>
+<script>
+(function () {
+  'use strict';
+  var STORAGE_KEY = 'ai-testimonios-draft-v1';
+  var PRODUCTS = [
+    { id: 'sistema-gastos',      name: 'Sistema de Gastos' },
+    { id: 'fondo-emergencia',    name: 'Fondo de Emergencia' },
+    { id: 'curso-cartera',       name: 'Curso de Cartera' },
+    { id: 'plan-pension',        name: 'Plan de Pensión' },
+    { id: 'finanzas-pareja',     name: 'Finanzas en Pareja' },
+    { id: 'mercado-en-rojo',     name: 'Mercado en Rojo' },
+    { id: 'finanzas-familiares', name: 'Finanzas Familiares' },
+    { id: 'general',             name: 'General (no un producto concreto)' }
+  ];
+  var state = [];
+
+  // Cargar de localStorage o de testimonios.js
+  function loadInitial() {
+    var draft = null;
+    try { draft = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null'); } catch(e){}
+    if (draft && Array.isArray(draft)) return draft;
+    if (window.TESTIMONIOS && Array.isArray(window.TESTIMONIOS)) return window.TESTIMONIOS.slice();
+    return [];
+  }
+
+  function persistDraft() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e){}
+    document.getElementById('count').textContent = state.length;
+  }
+
+  function productOptions(selected) {
+    return PRODUCTS.map(function(p){
+      return '<option value="' + p.id + '"' + (p.id === selected ? ' selected' : '') + '>' + p.name + '</option>';
+    }).join('');
+  }
+
+  function renderStars(stars, idx) {
+    var s = Number(stars) || 0;
+    var html = '<div class="stars" data-idx="' + idx + '">';
+    for (var i = 1; i <= 5; i++) {
+      html += '<span class="' + (i <= s ? 'on' : '') + '" data-star="' + i + '">★</span>';
+    }
+    html += '</div>';
+    return html;
+  }
+
+  function render() {
+    var rows = document.getElementById('rows');
+    if (state.length === 0) {
+      rows.innerHTML = '<div class="empty">Aún no hay opiniones. Dale a <strong>+ Añadir opinión</strong> para empezar.</div>';
+      persistDraft();
+      return;
+    }
+    rows.innerHTML = state.map(function(t, i) {
+      return '' +
+        '<div class="row" data-idx="' + i + '">' +
+          '<div class="row-head">' +
+            '<strong>Opinión #' + (i + 1) + '</strong>' +
+            '<span class="pill">' + (PRODUCTS.find(function(p){return p.id === t.product;}) || {name:'sin producto'}).name + '</span>' +
+          '</div>' +
+          '<div class="grid">' +
+            '<div><label>Nombre</label><input data-field="name" value="' + escapeHTML(t.name || '') + '" placeholder="María"></div>' +
+            '<div><label>Lugar (opcional)</label><input data-field="place" value="' + escapeHTML(t.place || '') + '" placeholder="Ciudad de México · Madrid · Bogotá"></div>' +
+            '<div><label>Producto</label><select data-field="product">' + productOptions(t.product) + '</select></div>' +
+            '<div><label>Estrellas (opcional)</label>' + renderStars(t.stars, i) + '</div>' +
+            '<div class="full"><label>Texto de la opinión</label><textarea data-field="text" placeholder="Lo que ella escribió, en sus palabras.">' + escapeHTML(t.text || '') + '</textarea></div>' +
+          '</div>' +
+          '<div class="actions">' +
+            '<button class="btn ghost" onclick="removeRow(' + i + ')">Borrar esta opinión</button>' +
+            '<span style="font-size:12px;color:#6A6A6A">Los cambios se guardan solos</span>' +
+          '</div>' +
+        '</div>';
+    }).join('');
+    persistDraft();
+    attachHandlers();
+  }
+
+  function escapeHTML(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+
+  function attachHandlers() {
+    document.querySelectorAll('.row').forEach(function(row){
+      var idx = Number(row.getAttribute('data-idx'));
+      row.querySelectorAll('input[data-field], select[data-field], textarea[data-field]').forEach(function(el){
+        el.addEventListener('input', function(){
+          var field = el.getAttribute('data-field');
+          state[idx][field] = el.value;
+          persistDraft();
+        });
+      });
+      var starsEl = row.querySelector('.stars');
+      if (starsEl) {
+        starsEl.querySelectorAll('span').forEach(function(s){
+          s.addEventListener('click', function(){
+            var v = Number(s.getAttribute('data-star'));
+            state[idx].stars = (state[idx].stars === v) ? 0 : v;
+            render();
+          });
+        });
+      }
+    });
+  }
+
+  window.addRow = function() {
+    state.push({ name:'', place:'', text:'', product:'sistema-gastos', stars: 5 });
+    render();
+  };
+  window.removeRow = function(i) {
+    if (!confirm('¿Borrar esta opinión?')) return;
+    state.splice(i, 1);
+    render();
+  };
+
+  function buildFileContent() {
+    var clean = state.filter(function(t){ return (t.text || '').trim(); }).map(function(t){
+      var o = { name: t.name || '', place: t.place || '', text: t.text || '', product: t.product || 'general' };
+      if (t.stars) o.stars = Number(t.stars);
+      return o;
+    });
+    var body = clean.map(function(t){
+      return '  { name: ' + JSON.stringify(t.name)
+           + ', place: ' + JSON.stringify(t.place)
+           + ', text: ' + JSON.stringify(t.text)
+           + ', product: ' + JSON.stringify(t.product)
+           + (t.stars ? ', stars: ' + t.stars : '')
+           + ' }';
+    }).join(',\n');
+    return '// Testimonios · Alexandra Invierte · generado desde /opiniones-editor.html\n\n' +
+           'window.TESTIMONIOS = [\n' + body + (body ? '\n' : '') + '];\n';
+  }
+
+  window.saveAndDownload = function() {
+    var content = buildFileContent();
+    var blob = new Blob([content], { type: 'application/javascript' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = 'testimonios.js';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+  };
+
+  window.copyToClipboard = function() {
+    var content = buildFileContent();
+    navigator.clipboard.writeText(content).then(function(){
+      alert('Copiado. Ahora pégalo en GitHub → testimonios.js');
+    }, function(){
+      // fallback
+      var ta = document.createElement('textarea');
+      ta.value = content; document.body.appendChild(ta); ta.select();
+      document.execCommand('copy'); document.body.removeChild(ta);
+      alert('Copiado. Ahora pégalo en GitHub → testimonios.js');
+    });
+  };
+
+  // Init
+  state = loadInitial();
+  render();
+})();
+</script>
+
+</body>
+</html>
